@@ -1,15 +1,23 @@
 namespace Hugo.I.Scripts.Utils
 {
-    public enum WeaponType
+    public enum WeaponTypesEnum
     {
         Revolver,
         Rifle
     }
     
-    public enum Resources
+    public enum ResourcesEnum
     {
         Stone,
         Metal,
         ElectricalCircuit
+    }
+    
+    public enum TowerLevelsEnum
+    {
+        T0,
+        T1,
+        T2,
+        T3
     }
 }

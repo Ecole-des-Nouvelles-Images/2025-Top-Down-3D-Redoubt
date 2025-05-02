@@ -8,12 +8,11 @@ namespace Hugo.I.Scripts.Interactable.Resources
         [Header("Settings")]
         [SerializeField] private ResourceData _resourceData;
         
-        
-        public Utils.Resources GetResourceType()
+        public Utils.ResourcesEnum GetResourceType()
         {
-            Debug.Log("Interact with " + _resourceData.ResourceType);
+            Debug.Log("Interact with " + _resourceData._resourceEnumType);
             
-            return _resourceData.ResourceType;
+            return _resourceData._resourceEnumType;
         }
 
         public int GetResourceMaxCollectable()

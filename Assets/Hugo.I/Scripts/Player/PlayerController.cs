@@ -4,7 +4,6 @@ using Hugo.I.Scripts.Interactable.Resources;
 using Hugo.I.Scripts.Utils;
 using Hugo.I.Scripts.Weapon;
 using UnityEngine;
-using Resources = Hugo.I.Scripts.Utils.Resources;
 
 namespace Hugo.I.Scripts.Player
 {
@@ -20,11 +19,11 @@ namespace Hugo.I.Scripts.Player
         [SerializeField] private WeaponHandler _rifleWeapon;
         
         // Inventory
-        Dictionary<Resources, int> _inventory = new Dictionary<Resources, int>()
+        private Dictionary<ResourcesEnum, int> _inventory = new Dictionary<ResourcesEnum, int>()
         {
-            { Resources.Stone, 0 },
-            { Resources.Metal, 0 },
-            { Resources.ElectricalCircuit, 0 }
+            { ResourcesEnum.Stone, 0 },
+            { ResourcesEnum.Metal, 0 },
+            { ResourcesEnum.ElectricalCircuit, 0 }
         };
         
         // Internals Components
@@ -130,7 +129,7 @@ namespace Hugo.I.Scripts.Player
 
             if (readValue > 0)
             {
-                if (_equippedWeapon.WeaponData.WeaponType == WeaponType.Revolver)
+                if (_equippedWeapon.WeaponData._weaponTypesEnum == WeaponTypesEnum.Revolver)
                 {
                     _equippedWeapon.gameObject.SetActive(false);
                     _equippedWeapon = _rifleWeapon;
@@ -234,7 +233,7 @@ namespace Hugo.I.Scripts.Player
         {
             _isInteracting = false;
             _inventory[_lastInteractableResource.GetResourceType()] += _actualPadQte.Score;
-            foreach (KeyValuePair<Resources, int> resource in _inventory)
+            foreach (KeyValuePair<ResourcesEnum, int> resource in _inventory)
             {
                 Debug.Log($"key: {resource.Key}, value: {resource.Value}");
             }
