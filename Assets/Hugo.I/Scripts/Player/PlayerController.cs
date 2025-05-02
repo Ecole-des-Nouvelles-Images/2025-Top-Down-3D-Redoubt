@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Hugo.I.Scripts.Interactable.Resources;
 using Hugo.I.Scripts.Utils;
 using Hugo.I.Scripts.Weapon;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace Hugo.I.Scripts.Player
         [SerializeField] private float _moveSpeed;
         [SerializeField] private float _factorAimingSpeed;
         [SerializeField] private int _timeBeforeCollecting;
+        [SerializeField] private float _gravityScale;
         [SerializeField] private TriggerCollider _triggerCollider;
         [SerializeField] private WeaponHandler _revolverWeapon;
         [SerializeField] private WeaponHandler _rifleWeapon;
@@ -40,9 +42,9 @@ namespace Hugo.I.Scripts.Player
         // Weapons
         private WeaponHandler _equippedWeapon;
         
-        // QTE
+        // Interactions
         private PadQte _actualPadQte;
-        private IResource _interactResource;
+        private ResourceHandler _lastInteractableResource;
 
         private void Awake()
         {
@@ -53,9 +55,9 @@ namespace Hugo.I.Scripts.Player
         }
 
         private void Update()
-        {
+        { 
             // Movement - Rotation
-            Vector3 movement = new Vector3(_movement.x * _moveSpeed, 0, _movement.y * _moveSpeed);
+            Vector3 movement = new Vector3(_movement.x * _moveSpeed, _gravityScale, _movement.y * _moveSpeed);
             float angle;
             
             if (_aiming == Vector2.zero)
@@ -109,12 +111,10 @@ namespace Hugo.I.Scripts.Player
             if (_isInteracting && readValue != Vector2.zero)
             {
                 Debug.Log("Pad : " + readValue);
-                (bool, int) resultQte = _actualPadQte.CheckQte(readValue);
+                bool isQteFinished = _actualPadQte.CheckQte(readValue);
 
-                if (resultQte.Item1)
+                if (isQteFinished)
                 {
-                    _isInteracting = false;
-                    _inventory[_interactResource.GetResourceType()] += resultQte.Item2;
                     QuitQte();
                 }
             }
@@ -152,11 +152,35 @@ namespace Hugo.I.Scripts.Player
             if (readValue > 0)
             {
                 _pressesButtonSouth = true;
-                if (_triggerCollider.GetNearestObject("Resource") && !_isInteracting)
+
+                GameObject nearestInteractable = _triggerCollider.GetNearestObject();
+                
+                if (nearestInteractable && !_isInteracting)
                 {
                     Debug.Log("Start Interact");
-                    _interactResource = _triggerCollider.GetNearestObject("Resource").GetComponent<IResource>();
-                    StartCoroutine(TmeBeforeCollecting());
+
+                    if (nearestInteractable.CompareTag("Resource"))
+                    {
+                        Debug.Log("Interact with a Resource");
+                        _lastInteractableResource = nearestInteractable.GetComponent<ResourceHandler>();
+                        StartCoroutine(TmeBeforeCollecting());
+                    }
+                    if (nearestInteractable.CompareTag("Tower"))
+                    {
+                        Debug.Log("Interact with a Tower");
+                    }
+                    if (nearestInteractable.CompareTag("ReloadHeal"))
+                    {
+                        Debug.Log("Interact with a ReloadHeal");
+                    }
+                    if (nearestInteractable.CompareTag("PowerPlant"))
+                    {
+                        Debug.Log("Interact with a PowerPlant");
+                    }
+                    if (nearestInteractable.CompareTag("Shield"))
+                    {
+                        Debug.Log("Interact with a Shield");
+                    }
                 }
             }
             else
@@ -195,7 +219,7 @@ namespace Hugo.I.Scripts.Player
                 if (time >= _timeBeforeCollecting)
                 {
                     _isInteracting = true;
-                    _actualPadQte = new PadQte(_interactResource.GetResourceMaxCollectable());
+                    _actualPadQte = new PadQte(_lastInteractableResource.GetResourceMaxCollectable());
                     foreach (Vector2 vector2 in _actualPadQte.Qte)
                     {
                         Debug.Log(vector2);
@@ -209,7 +233,7 @@ namespace Hugo.I.Scripts.Player
         private void QuitQte()
         {
             _isInteracting = false;
-            _inventory[_interactResource.GetResourceType()] += _actualPadQte.Score;
+            _inventory[_lastInteractableResource.GetResourceType()] += _actualPadQte.Score;
             foreach (KeyValuePair<Resources, int> resource in _inventory)
             {
                 Debug.Log($"key: {resource.Key}, value: {resource.Value}");

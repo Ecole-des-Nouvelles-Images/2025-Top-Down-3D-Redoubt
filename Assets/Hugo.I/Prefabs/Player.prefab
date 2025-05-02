@@ -107,6 +107,7 @@ MonoBehaviour:
   _moveSpeed: 10
   _factorAimingSpeed: 0.5
   _timeBeforeCollecting: 3
+  _gravityScale: -9.81
   _triggerCollider: {fileID: 8441644279822781639}
   _revolverWeapon: {fileID: 1299178300611406369}
   _rifleWeapon: {fileID: 5876720911722562231}

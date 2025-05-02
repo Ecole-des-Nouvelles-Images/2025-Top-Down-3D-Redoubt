@@ -1,8 +1,6 @@
 namespace Hugo.I.Scripts.Utils
 {
-    public interface IResource {
-        public Resources GetResourceType();
-        public int GetResourceMaxCollectable();
+    public interface IInteractable {
         public void OnEnterZone();
         public void OnExitZone();
     }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Hugo.I.Scripts.Interactable.Resources
 {
-    public class ResourceHandler : MonoBehaviour, IResource
+    public class ResourceHandler : MonoBehaviour, IInteractable
     {
         [Header("Settings")]
         [SerializeField] private ResourceData _resourceData;

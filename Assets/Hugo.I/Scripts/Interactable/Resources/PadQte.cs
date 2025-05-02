@@ -1,14 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Hugo.I.Scripts.Player
+namespace Hugo.I.Scripts.Interactable.Resources
 {
-    // EN gros dans PlayerController il y a la ref d'un QteSystem et ca en créé un quand on appuie sur le bouton et le stock dedans.
-    // Ici ca créé une liste de vecteur 2 (qui est le QTE).
-    // Et ensuite le player passe en mode QTE et à chaque appuie sur le pad ca lance une methode ici qui vérifie si c'est la bonne touche.
-    // Et donc petit à petit ca vérifie le nombre de juste et la methode de lancement de QTE return un int qui est le nombre de ressource que le joueur va récolter.
-    
-    
     public struct PadQte
     {
         public List<Vector2> Qte;
@@ -40,10 +34,8 @@ namespace Hugo.I.Scripts.Player
             return qte;
         }
         
-        public (bool, int) CheckQte(Vector2 readValue)
+        public bool CheckQte(Vector2 readValue)
         {
-            bool isFinished = false;
-            
             if (readValue == Qte[_advancement])
             {
                 Debug.Log("Succes");
@@ -57,12 +49,12 @@ namespace Hugo.I.Scripts.Player
             if (_advancement == Qte.Count - 1)
             {
                 Debug.Log("QTE fini, score : " + Score);
-                isFinished = true;
+                return true;
             }
             
             _advancement++;
             
-            return (isFinished, Score);
+            return false;
         }
     }
 }

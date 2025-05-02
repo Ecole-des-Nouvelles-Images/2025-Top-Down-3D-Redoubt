@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - Resource
+  - Tower
+  - ReloadHeal
+  - PowerPlant
+  - Shield
   layers:
   - Default
   - TransparentFX
