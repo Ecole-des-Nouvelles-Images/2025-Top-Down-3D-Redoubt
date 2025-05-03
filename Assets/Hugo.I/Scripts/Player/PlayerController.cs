@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Hugo.I.Scripts.Interactable.Resources;
+using Hugo.I.Scripts.Interactable.Tower;
 using Hugo.I.Scripts.Utils;
 using Hugo.I.Scripts.Weapon;
 using UnityEngine;
@@ -44,6 +45,7 @@ namespace Hugo.I.Scripts.Player
         // Interactions
         private PadQte _actualPadQte;
         private ResourceHandler _lastInteractableResource;
+        private TowerHandler _lastInteractableTower;
 
         private void Awake()
         {
@@ -167,6 +169,9 @@ namespace Hugo.I.Scripts.Player
                     if (nearestInteractable.CompareTag("Tower"))
                     {
                         Debug.Log("Interact with a Tower");
+                        _lastInteractableTower = nearestInteractable.GetComponent<TowerHandler>();
+                        _inventory = _lastInteractableTower.ReceiveResources(_inventory);
+                        
                     }
                     if (nearestInteractable.CompareTag("ReloadHeal"))
                     {

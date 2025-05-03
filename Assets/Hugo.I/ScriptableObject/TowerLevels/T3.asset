@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: T3
   m_EditorClassIdentifier: 
   Icon: {fileID: 0}
-  _towerLevelsEnum: 3
+  _towerLevelsEnum: 0
   Health: 200
   Capacity: 150
   StoneToLevelUp: 0

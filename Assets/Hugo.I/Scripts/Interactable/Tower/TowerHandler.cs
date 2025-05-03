@@ -4,102 +4,51 @@ using UnityEngine;
 
 namespace Hugo.I.Scripts.Interactable.Tower
 {
-    public class TowerHandler : MonoBehaviour, IInteractable
+    public class TowerHandler : MonoBehaviour
     {
         [Header("Settings")]
-        [SerializeField] private TowerLevelsEnum _actualTowerLevels;
-        [SerializeField] private TowerLevelData _towerLevelT0;
-        [SerializeField] private TowerLevelData _towerLevelT1;
-        [SerializeField] private TowerLevelData _towerLevelT2;
-        [SerializeField] private TowerLevelData _towerLevelT3;
-        
-        // Inventory
-        private Dictionary<ResourcesEnum, int> _storage = new Dictionary<ResourcesEnum, int>()
+        [SerializeField] private TowerLevelData _towerLevelData;
+        [SerializeField] private float _currentHealth;
+        [SerializeField] private float _currentCapacity;
+        [SerializeField] private int _currentStone;
+        [SerializeField] private int _currentMetal;
+        [SerializeField] private int _currentElectricalCircuit;
+
+        public Dictionary<ResourcesEnum, int> ReceiveResources(Dictionary<ResourcesEnum, int> resourcesToGive)
         {
-            { ResourcesEnum.Stone, 0 },
-            { ResourcesEnum.Metal, 0 },
-            { ResourcesEnum.ElectricalCircuit, 0 }
-        };
-
-        private int _currentStone;
-        private int _currentMetal;
-        private int _currentElectronicalCircuit;
-
-        public TowerLevelsEnum ActualTowerLevels
-        {
-            get => _actualTowerLevels;
-            set
+            Dictionary<ResourcesEnum, int> newPlayerInventory = new Dictionary<ResourcesEnum, int>();
+            
+            if (resourcesToGive[ResourcesEnum.Stone] + _currentStone <= _towerLevelData.StoneToLevelUp)
             {
-                if (_actualTowerLevels == value) return;
-                
-                _actualTowerLevels = value;
-                UpgradeTower(value);
+                _currentStone += resourcesToGive[ResourcesEnum.Stone];
             }
-        }
-
-        private void Awake()
-        {
-            UpgradeTower(_actualTowerLevels);
-        }
-
-        // Datas
-        private TowerLevelData _actualTowerLevelData;
-
-        private void SetTower(TowerLevelsEnum towerLevel)
-        {
-            if (towerLevel == TowerLevelsEnum.T0)
+            else
             {
-                _towerLevelT0.gameObject.SetActive(true);
-                _towerLevelT1.gameObject.SetActive(false);
-                _towerLevelT2.gameObject.SetActive(false);
-                _towerLevelT3.gameObject.SetActive(false);
-            }
-            if (towerLevel == TowerLevelsEnum.T1)
-            {
-                _towerLevelT0.gameObject.SetActive(false);
-                _towerLevelT1.gameObject.SetActive(true);
-                _towerLevelT2.gameObject.SetActive(false);
-                _towerLevelT3.gameObject.SetActive(false);
-            }
-            if (towerLevel == TowerLevelsEnum.T2)
-            {
-                _towerLevelT0.gameObject.SetActive(false);
-                _towerLevelT1.gameObject.SetActive(false);
-                _towerLevelT2.gameObject.SetActive(true);
-                _towerLevelT3.gameObject.SetActive(false);
-            }
-            if (towerLevel == TowerLevelsEnum.T3)
-            {
-                _towerLevelT0.gameObject.SetActive(false);
-                _towerLevelT1.gameObject.SetActive(false);
-                _towerLevelT2.gameObject.SetActive(false);
-                _towerLevelT3.gameObject.SetActive(true);
+                newPlayerInventory[ResourcesEnum.Stone] = _currentStone + resourcesToGive[ResourcesEnum.Stone] - _towerLevelData.StoneToLevelUp;
+                _currentStone = _towerLevelData.StoneToLevelUp;
             }
             
-            ActualTowerLevels = towerLevel;
-        }
-
-        private void UpgradeTower(TowerLevelsEnum towerLevel)
-        {
-            Debug.Log($"Tower Level: {towerLevel}");
-        }
-
-        public void TakeResources(Dictionary<ResourcesEnum, int> resources)
-        {
-            foreach (KeyValuePair<ResourcesEnum, int> resource in resources)
+            if (resourcesToGive[ResourcesEnum.Metal] + _currentMetal <= _towerLevelData.MetalToLevelUp)
             {
-                _storage[resource.Key] += resource.Value;
+                _currentMetal += resourcesToGive[ResourcesEnum.Metal];
             }
-        }
-
-        public void OnEnterZone()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void OnExitZone()
-        {
-            throw new System.NotImplementedException();
+            else
+            {
+                newPlayerInventory[ResourcesEnum.Metal] = _currentMetal + resourcesToGive[ResourcesEnum.Metal] - _towerLevelData.MetalToLevelUp;
+                _currentMetal = _towerLevelData.MetalToLevelUp;
+            }
+            
+            if (resourcesToGive[ResourcesEnum.ElectricalCircuit] + _currentElectricalCircuit <= _towerLevelData.ElectricalCircuitToLevelUp)
+            {
+                _currentElectricalCircuit += resourcesToGive[ResourcesEnum.ElectricalCircuit];
+            }
+            else
+            {
+                newPlayerInventory[ResourcesEnum.ElectricalCircuit] = _currentElectricalCircuit + resourcesToGive[ResourcesEnum.ElectricalCircuit] - _towerLevelData.ElectricalCircuitToLevelUp;
+                _currentElectricalCircuit = _towerLevelData.ElectricalCircuitToLevelUp;
+            }
+            
+            return newPlayerInventory;
         }
     }
 }

@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 312854555}
   - component: {fileID: 312854559}
   - component: {fileID: 312854558}
-  - component: {fileID: 312854557}
+  - component: {fileID: 312854560}
   - component: {fileID: 312854556}
   m_Layer: 0
   m_Name: Tower_T3
@@ -209,25 +209,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &312854557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 312854554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bd014564411eb24fbdf72baf93f35db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Icon: {fileID: 0}
-  _towerLevelsEnum: 3
-  Health: 200
-  Capacity: 150
-  StoneToLevelUp: 0
-  MetalToLevelUp: 0
-  ElectricalCircuitToLevelUp: 0
 --- !u!23 &312854558
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -281,6 +262,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 312854554}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &312854560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312854554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e630f00982313f34c819831d780226bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerLevelData: {fileID: 11400000, guid: a8f7f3c699140854aa6c5fd61f9c4ed2, type: 2}
+  _currentHealth: 0
+  _currentCapacity: 0
+  _currentStone: 0
+  _currentMetal: 0
+  _currentElectricalCircuit: 0
 --- !u!1 &360271780
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,7 +490,7 @@ GameObject:
   - component: {fileID: 725788443}
   - component: {fileID: 725788447}
   - component: {fileID: 725788446}
-  - component: {fileID: 725788445}
+  - component: {fileID: 725788448}
   - component: {fileID: 725788444}
   m_Layer: 0
   m_Name: Tower_T1
@@ -536,25 +535,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &725788445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 725788442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bd014564411eb24fbdf72baf93f35db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Icon: {fileID: 0}
-  _towerLevelsEnum: 1
-  Health: 100
-  Capacity: 50
-  StoneToLevelUp: 0
-  MetalToLevelUp: 15
-  ElectricalCircuitToLevelUp: 5
 --- !u!23 &725788446
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -608,6 +588,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725788442}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &725788448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725788442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e630f00982313f34c819831d780226bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerLevelData: {fileID: 11400000, guid: 6187291c4d513744c9c9dcb2301c4a98, type: 2}
+  _currentHealth: 0
+  _currentCapacity: 0
+  _currentStone: 0
+  _currentMetal: 0
+  _currentElectricalCircuit: 0
 --- !u!1001 &775574508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -717,10 +715,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _actualTowerLevels: 0
-  _towerLevelT0: {fileID: 1836415655}
-  _towerLevelT1: {fileID: 725788445}
-  _towerLevelT2: {fileID: 1071857073}
-  _towerLevelT3: {fileID: 312854557}
+  _towerLevelT0: {fileID: 0}
+  _towerLevelT1: {fileID: 0}
+  _towerLevelT2: {fileID: 0}
+  _towerLevelT3: {fileID: 0}
 --- !u!1 &880241598
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,7 +944,7 @@ GameObject:
   - component: {fileID: 1071857071}
   - component: {fileID: 1071857075}
   - component: {fileID: 1071857074}
-  - component: {fileID: 1071857073}
+  - component: {fileID: 1071857076}
   - component: {fileID: 1071857072}
   m_Layer: 0
   m_Name: Tower_T2
@@ -991,25 +989,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1071857073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1071857070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bd014564411eb24fbdf72baf93f35db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Icon: {fileID: 0}
-  _towerLevelsEnum: 2
-  Health: 150
-  Capacity: 100
-  StoneToLevelUp: 50
-  MetalToLevelUp: 30
-  ElectricalCircuitToLevelUp: 15
 --- !u!23 &1071857074
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1063,6 +1042,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1071857070}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1071857076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071857070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e630f00982313f34c819831d780226bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerLevelData: {fileID: 11400000, guid: ba18b7d77dbd3cb4aaa860b1c1c685c3, type: 2}
+  _currentHealth: 0
+  _currentCapacity: 0
+  _currentStone: 0
+  _currentMetal: 0
+  _currentElectricalCircuit: 0
 --- !u!4 &1137640980 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 80186066695258373, guid: c69e6095f6a2928499b8ef481b64e70f, type: 3}
@@ -1308,7 +1305,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1836415651
 Transform:
   m_ObjectHideFlags: 0
@@ -1407,16 +1404,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1836415650}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bd014564411eb24fbdf72baf93f35db, type: 3}
+  m_Script: {fileID: 11500000, guid: e630f00982313f34c819831d780226bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 0}
-  _towerLevelsEnum: 0
-  Health: 50
-  Capacity: 0
-  StoneToLevelUp: 10
-  MetalToLevelUp: 0
-  ElectricalCircuitToLevelUp: 2
+  _towerLevelData: {fileID: 11400000, guid: c5ea8239e2d765240a4c3771aa6124a8, type: 2}
+  _currentHealth: 0
+  _currentCapacity: 0
+  _currentStone: 0
+  _currentMetal: 0
+  _currentElectricalCircuit: 0
 --- !u!1 &1895722319
 GameObject:
   m_ObjectHideFlags: 0

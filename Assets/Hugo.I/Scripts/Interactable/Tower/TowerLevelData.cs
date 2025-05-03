@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace Hugo.I.Scripts.Interactable.Tower
 {
-    public class TowerLevelData : MonoBehaviour
+    [CreateAssetMenu(fileName = "TowerLevelData", menuName = "Scriptable Objects/TowerLevelData")]
+    public class TowerLevelData : ScriptableObject
     {
         public Sprite Icon;
         public TowerLevelsEnum _towerLevelsEnum;
