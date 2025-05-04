@@ -16,37 +16,27 @@ namespace Hugo.I.Scripts.Interactable.Tower
 
         public Dictionary<ResourcesEnum, int> ReceiveResources(Dictionary<ResourcesEnum, int> resourcesToGive)
         {
-            Dictionary<ResourcesEnum, int> newPlayerInventory = new Dictionary<ResourcesEnum, int>();
+            Dictionary<ResourcesEnum, int> newPlayerInventory = new Dictionary<ResourcesEnum, int>()
+            {
+                { ResourcesEnum.Stone, 0 },
+                { ResourcesEnum.Metal, 0 },
+                { ResourcesEnum.ElectricalCircuit, 0 }
+            };
             
-            if (resourcesToGive[ResourcesEnum.Stone] + _currentStone <= _towerLevelData.StoneToLevelUp)
-            {
-                _currentStone += resourcesToGive[ResourcesEnum.Stone];
-            }
-            else
-            {
-                newPlayerInventory[ResourcesEnum.Stone] = _currentStone + resourcesToGive[ResourcesEnum.Stone] - _towerLevelData.StoneToLevelUp;
-                _currentStone = _towerLevelData.StoneToLevelUp;
-            }
-            
-            if (resourcesToGive[ResourcesEnum.Metal] + _currentMetal <= _towerLevelData.MetalToLevelUp)
-            {
-                _currentMetal += resourcesToGive[ResourcesEnum.Metal];
-            }
-            else
-            {
-                newPlayerInventory[ResourcesEnum.Metal] = _currentMetal + resourcesToGive[ResourcesEnum.Metal] - _towerLevelData.MetalToLevelUp;
-                _currentMetal = _towerLevelData.MetalToLevelUp;
-            }
-            
-            if (resourcesToGive[ResourcesEnum.ElectricalCircuit] + _currentElectricalCircuit <= _towerLevelData.ElectricalCircuitToLevelUp)
-            {
-                _currentElectricalCircuit += resourcesToGive[ResourcesEnum.ElectricalCircuit];
-            }
-            else
-            {
-                newPlayerInventory[ResourcesEnum.ElectricalCircuit] = _currentElectricalCircuit + resourcesToGive[ResourcesEnum.ElectricalCircuit] - _towerLevelData.ElectricalCircuitToLevelUp;
-                _currentElectricalCircuit = _towerLevelData.ElectricalCircuitToLevelUp;
-            }
+            int stoneToGive = resourcesToGive[ResourcesEnum.Stone];
+            int stoneLimit = _towerLevelData.StoneToLevelUp;
+            newPlayerInventory[ResourcesEnum.Stone] = Mathf.Max(0, _currentStone + stoneToGive - stoneLimit);
+            _currentStone = Mathf.Min(_currentStone + stoneToGive, stoneLimit);
+
+            int metalToGive = resourcesToGive[ResourcesEnum.Metal];
+            int metalLimit = _towerLevelData.MetalToLevelUp;
+            newPlayerInventory[ResourcesEnum.Metal] = Mathf.Max(0, _currentMetal + metalToGive - metalLimit);
+            _currentMetal = Mathf.Min(_currentMetal + metalToGive, metalLimit);
+
+            int circuitToGive = resourcesToGive[ResourcesEnum.ElectricalCircuit];
+            int circuitLimit = _towerLevelData.ElectricalCircuitToLevelUp;
+            newPlayerInventory[ResourcesEnum.ElectricalCircuit] = Mathf.Max(0, _currentElectricalCircuit + circuitToGive - circuitLimit);
+            _currentElectricalCircuit = Mathf.Min(_currentElectricalCircuit + circuitToGive, circuitLimit);
             
             return newPlayerInventory;
         }

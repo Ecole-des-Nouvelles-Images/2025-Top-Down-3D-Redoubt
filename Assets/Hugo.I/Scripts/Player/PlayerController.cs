@@ -22,9 +22,9 @@ namespace Hugo.I.Scripts.Player
         // Inventory
         private Dictionary<ResourcesEnum, int> _inventory = new Dictionary<ResourcesEnum, int>()
         {
-            { ResourcesEnum.Stone, 0 },
-            { ResourcesEnum.Metal, 0 },
-            { ResourcesEnum.ElectricalCircuit, 0 }
+            { ResourcesEnum.Stone, 10 },
+            { ResourcesEnum.Metal, 5 },
+            { ResourcesEnum.ElectricalCircuit, 2 }
         };
         
         // Internals Components
@@ -168,9 +168,19 @@ namespace Hugo.I.Scripts.Player
                     }
                     if (nearestInteractable.CompareTag("Tower"))
                     {
+                        foreach (KeyValuePair<ResourcesEnum, int> resource in _inventory)
+                        {
+                            Debug.Log($"key: {resource.Key}, value: {resource.Value}");
+                        }
                         Debug.Log("Interact with a Tower");
+                        
                         _lastInteractableTower = nearestInteractable.GetComponent<TowerHandler>();
                         _inventory = _lastInteractableTower.ReceiveResources(_inventory);
+                        
+                        foreach (KeyValuePair<ResourcesEnum, int> resource in _inventory)
+                        {
+                            Debug.Log($"key: {resource.Key}, value: {resource.Value}");
+                        }
                         
                     }
                     if (nearestInteractable.CompareTag("ReloadHeal"))
