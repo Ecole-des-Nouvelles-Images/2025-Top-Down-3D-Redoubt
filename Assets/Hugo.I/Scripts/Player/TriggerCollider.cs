@@ -14,6 +14,7 @@ namespace Hugo.I.Scripts.Player
             {
                 _colliders.Add(other);
             }
+            _colliders.RemoveAll(collider => !collider.gameObject.activeSelf);
         }
 
         private void OnTriggerExit(Collider other)

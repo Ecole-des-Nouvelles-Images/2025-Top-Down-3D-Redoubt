@@ -7,6 +7,7 @@ namespace Hugo.I.Scripts.Interactable.Tower
     public class TowerHandler : MonoBehaviour
     {
         [Header("Settings")]
+        [SerializeField] private TowerLevelsManager _towerLevelsManager;
         [SerializeField] private TowerLevelData _towerLevelData;
         [SerializeField] private float _currentHealth;
         [SerializeField] private float _currentCapacity;
@@ -38,7 +39,18 @@ namespace Hugo.I.Scripts.Interactable.Tower
             newPlayerInventory[ResourcesEnum.ElectricalCircuit] = Mathf.Max(0, _currentElectricalCircuit + circuitToGive - circuitLimit);
             _currentElectricalCircuit = Mathf.Min(_currentElectricalCircuit + circuitToGive, circuitLimit);
             
+            CheckUpgrade();
+            
             return newPlayerInventory;
+        }
+
+        private void CheckUpgrade()
+        {
+            if (_currentStone >= _towerLevelData.StoneToLevelUp && _currentMetal >= _towerLevelData.MetalToLevelUp
+                && _currentElectricalCircuit >= _towerLevelData.ElectricalCircuitToLevelUp)
+            {
+                _towerLevelsManager.UpgradeTower(gameObject);
+            }
         }
     }
 }
