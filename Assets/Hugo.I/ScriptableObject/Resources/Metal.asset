@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60fb5206a09dc9e418bd68771cad930c, type: 3}
   m_Name: Metal
   m_EditorClassIdentifier: 
-  _resourceEnumType: 1
+  ResourceEnumType: 1
   Icon: {fileID: 0}
   MaxCollectableAtOnce: 8

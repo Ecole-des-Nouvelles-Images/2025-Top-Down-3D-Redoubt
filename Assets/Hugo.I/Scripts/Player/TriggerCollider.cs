@@ -10,10 +10,11 @@ namespace Hugo.I.Scripts.Player
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Resource") || other.CompareTag("Tower") || other.CompareTag("ReloadHeal")
-                    || other.CompareTag("PowerPlant") || other.CompareTag("Shield"))
+                    || other.CompareTag("PowerPlant") || other.CompareTag("Shield") || other.CompareTag("Lobby"))
             {
                 _colliders.Add(other);
             }
+            _colliders.RemoveAll(collider => collider == null);
             _colliders.RemoveAll(collider => !collider.gameObject.activeSelf);
         }
 

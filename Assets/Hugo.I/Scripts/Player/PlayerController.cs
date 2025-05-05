@@ -1,15 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Hugo.I.Scripts.Game;
 using Hugo.I.Scripts.Interactable.Resources;
 using Hugo.I.Scripts.Interactable.Tower;
 using Hugo.I.Scripts.Utils;
 using Hugo.I.Scripts.Weapon;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Hugo.I.Scripts.Player
 {
     public class PlayerController : MonoBehaviour
     {
+        public int PlayerId;
+        
         [Header("Player Settings")]
         [SerializeField] private float _moveSpeed;
         [SerializeField] private float _factorAimingSpeed;
@@ -18,6 +23,7 @@ namespace Hugo.I.Scripts.Player
         [SerializeField] private TriggerCollider _triggerCollider;
         [SerializeField] private WeaponHandler _revolverWeapon;
         [SerializeField] private WeaponHandler _rifleWeapon;
+        [SerializeField] private List<Transform> _playerSpawnPoints;
         
         // Inventory
         private Dictionary<ResourcesEnum, int> _inventory = new Dictionary<ResourcesEnum, int>()
@@ -49,6 +55,9 @@ namespace Hugo.I.Scripts.Player
 
         private void Awake()
         {
+            DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            
             _characterController = GetComponent<CharacterController>();
 
             _equippedWeapon = _revolverWeapon;
@@ -74,6 +83,11 @@ namespace Hugo.I.Scripts.Player
                 angle = Mathf.Atan2(_aiming.x, _aiming.y) * Mathf.Rad2Deg;
             }
             transform.rotation = Quaternion.Euler(0, angle, 0);
+        }
+
+        private void OnDestroy()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
         public void OnMove(Vector2 readValue)
@@ -111,7 +125,6 @@ namespace Hugo.I.Scripts.Player
             // Debug.Log("Pad : " + readValue);
             if (_isInteracting && readValue != Vector2.zero)
             {
-                Debug.Log("Pad : " + readValue);
                 bool isQteFinished = _actualPadQte.CheckQte(readValue);
 
                 if (isQteFinished)
@@ -158,11 +171,10 @@ namespace Hugo.I.Scripts.Player
                 
                 if (nearestInteractable && !_isInteracting)
                 {
-                    Debug.Log("Start Interact");
-
                     if (nearestInteractable.CompareTag("Resource"))
                     {
                         Debug.Log("Interact with a Resource");
+                        
                         _lastInteractableResource = nearestInteractable.GetComponent<ResourceHandler>();
                         if (_lastInteractableResource.CurrentCapacity > 0)
                         {
@@ -202,6 +214,11 @@ namespace Hugo.I.Scripts.Player
                     {
                         Debug.Log("Interact with a Shield");
                     }
+                    if (nearestInteractable.CompareTag("Lobby"))
+                    {
+                        Debug.Log("Interact with a Lobby");
+                        SceneManager.LoadScene(2);
+                    }
                 }
             }
             else
@@ -228,6 +245,14 @@ namespace Hugo.I.Scripts.Player
             }
             
             _equippedWeapon.Shoot(readValue);
+        }
+        
+        private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+        {
+            Debug.Log("PlayerId : " + PlayerId);
+            Debug.Log("Player SpawnPoint : " + GameManager.SpawnPoint[PlayerId]);
+            
+            transform.position = GameManager.SpawnPoint[PlayerId];
         }
 
         private IEnumerator TmeBeforeCollecting()

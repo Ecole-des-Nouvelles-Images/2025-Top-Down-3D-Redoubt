@@ -18,15 +18,11 @@ namespace Hugo.I.Scripts.Interactable.Resources
 
         public (ResourcesEnum, int) GetResources(int value)
         {
-            Debug.Log("Interact with " + _resourceData._resourceEnumType);
-            
             int canCollect = Mathf.Min(CurrentCapacity, value);
 
-            Debug.Log("There are : " + CurrentCapacity + " and I collect : " + canCollect);
             CurrentCapacity -= value;
-            Debug.Log("Left : " + CurrentCapacity);
             
-            return (_resourceData._resourceEnumType, canCollect);
+            return (_resourceData.ResourceEnumType, canCollect);
         }
 
         public int ResourcesICanCollect()
