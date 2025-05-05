@@ -22,9 +22,9 @@ namespace Hugo.I.Scripts.Player
         // Inventory
         private Dictionary<ResourcesEnum, int> _inventory = new Dictionary<ResourcesEnum, int>()
         {
-            { ResourcesEnum.Stone, 20 },
-            { ResourcesEnum.Metal, 20 },
-            { ResourcesEnum.ElectricalCircuit, 20 }
+            { ResourcesEnum.Stone, 200 },
+            { ResourcesEnum.Metal, 200 },
+            { ResourcesEnum.ElectricalCircuit, 200 }
         };
         
         // Internals Components
