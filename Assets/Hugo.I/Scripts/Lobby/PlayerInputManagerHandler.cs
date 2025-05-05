@@ -1,4 +1,4 @@
-using System;
+using Hugo.I.Scripts.Game;
 using Hugo.I.Scripts.Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -26,6 +26,8 @@ namespace Hugo.I.Scripts.Lobby
 
         private void OnPlayerJoined(PlayerInput playerInput)
         {
+            GameManager.Players.Add(playerInput.gameObject);
+            
             if (playerInput.playerIndex == 0)
             {
                 playerInput.gameObject.GetComponent<PlayerController>().PlayerId = 0;

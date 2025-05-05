@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Hugo.I.Scripts.Game;
@@ -249,10 +248,7 @@ namespace Hugo.I.Scripts.Player
         
         private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
-            Debug.Log("PlayerId : " + PlayerId);
-            Debug.Log("Player SpawnPoint : " + GameManager.SpawnPoint[PlayerId]);
-            
-            transform.position = GameManager.SpawnPoint[PlayerId];
+            transform.position = GameManager.SpawnPoints[PlayerId];
         }
 
         private IEnumerator TmeBeforeCollecting()
