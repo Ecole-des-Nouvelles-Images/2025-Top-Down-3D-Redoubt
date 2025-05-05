@@ -8,6 +8,7 @@ namespace Hugo.I.Scripts.Weapon
     {
         [FormerlySerializedAs("_weaponData")] public WeaponData WeaponData;
         [SerializeField] private GameObject _bulletGameObject;
+        [SerializeField] private Transform _spawnBulletTransform;
         [SerializeField] private Transform _directionBulletTransform;
 
         private bool _canShoot = true;
@@ -85,7 +86,7 @@ namespace Hugo.I.Scripts.Weapon
                 _lastFireTime = Time.time;
                 
                 //Visuel
-                GameObject newBullet = Instantiate(_bulletGameObject, transform.position, transform.rotation);
+                GameObject newBullet = Instantiate(_bulletGameObject, _spawnBulletTransform.position, transform.rotation);
                 newBullet.GetComponent<BulletHandler>().SetUp(WeaponData.Range, WeaponData.BulletSpeed, _directionBulletTransform);
                 
                 yield return new WaitForSeconds(WeaponData.FireRate);

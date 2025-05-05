@@ -8,6 +8,6 @@ namespace Hugo.I.Scripts.Interactable.Resources
     {
         [FormerlySerializedAs("ResourceType")] public Utils.ResourcesEnum _resourceEnumType;
         public Sprite Icon;
-        public int MaxCollectable;
+        public int MaxCollectableAtOnce;
     }
 }

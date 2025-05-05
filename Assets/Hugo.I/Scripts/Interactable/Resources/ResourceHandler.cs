@@ -7,17 +7,33 @@ namespace Hugo.I.Scripts.Interactable.Resources
     {
         [Header("Settings")]
         [SerializeField] private ResourceData _resourceData;
-        
-        public Utils.ResourcesEnum GetResourceType()
+        [SerializeField] private int _capacity;
+
+        public int CurrentCapacity;
+
+        private void Awake()
+        {
+            CurrentCapacity = _capacity;
+        }
+
+        public (ResourcesEnum, int) GetResources(int value)
         {
             Debug.Log("Interact with " + _resourceData._resourceEnumType);
             
-            return _resourceData._resourceEnumType;
+            int canCollect = Mathf.Min(CurrentCapacity, value);
+
+            Debug.Log("There are : " + CurrentCapacity + " and I collect : " + canCollect);
+            CurrentCapacity -= value;
+            Debug.Log("Left : " + CurrentCapacity);
+            
+            return (_resourceData._resourceEnumType, canCollect);
         }
 
-        public int GetResourceMaxCollectable()
+        public int ResourcesICanCollect()
         {
-            return _resourceData.MaxCollectable;
+            int canCollect = Mathf.Min(CurrentCapacity, _resourceData.MaxCollectableAtOnce);
+            
+            return canCollect;
         }
 
         public void OnEnterZone()

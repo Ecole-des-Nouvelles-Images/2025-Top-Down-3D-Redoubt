@@ -367,6 +367,10 @@ PrefabInstance:
       value: Resource
       objectReference: {fileID: 0}
     - target: {fileID: 8081588232586603654, guid: c69e6095f6a2928499b8ef481b64e70f, type: 3}
+      propertyPath: _capacity
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8081588232586603654, guid: c69e6095f6a2928499b8ef481b64e70f, type: 3}
       propertyPath: _resourceData
       value: 
       objectReference: {fileID: 11400000, guid: bcbe2eb94262d1144b05cc2e6e7b5c9d, type: 2}
@@ -659,6 +663,10 @@ PrefabInstance:
     - target: {fileID: 3922926850752458269, guid: c69e6095f6a2928499b8ef481b64e70f, type: 3}
       propertyPath: m_Name
       value: Resource (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8081588232586603654, guid: c69e6095f6a2928499b8ef481b64e70f, type: 3}
+      propertyPath: _capacity
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8081588232586603654, guid: c69e6095f6a2928499b8ef481b64e70f, type: 3}
       propertyPath: _resourceData
@@ -1553,6 +1561,10 @@ PrefabInstance:
     - target: {fileID: 3922926850752458269, guid: c69e6095f6a2928499b8ef481b64e70f, type: 3}
       propertyPath: m_Name
       value: Resource (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8081588232586603654, guid: c69e6095f6a2928499b8ef481b64e70f, type: 3}
+      propertyPath: _capacity
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8081588232586603654, guid: c69e6095f6a2928499b8ef481b64e70f, type: 3}
       propertyPath: _resourceData

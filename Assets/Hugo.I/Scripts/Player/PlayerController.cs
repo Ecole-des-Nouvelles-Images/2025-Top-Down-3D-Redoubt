@@ -164,7 +164,14 @@ namespace Hugo.I.Scripts.Player
                     {
                         Debug.Log("Interact with a Resource");
                         _lastInteractableResource = nearestInteractable.GetComponent<ResourceHandler>();
-                        StartCoroutine(TmeBeforeCollecting());
+                        if (_lastInteractableResource.CurrentCapacity > 0)
+                        {
+                            StartCoroutine(TmeBeforeCollecting());
+                        }
+                        else
+                        {
+                            Debug.Log("Resource is empty.");
+                        }
                     }
                     if (nearestInteractable.CompareTag("Tower"))
                     {
@@ -233,7 +240,7 @@ namespace Hugo.I.Scripts.Player
                 if (time >= _timeBeforeCollecting)
                 {
                     _isInteracting = true;
-                    _actualPadQte = new PadQte(_lastInteractableResource.GetResourceMaxCollectable());
+                    _actualPadQte = new PadQte(_lastInteractableResource.ResourcesICanCollect());
                     foreach (Vector2 vector2 in _actualPadQte.Qte)
                     {
                         Debug.Log(vector2);
@@ -247,7 +254,8 @@ namespace Hugo.I.Scripts.Player
         private void QuitQte()
         {
             _isInteracting = false;
-            _inventory[_lastInteractableResource.GetResourceType()] += _actualPadQte.Score;
+            (ResourcesEnum resource, int value) tupleResource = _lastInteractableResource.GetResources(_actualPadQte.Score);
+            _inventory[tupleResource.resource] += tupleResource.value;
             foreach (KeyValuePair<ResourcesEnum, int> resource in _inventory)
             {
                 Debug.Log($"key: {resource.Key}, value: {resource.Value}");
