@@ -16,6 +16,8 @@ namespace Hugo.I.Scripts.Player
         public int PlayerId;
         
         [Header("Player Settings")]
+        [SerializeField] private int _maxHealth;
+        [SerializeField] private int _currentHealth;
         [SerializeField] private float _moveSpeed;
         [SerializeField] private float _factorAimingSpeed;
         [SerializeField] private int _timeBeforeCollecting;
@@ -39,6 +41,8 @@ namespace Hugo.I.Scripts.Player
         // States
         private bool _isInteracting;
         private bool _pressesButtonSouth;
+        private bool _wantToReload;
+        private bool _wantToHeal;
         
         // Movements - Rotations
         private Vector2 _movement;
@@ -54,6 +58,7 @@ namespace Hugo.I.Scripts.Player
         private ResourceHandler _lastInteractableResource;
         private TowerHandler _lastInteractableTower;
         private PowerPlantHandler _lastInteractablePowerPlant;
+        private ReloadHealingHandler _lastInteractableReloadHealing;
 
         private void Awake()
         {
@@ -85,6 +90,20 @@ namespace Hugo.I.Scripts.Player
                 angle = Mathf.Atan2(_aiming.x, _aiming.y) * Mathf.Rad2Deg;
             }
             transform.rotation = Quaternion.Euler(0, angle, 0);
+            
+            // Reload - Heal
+            if (_wantToReload && _equippedWeapon.CurrentCapacity < _equippedWeapon.WeaponData.Capacity)
+            {
+                if (_lastInteractableReloadHealing.UseEnergy())
+                {
+                    _equippedWeapon.Reload();
+                }
+            }
+
+            if (_wantToHeal)
+            {
+                _currentHealth++;
+            }
         }
 
         private void OnDestroy()
@@ -204,9 +223,17 @@ namespace Hugo.I.Scripts.Player
                         }
                         
                     }
-                    if (nearestInteractable.CompareTag("ReloadHeal"))
+                    if (nearestInteractable.CompareTag("Reload"))
                     {
-                        Debug.Log("Interact with a ReloadHeal");
+                        Debug.Log("Interact with a Reload");
+                        _lastInteractableReloadHealing = nearestInteractable.GetComponent<ReloadHealingHandler>();
+                        _wantToReload = true;
+                    }
+                    if (nearestInteractable.CompareTag("Heal"))
+                    {
+                        Debug.Log("Interact with a Heal");
+                        _lastInteractableReloadHealing = nearestInteractable.GetComponent<ReloadHealingHandler>();
+                        _wantToHeal = true;
                     }
                     if (nearestInteractable.CompareTag("PowerPlant"))
                     {
@@ -233,6 +260,8 @@ namespace Hugo.I.Scripts.Player
             else
             {
                 _pressesButtonSouth = false;
+                _wantToReload = false;
+                _wantToHeal = false;
             }
         }
 

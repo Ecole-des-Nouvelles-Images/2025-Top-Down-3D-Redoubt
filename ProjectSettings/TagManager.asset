@@ -6,10 +6,11 @@ TagManager:
   tags:
   - Resource
   - Tower
-  - ReloadHeal
   - PowerPlant
   - Shield
   - Lobby
+  - Reload
+  - Heal
   layers:
   - Default
   - TransparentFX

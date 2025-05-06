@@ -10,6 +10,7 @@ namespace Hugo.I.Scripts.Interactable.Tower
         public TowerLevelsEnum _towerLevelsEnum;
         public float Health;
         public float Capacity;
+        public float CapacityRestoreRate;
         public int StoneToLevelUp;
         public int MetalToLevelUp;
         public int ElectricalCircuitToLevelUp;

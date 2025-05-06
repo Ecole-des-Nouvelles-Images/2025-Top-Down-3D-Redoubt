@@ -9,7 +9,7 @@ namespace Hugo.I.Scripts.Player
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Resource") || other.CompareTag("Tower") || other.CompareTag("ReloadHeal")
+            if (other.CompareTag("Resource") || other.CompareTag("Tower") || other.CompareTag("Reload") || other.CompareTag("Heal")
                     || other.CompareTag("PowerPlant") || other.CompareTag("Shield") || other.CompareTag("Lobby"))
             {
                 _colliders.Add(other);
@@ -22,11 +22,13 @@ namespace Hugo.I.Scripts.Player
         {
             _colliders.Remove(other);
             _colliders.RemoveAll(collider => collider == null);
+            _colliders.RemoveAll(collider => !collider.gameObject.activeSelf);
         }
 
         public GameObject GetNearestObject()
         {
             _colliders.RemoveAll(collider => collider == null);
+            _colliders.RemoveAll(collider => !collider.gameObject.activeSelf);
 
             GameObject nearestObject = null;
             float nearestDistance = Mathf.Infinity;

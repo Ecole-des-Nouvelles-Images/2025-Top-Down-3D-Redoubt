@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Hugo.I.Scripts.Game;
 using Hugo.I.Scripts.Utils;
 using UnityEngine;
 
@@ -7,13 +8,38 @@ namespace Hugo.I.Scripts.Interactable.Tower
     public class TowerHandler : MonoBehaviour
     {
         [Header("Settings")]
-        [SerializeField] private TowerLevelsManager _towerLevelsManager;
+        [SerializeField] private TowerManager _towerManager;
         [SerializeField] private TowerLevelData _towerLevelData;
         [SerializeField] private float _currentHealth;
         [SerializeField] private float _currentCapacity;
         [SerializeField] private int _currentStone;
         [SerializeField] private int _currentMetal;
         [SerializeField] private int _currentElectricalCircuit;
+        [SerializeField] private bool _isRestoringCapacity;
+        [SerializeField] private bool _isGivingCapacity;
+
+        public float CurrentCapacity
+        {
+            get => _currentCapacity;
+            set
+            {
+                _currentCapacity = Mathf.Clamp(value, 0, _towerLevelData.Capacity);
+                _isRestoringCapacity = _currentCapacity < _towerLevelData.Capacity;
+            }
+        }
+
+        private void Awake()
+        {
+            CurrentCapacity = 0;
+        }
+
+        private void Update()
+        {
+            if (_isRestoringCapacity && GameManager.IsPowerPlantRepairs)
+            {
+                CurrentCapacity += _towerLevelData.CapacityRestoreRate * Time.deltaTime;
+            }
+        }
 
         public Dictionary<ResourcesEnum, int> ReceiveResources(Dictionary<ResourcesEnum, int> resourcesToGive)
         {
@@ -44,12 +70,17 @@ namespace Hugo.I.Scripts.Interactable.Tower
             return newPlayerInventory;
         }
 
+        public void GiveCapacity()
+        {
+            CurrentCapacity -= _towerLevelData.CapacityRestoreRate * 2 * Time.deltaTime;
+        }
+
         private void CheckUpgrade()
         {
             if (_currentStone >= _towerLevelData.StoneToLevelUp && _currentMetal >= _towerLevelData.MetalToLevelUp
                 && _currentElectricalCircuit >= _towerLevelData.ElectricalCircuitToLevelUp)
             {
-                _towerLevelsManager.UpgradeTower(gameObject);
+                _towerManager.UpgradeTower(gameObject);
             }
         }
     }

@@ -10,6 +10,7 @@ namespace Hugo.I.Scripts.Weapon
         [FormerlySerializedAs("_weaponTypeEnum")] [FormerlySerializedAs("WeaponType")] public WeaponTypesEnum _weaponTypesEnum;
         public float Damage;
         public float Capacity;
+        public float CapacityRestoreRate;
         public float FireRate;
         public float Range;
         public float BulletSpeed;

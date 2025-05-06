@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e630f00982313f34c819831d780226bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerLevelsManager: {fileID: 791920748}
+  _towerManager: {fileID: 791920748}
   _towerLevelData: {fileID: 11400000, guid: a8f7f3c699140854aa6c5fd61f9c4ed2, type: 2}
   _currentHealth: 0
   _currentCapacity: 0
@@ -605,7 +605,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e630f00982313f34c819831d780226bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerLevelsManager: {fileID: 791920748}
+  _towerManager: {fileID: 791920748}
   _towerLevelData: {fileID: 11400000, guid: 6187291c4d513744c9c9dcb2301c4a98, type: 2}
   _currentHealth: 0
   _currentCapacity: 0
@@ -729,6 +729,8 @@ MonoBehaviour:
   - {fileID: 725788442}
   - {fileID: 1071857070}
   - {fileID: 312854554}
+  _reloadZone: {fileID: 1327085210}
+  _healingZone: {fileID: 1895722319}
   _cinemachineCamera: {fileID: 453972017}
   _cameraLens: 0a0000000f0000001400000019000000
   _duration: 3
@@ -1091,7 +1093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e630f00982313f34c819831d780226bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerLevelsManager: {fileID: 791920748}
+  _towerManager: {fileID: 791920748}
   _towerLevelData: {fileID: 11400000, guid: ba18b7d77dbd3cb4aaa860b1c1c685c3, type: 2}
   _currentHealth: 0
   _currentCapacity: 0
@@ -1382,7 +1384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e630f00982313f34c819831d780226bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerLevelsManager: {fileID: 791920748}
+  _towerManager: {fileID: 791920748}
   _towerLevelData: {fileID: 11400000, guid: c5ea8239e2d765240a4c3771aa6124a8, type: 2}
   _currentHealth: 0
   _currentCapacity: 0

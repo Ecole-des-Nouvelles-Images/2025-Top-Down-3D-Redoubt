@@ -16,6 +16,7 @@ MonoBehaviour:
   _towerLevelsEnum: 2
   Health: 150
   Capacity: 100
+  CapacityRestoreRate: 4
   StoneToLevelUp: 50
   MetalToLevelUp: 30
   ElectricalCircuitToLevelUp: 15

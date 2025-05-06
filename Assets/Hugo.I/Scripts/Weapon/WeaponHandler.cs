@@ -27,6 +27,7 @@ namespace Hugo.I.Scripts.Weapon
             set
             {
                 _currentCapacity = value;
+                _currentCapacity = Mathf.Clamp(value, 0f, WeaponData.Capacity);
                 _canShoot = _currentCapacity > 0;
             }
         }
@@ -73,7 +74,8 @@ namespace Hugo.I.Scripts.Weapon
         
         public void Reload()
         {
-            
+            CurrentCapacity += WeaponData.CapacityRestoreRate + Time.deltaTime;
+            Debug.Log(CurrentCapacity);
         }
         
         private IEnumerator Shooting()

@@ -19,7 +19,7 @@ namespace Hugo.I.Scripts.Interactable.PowerPlant
             {
                 IsRepaired = true;
                 GameManager.IsPowerPlantRepairs = true;
-                // Active les zones de heal et de recharge
+                GameManager.TriggerAction();
             }
             
             Debug.Log("Repair advancement : " + _repairedAdvancement + ". Is repaired : " + IsRepaired);
