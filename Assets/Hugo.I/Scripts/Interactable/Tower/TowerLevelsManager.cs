@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
+using Hugo.I.Scripts.Game;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -18,6 +19,8 @@ namespace Hugo.I.Scripts.Interactable.Tower
 
         public void UpgradeTower(GameObject currentTower)
         {
+            if (_towers[1].activeSelf && !GameManager.IsPowerPlantRepairs) return;
+            
             // Tower
             int index = _towers.IndexOf(currentTower);
             Debug.Log(index);

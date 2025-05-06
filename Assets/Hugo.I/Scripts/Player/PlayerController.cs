@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Hugo.I.Scripts.Game;
+using Hugo.I.Scripts.Interactable.PowerPlant;
 using Hugo.I.Scripts.Interactable.Resources;
 using Hugo.I.Scripts.Interactable.Tower;
 using Hugo.I.Scripts.Utils;
@@ -49,8 +50,10 @@ namespace Hugo.I.Scripts.Player
         
         // Interactions
         private PadQte _actualPadQte;
+        private string _actualInteractableName;
         private ResourceHandler _lastInteractableResource;
         private TowerHandler _lastInteractableTower;
+        private PowerPlantHandler _lastInteractablePowerPlant;
 
         private void Awake()
         {
@@ -177,7 +180,7 @@ namespace Hugo.I.Scripts.Player
                         _lastInteractableResource = nearestInteractable.GetComponent<ResourceHandler>();
                         if (_lastInteractableResource.CurrentCapacity > 0)
                         {
-                            StartCoroutine(TmeBeforeCollecting());
+                            StartCoroutine(TmeBeforeCollecting("Resource"));
                         }
                         else
                         {
@@ -208,6 +211,13 @@ namespace Hugo.I.Scripts.Player
                     if (nearestInteractable.CompareTag("PowerPlant"))
                     {
                         Debug.Log("Interact with a PowerPlant");
+                        
+                        _lastInteractablePowerPlant = nearestInteractable.GetComponent<PowerPlantHandler>();
+                        
+                        if (!_lastInteractablePowerPlant.IsRepaired)
+                        {
+                            StartCoroutine(TmeBeforeCollecting("PowerPlant"));
+                        }
                     }
                     if (nearestInteractable.CompareTag("Shield"))
                     {
@@ -251,7 +261,7 @@ namespace Hugo.I.Scripts.Player
             transform.position = GameManager.SpawnPoints[PlayerId];
         }
 
-        private IEnumerator TmeBeforeCollecting()
+        private IEnumerator TmeBeforeCollecting(string interactableName)
         {
             int time = 0;
             while (_pressesButtonSouth)
@@ -261,7 +271,17 @@ namespace Hugo.I.Scripts.Player
                 if (time >= _timeBeforeCollecting)
                 {
                     _isInteracting = true;
-                    _actualPadQte = new PadQte(_lastInteractableResource.ResourcesICanCollect());
+                    _actualInteractableName = interactableName;
+
+                    if (interactableName == "Resource")
+                    {
+                        _actualPadQte = new PadQte(_lastInteractableResource.ResourcesICanCollect());
+                    }
+                    if (interactableName == "PowerPlant")
+                    {
+                        _actualPadQte = new PadQte(_lastInteractablePowerPlant.QteSize);
+                    }
+                    
                     foreach (Vector2 vector2 in _actualPadQte.Qte)
                     {
                         Debug.Log(vector2);
@@ -275,11 +295,22 @@ namespace Hugo.I.Scripts.Player
         private void QuitQte()
         {
             _isInteracting = false;
-            (ResourcesEnum resource, int value) tupleResource = _lastInteractableResource.GetResources(_actualPadQte.Score);
-            _inventory[tupleResource.resource] += tupleResource.value;
-            foreach (KeyValuePair<ResourcesEnum, int> resource in _inventory)
+            
+            if (_actualInteractableName == "Resource")
             {
-                Debug.Log($"key: {resource.Key}, value: {resource.Value}");
+                (ResourcesEnum resource, int value) tupleResource = _lastInteractableResource.GetResources(_actualPadQte.Score);
+                _inventory[tupleResource.resource] += tupleResource.value;
+                foreach (KeyValuePair<ResourcesEnum, int> resource in _inventory)
+                {
+                    Debug.Log($"key: {resource.Key}, value: {resource.Value}");
+                }
+            }
+            if (_actualInteractableName == "PowerPlant")
+            {
+                if (_actualPadQte.Score == _lastInteractablePowerPlant.QteSize)
+                {
+                    _lastInteractablePowerPlant.Repair();
+                }
             }
         }
     }

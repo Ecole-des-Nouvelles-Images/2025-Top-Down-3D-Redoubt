@@ -5,6 +5,7 @@ namespace Hugo.I.Scripts.Game
 {
     public static class GameManager
     {
+        public static bool IsPowerPlantRepairs = false;
         public static List<GameObject> Players = new List<GameObject>();
         public static List<Vector3> SpawnPoints = new List<Vector3>()
         {
