@@ -282,6 +282,7 @@ MonoBehaviour:
   _currentMetal: 0
   _currentElectricalCircuit: 0
   _isRestoringCapacity: 0
+  _isGivingCapacity: 0
 --- !u!1 &360271780
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,6 +615,7 @@ MonoBehaviour:
   _currentMetal: 0
   _currentElectricalCircuit: 0
   _isRestoringCapacity: 0
+  _isGivingCapacity: 0
 --- !u!1001 &775574508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1229,6 +1231,7 @@ MonoBehaviour:
   _currentMetal: 0
   _currentElectricalCircuit: 0
   _isRestoringCapacity: 0
+  _isGivingCapacity: 0
 --- !u!4 &1137640980 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 80186066695258373, guid: c69e6095f6a2928499b8ef481b64e70f, type: 3}
@@ -1598,6 +1601,7 @@ MonoBehaviour:
   _currentMetal: 0
   _currentElectricalCircuit: 0
   _isRestoringCapacity: 0
+  _isGivingCapacity: 0
 --- !u!1 &1895722319
 GameObject:
   m_ObjectHideFlags: 0
@@ -1608,6 +1612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1895722320}
   - component: {fileID: 1895722321}
+  - component: {fileID: 1895722322}
   m_Layer: 0
   m_Name: HealingZone
   m_TagString: Heal
@@ -1651,6 +1656,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1895722322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895722319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef0c2e7bf080c8d498e2d6583f9c375a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerManager: {fileID: 791920748}
 --- !u!4 &1906061566 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 80186066695258373, guid: c69e6095f6a2928499b8ef481b64e70f, type: 3}

@@ -102,7 +102,10 @@ namespace Hugo.I.Scripts.Player
 
             if (_wantToHeal)
             {
-                _currentHealth++;
+                if (_lastInteractableReloadHealing.UseEnergy())
+                {
+                    _currentHealth++;
+                }
             }
         }
 
