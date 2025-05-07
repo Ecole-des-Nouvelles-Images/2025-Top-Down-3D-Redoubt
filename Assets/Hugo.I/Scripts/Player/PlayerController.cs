@@ -23,10 +23,10 @@ namespace Hugo.I.Scripts.Player
         [SerializeField] private float _factorAimingSpeed;
         [SerializeField] private int _timeBeforeCollecting;
         [SerializeField] private float _gravityScale;
-        [SerializeField] private TriggerCollider _triggerCollider;
+        [SerializeField] private TriggerCollider _interactableTriggerCollider;
+        [SerializeField] private TriggerCollider _repelTriggerCollider;
         [SerializeField] private WeaponHandler _revolverWeapon;
         [SerializeField] private WeaponHandler _rifleWeapon;
-        [SerializeField] private List<Transform> _playerSpawnPoints;
 
         public float CurrentHealth
         {
@@ -209,7 +209,11 @@ namespace Hugo.I.Scripts.Player
             {
                 _pressesButtonSouth = true;
 
-                GameObject nearestInteractable = _triggerCollider.GetNearestObject();
+                GameObject nearestInteractable = _interactableTriggerCollider.GetNearestObject();
+                if (nearestInteractable)
+                {
+                    Debug.Log("Nearest interactable : " + nearestInteractable.name + " / " + nearestInteractable.tag);
+                }
                 
                 if (nearestInteractable && !_isInteracting)
                 {
@@ -293,6 +297,14 @@ namespace Hugo.I.Scripts.Player
             {
                 QuitQte();
             }
+
+            List<GameObject> enemiesGameObjects = new List<GameObject>();
+            enemiesGameObjects = _repelTriggerCollider.GetGameObjectsWithTag("Enemy");
+
+            foreach (GameObject enemy in enemiesGameObjects)
+            {
+                // lance la methode dans les ennemis directement qui vas les pousser
+            } 
         }
 
         public void OnShoot(float readValue)

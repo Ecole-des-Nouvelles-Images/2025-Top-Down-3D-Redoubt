@@ -23,7 +23,8 @@ namespace Hugo.I.Scripts.Interactable.Tower
 
         private void Awake()
         {
-            GameManager.IsPowerPlantRepairs = false;
+            GameManager.IsPowerPlantRepairs = true;
+            GameManager.ActualTowerGameObject = _towers[0].GetComponent<TowerHandler>();
         }
 
         private void OnEnable()
@@ -48,6 +49,7 @@ namespace Hugo.I.Scripts.Interactable.Tower
             _towers[index + 1].gameObject.SetActive(true);
 
             ActiveTower.GetComponent<TowerHandler>().CurrentEnergy = currentTower.GetComponent<TowerHandler>().CurrentEnergy;
+            GameManager.ActualTowerGameObject = ActiveTower.GetComponent<TowerHandler>();
             
             // Camera dezoom
             DOTween.To(
@@ -56,12 +58,17 @@ namespace Hugo.I.Scripts.Interactable.Tower
                 _cameraLens[index + 1],
                 _duration
             ).SetEase(_curve);
+
+            // Active le Heal si elle passe T2
+            if (ActiveTower == _towers[2])
+            {
+                _healingZone.SetActive(true);
+            }
         }
 
         private void ActiveReloadHealingZones()
         {
             _reloadZone.SetActive(true);
-            _healingZone.SetActive(true);
         }
     }
 }

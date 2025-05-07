@@ -18,6 +18,12 @@ namespace Hugo.I.Scripts.Interactable.Tower
         [SerializeField] private bool _isRestoringCapacity;
         [SerializeField] private bool _isGivingCapacity;
 
+        public float CurrentHealth
+        {
+            get => _currentHealth;
+            set => _currentHealth = Mathf.Clamp(value, 0, _towerLevelData.MaxHealth);
+        }
+        
         public float CurrentEnergy
         {
             get => _currentEnergy;
@@ -73,6 +79,11 @@ namespace Hugo.I.Scripts.Interactable.Tower
         public void GiveEnergy()
         {
             CurrentEnergy -= _towerLevelData.EnergyDecreaseRate * Time.deltaTime;
+        }
+
+        public TowerLevelData GetTowerLevelData()
+        {
+            return _towerLevelData;
         }
 
         private void CheckUpgrade()
