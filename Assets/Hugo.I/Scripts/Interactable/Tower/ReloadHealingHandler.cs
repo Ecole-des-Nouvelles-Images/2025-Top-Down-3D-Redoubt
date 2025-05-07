@@ -10,9 +10,9 @@ namespace Hugo.I.Scripts.Interactable.Tower
         public bool UseEnergy()
         {
             TowerHandler towerHandler = _towerManager.ActiveTower.GetComponent<TowerHandler>();
-            towerHandler.GiveCapacity();
+            towerHandler.GiveEnergy();
             
-            return towerHandler.CurrentCapacity > 0;
+            return towerHandler.CurrentEnergy > 0;
         }
     }
 }

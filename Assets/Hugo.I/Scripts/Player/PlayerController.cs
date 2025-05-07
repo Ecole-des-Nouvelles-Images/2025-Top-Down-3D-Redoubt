@@ -16,8 +16,9 @@ namespace Hugo.I.Scripts.Player
         public int PlayerId;
         
         [Header("Player Settings")]
-        [SerializeField] private int _maxHealth;
-        [SerializeField] private int _currentHealth;
+        [SerializeField] private float _maxHealth;
+        [SerializeField] private float _currentHealth;
+        [SerializeField] private float _increaseRateHealth;
         [SerializeField] private float _moveSpeed;
         [SerializeField] private float _factorAimingSpeed;
         [SerializeField] private int _timeBeforeCollecting;
@@ -26,6 +27,23 @@ namespace Hugo.I.Scripts.Player
         [SerializeField] private WeaponHandler _revolverWeapon;
         [SerializeField] private WeaponHandler _rifleWeapon;
         [SerializeField] private List<Transform> _playerSpawnPoints;
+
+        public float CurrentHealth
+        {
+            get => _currentHealth;
+            set
+            {
+                _currentHealth = Mathf.Clamp(value, 0, _maxHealth);
+                if (Mathf.Approximately(_currentHealth, _maxHealth))
+                {
+                    _wantToHeal = false;
+                }
+                if (_currentHealth <= 0)
+                {
+                    // Joueur tombe au sol
+                }
+            }
+        }
         
         // Inventory
         private Dictionary<ResourcesEnum, int> _inventory = new Dictionary<ResourcesEnum, int>()
@@ -104,7 +122,7 @@ namespace Hugo.I.Scripts.Player
             {
                 if (_lastInteractableReloadHealing.UseEnergy())
                 {
-                    _currentHealth++;
+                    CurrentHealth += _increaseRateHealth * Time.deltaTime;;
                 }
             }
         }

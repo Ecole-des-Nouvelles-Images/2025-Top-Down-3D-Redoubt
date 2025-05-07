@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: T3
   m_EditorClassIdentifier: 
   Icon: {fileID: 0}
-  _towerLevelsEnum: 0
-  Health: 200
-  Capacity: 150
-  CapacityRestoreRate: 6
+  TowerLevelsEnum: 3
+  MaxHealth: 200
+  MaxEnergy: 150
+  EnergyRestoreRate: 6
+  EnergyDecreaseRate: 8
   StoneToLevelUp: 0
   MetalToLevelUp: 0
   ElectricalCircuitToLevelUp: 0

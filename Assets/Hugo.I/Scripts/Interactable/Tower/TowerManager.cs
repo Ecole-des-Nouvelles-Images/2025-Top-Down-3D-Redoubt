@@ -47,7 +47,7 @@ namespace Hugo.I.Scripts.Interactable.Tower
             ActiveTower = _towers[index + 1].gameObject;
             _towers[index + 1].gameObject.SetActive(true);
 
-            ActiveTower.GetComponent<TowerHandler>().CurrentCapacity = currentTower.GetComponent<TowerHandler>().CurrentCapacity;
+            ActiveTower.GetComponent<TowerHandler>().CurrentEnergy = currentTower.GetComponent<TowerHandler>().CurrentEnergy;
             
             // Camera dezoom
             DOTween.To(

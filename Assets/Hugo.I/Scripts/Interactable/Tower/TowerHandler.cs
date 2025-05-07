@@ -11,33 +11,33 @@ namespace Hugo.I.Scripts.Interactable.Tower
         [SerializeField] private TowerManager _towerManager;
         [SerializeField] private TowerLevelData _towerLevelData;
         [SerializeField] private float _currentHealth;
-        [SerializeField] private float _currentCapacity;
+        [SerializeField] private float _currentEnergy;
         [SerializeField] private int _currentStone;
         [SerializeField] private int _currentMetal;
         [SerializeField] private int _currentElectricalCircuit;
         [SerializeField] private bool _isRestoringCapacity;
         [SerializeField] private bool _isGivingCapacity;
 
-        public float CurrentCapacity
+        public float CurrentEnergy
         {
-            get => _currentCapacity;
+            get => _currentEnergy;
             set
             {
-                _currentCapacity = Mathf.Clamp(value, 0, _towerLevelData.Capacity);
-                _isRestoringCapacity = _currentCapacity < _towerLevelData.Capacity;
+                _currentEnergy = Mathf.Clamp(value, 0, _towerLevelData.MaxEnergy);
+                _isRestoringCapacity = _currentEnergy < _towerLevelData.MaxEnergy;
             }
         }
 
         private void Awake()
         {
-            CurrentCapacity = 0;
+            CurrentEnergy = 0;
         }
 
         private void Update()
         {
             if (_isRestoringCapacity && GameManager.IsPowerPlantRepairs)
             {
-                CurrentCapacity += _towerLevelData.CapacityRestoreRate * Time.deltaTime;
+                CurrentEnergy += _towerLevelData.EnergyRestoreRate * Time.deltaTime;
             }
         }
 
@@ -70,9 +70,9 @@ namespace Hugo.I.Scripts.Interactable.Tower
             return newPlayerInventory;
         }
 
-        public void GiveCapacity()
+        public void GiveEnergy()
         {
-            CurrentCapacity -= _towerLevelData.CapacityRestoreRate * 2 * Time.deltaTime;
+            CurrentEnergy -= _towerLevelData.EnergyDecreaseRate * Time.deltaTime;
         }
 
         private void CheckUpgrade()

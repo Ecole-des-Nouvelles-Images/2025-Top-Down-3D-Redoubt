@@ -7,6 +7,7 @@ namespace Hugo.I.Scripts.Game
     public static class GameManager
     {
         public static bool IsPowerPlantRepairs;
+        
         public static List<GameObject> Players = new List<GameObject>();
         public static List<Vector3> SpawnPoints = new List<Vector3>()
         {
@@ -14,7 +15,6 @@ namespace Hugo.I.Scripts.Game
         };
 
         public static event Action OnTriggerActive;
-
         public static void TriggerAction()
         {
             OnTriggerActive?.Invoke();

@@ -7,10 +7,11 @@ namespace Hugo.I.Scripts.Interactable.Tower
     public class TowerLevelData : ScriptableObject
     {
         public Sprite Icon;
-        public TowerLevelsEnum _towerLevelsEnum;
-        public float Health;
-        public float Capacity;
-        public float CapacityRestoreRate;
+        public TowerLevelsEnum TowerLevelsEnum;
+        public float MaxHealth;
+        public float MaxEnergy;
+        public float EnergyRestoreRate;
+        public float EnergyDecreaseRate;
         public int StoneToLevelUp;
         public int MetalToLevelUp;
         public int ElectricalCircuitToLevelUp;

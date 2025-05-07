@@ -105,6 +105,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerId: 0
+  _maxHealth: 10
+  _currentHealth: 0
+  _increaseRateHealth: 5
   _moveSpeed: 8
   _factorAimingSpeed: 0.5
   _timeBeforeCollecting: 3

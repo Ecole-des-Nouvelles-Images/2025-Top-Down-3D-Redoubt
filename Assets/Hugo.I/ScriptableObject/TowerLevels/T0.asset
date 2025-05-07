@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: T0
   m_EditorClassIdentifier: 
   Icon: {fileID: 0}
-  _towerLevelsEnum: 0
-  Health: 50
-  Capacity: 0
+  TowerLevelsEnum: 0
+  MaxHealth: 50
+  MaxEnergy: 0
+  EnergyRestoreRate: 0
+  EnergyDecreaseRate: 0
   StoneToLevelUp: 10
   MetalToLevelUp: 0
   ElectricalCircuitToLevelUp: 2
