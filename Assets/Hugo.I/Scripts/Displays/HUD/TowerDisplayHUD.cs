@@ -11,8 +11,8 @@ namespace Hugo.I.Scripts.Displays.HUD
     {
         [Header("References")]
         [SerializeField] private List<Sprite> _towerIcon;
-        [SerializeField] private Slider _towerHealthSlider;
-        [SerializeField] private Slider _towerEnergySlider;
+        [SerializeField] private Image _towerHealthSlider;
+        [SerializeField] private Image _towerEnergySlider;
         [SerializeField] private TextMeshProUGUI _towerCurrentStone;
         [SerializeField] private TextMeshProUGUI _towerNeededStone;
         [SerializeField] private TextMeshProUGUI _towerCurrentMetal;
@@ -30,9 +30,7 @@ namespace Hugo.I.Scripts.Displays.HUD
                 
                 float towerEnergyNormalized =
                     Mathf.Clamp01(towerHandler.CurrentEnergy / towerHandler.GetTowerLevelData().MaxEnergy);
-                _towerEnergySlider.value = towerEnergyNormalized;
-                
-                _towerEnergySlider.Rebuild(CanvasUpdate.PreRender);
+                _towerEnergySlider.fillAmount = towerEnergyNormalized;
             }
         }
     }
