@@ -22,6 +22,9 @@ namespace Hugo.I.Scripts.Player
         [SerializeField] private float _moveSpeed;
         [SerializeField] private float _factorAimingSpeed;
         [SerializeField] private int _timeBeforeCollecting;
+        [SerializeField] private int _maxStone;
+        [SerializeField] private int _maxMetal;
+        [SerializeField] private int _maxCircuit;
         [SerializeField] private float _gravityScale;
         [SerializeField] private TriggerCollider _interactableTriggerCollider;
         [SerializeField] private TriggerCollider _repelTriggerCollider;
@@ -316,6 +319,12 @@ namespace Hugo.I.Scripts.Player
             }
             
             _equippedWeapon.Shoot(readValue);
+        }
+
+        public (float, float, float, float, Dictionary<ResourcesEnum, int>, int, int, int) GetHudData()
+        {
+            return (_maxHealth, CurrentHealth, _equippedWeapon.WeaponData.Capacity, _equippedWeapon.CurrentCapacity,
+                _inventory, _maxStone, _maxMetal, _maxCircuit);
         }
         
         private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)

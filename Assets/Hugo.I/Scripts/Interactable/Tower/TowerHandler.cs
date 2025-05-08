@@ -37,6 +37,7 @@ namespace Hugo.I.Scripts.Interactable.Tower
         private void Awake()
         {
             CurrentEnergy = 0;
+            CurrentHealth = _towerLevelData.MaxHealth;
         }
 
         private void Update()
@@ -81,9 +82,9 @@ namespace Hugo.I.Scripts.Interactable.Tower
             CurrentEnergy -= _towerLevelData.EnergyDecreaseRate * Time.deltaTime;
         }
 
-        public TowerLevelData GetTowerLevelData()
+        public (TowerLevelData, int, int, int) GetTowerData()
         {
-            return _towerLevelData;
+            return (_towerLevelData, _currentStone, _currentMetal, _currentElectricalCircuit) ;
         }
 
         private void CheckUpgrade()

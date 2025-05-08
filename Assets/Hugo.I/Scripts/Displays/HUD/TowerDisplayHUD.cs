@@ -11,26 +11,56 @@ namespace Hugo.I.Scripts.Displays.HUD
     {
         [Header("References")]
         [SerializeField] private List<Sprite> _towerIcon;
-        [SerializeField] private Image _towerHealthSlider;
-        [SerializeField] private Image _towerEnergySlider;
-        [SerializeField] private TextMeshProUGUI _towerCurrentStone;
-        [SerializeField] private TextMeshProUGUI _towerNeededStone;
-        [SerializeField] private TextMeshProUGUI _towerCurrentMetal;
-        [SerializeField] private TextMeshProUGUI _towerNeededMetal;
-        [SerializeField] private TextMeshProUGUI _towerCurrentCircuit;
-        [SerializeField] private TextMeshProUGUI _towerNeededCircuit;
+        [SerializeField] private Image _towerHealthImage;
+        [SerializeField] private Image _towerEnergyImage;
+        [SerializeField] private TextMeshProUGUI _towerCurrentStoneText;
+        [SerializeField] private TextMeshProUGUI _towerNeededStoneText;
+        [SerializeField] private TextMeshProUGUI _towerCurrentMetalText;
+        [SerializeField] private TextMeshProUGUI _towerNeededMetalText;
+        [SerializeField] private TextMeshProUGUI _towerCurrentCircuitText;
+        [SerializeField] private TextMeshProUGUI _towerNeededCircuitText;
+        private TowerHandler _towerHandler;
+
+        private void Start()
+        {
+            _towerHandler = GameManager.ActualTowerGameObject.GetComponent<TowerHandler>();
+        }
 
         private void Update()
         {
             if (GameManager.ActualTowerGameObject)
             {
-                TowerHandler towerHandler = GameManager.ActualTowerGameObject.GetComponent<TowerHandler>();
+                (TowerLevelData towerLevelData, int currentStone, int currentmetal, int currentCircuit) towerData = _towerHandler.GetTowerData();
                 
-                // FAIRE AVEC UNE IMAGE EN IMAGETYPE FILL
+                // Health
+                float towerHealthNormalized =
+                    Mathf.Clamp01(_towerHandler.CurrentHealth / towerData.towerLevelData.MaxHealth);
+                _towerHealthImage.fillAmount = towerHealthNormalized;
                 
-                float towerEnergyNormalized =
-                    Mathf.Clamp01(towerHandler.CurrentEnergy / towerHandler.GetTowerLevelData().MaxEnergy);
-                _towerEnergySlider.fillAmount = towerEnergyNormalized;
+                // Energy
+                float towerEnergyNormalized;
+                if (towerData.towerLevelData.MaxEnergy == 0)
+                {
+                    towerEnergyNormalized = 0;
+                }
+                else
+                {
+                    towerEnergyNormalized =
+                        Mathf.Clamp01(_towerHandler.CurrentEnergy / towerData.towerLevelData.MaxEnergy);
+                }
+                _towerEnergyImage.fillAmount = towerEnergyNormalized;
+                
+                // Stone
+                _towerCurrentStoneText.text = towerData.currentStone.ToString();
+                _towerNeededStoneText.text = towerData.towerLevelData.StoneToLevelUp.ToString();
+                
+                // Metal
+                _towerCurrentMetalText.text = towerData.currentmetal.ToString();
+                _towerNeededMetalText.text = towerData.towerLevelData.MetalToLevelUp.ToString();
+                
+                // Electrical circuit
+                _towerCurrentCircuitText.text = towerData.currentCircuit.ToString();
+                _towerNeededCircuitText.text = towerData.towerLevelData.ElectricalCircuitToLevelUp.ToString();
             }
         }
     }

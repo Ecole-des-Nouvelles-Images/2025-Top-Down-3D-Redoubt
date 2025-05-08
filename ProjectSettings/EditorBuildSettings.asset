@@ -5,9 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/Hugo.I/Scenes/MenuTest.unity
     guid: a77002379a277c946bbdf872bfc954b2
@@ -15,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Hugo.I/Scenes/LobbyTest.unity
     guid: be88af1eeaed787468eb52c9d122a4e5
   - enabled: 1
-    path: Assets/Hugo.I/Scenes/InGameTest.unity
-    guid: fee7eba002dc1bf46a00de68603d0ff6
+    path: Assets/Hugo.I/Scenes/InGame_Test.unity
+    guid: 40237d8f050b57f448c2931a0cfbedc7
   - enabled: 1
     path: Assets/Hugo.I/Scenes/SceneProto_Hugo.I.unity
     guid: 81bed89e2f1bc904da40f4487c9296da
