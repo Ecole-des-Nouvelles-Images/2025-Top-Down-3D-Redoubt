@@ -75,7 +75,6 @@ namespace Hugo.I.Scripts.Weapon
         public void Reload()
         {
             CurrentCapacity += WeaponData.CapacityRestoreRate + Time.deltaTime;
-            Debug.Log(CurrentCapacity);
         }
         
         private IEnumerator Shooting()

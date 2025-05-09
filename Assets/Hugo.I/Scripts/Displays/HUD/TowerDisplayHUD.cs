@@ -21,15 +21,11 @@ namespace Hugo.I.Scripts.Displays.HUD
         [SerializeField] private TextMeshProUGUI _towerNeededCircuitText;
         private TowerHandler _towerHandler;
 
-        private void Start()
-        {
-            _towerHandler = GameManager.ActualTowerGameObject.GetComponent<TowerHandler>();
-        }
-
         private void Update()
         {
             if (GameManager.ActualTowerGameObject)
             {
+                _towerHandler = GameManager.ActualTowerGameObject.GetComponent<TowerHandler>();
                 (TowerLevelData towerLevelData, int currentStone, int currentmetal, int currentCircuit) towerData = _towerHandler.GetTowerData();
                 
                 // Health
@@ -38,12 +34,8 @@ namespace Hugo.I.Scripts.Displays.HUD
                 _towerHealthImage.fillAmount = towerHealthNormalized;
                 
                 // Energy
-                float towerEnergyNormalized;
-                if (towerData.towerLevelData.MaxEnergy == 0)
-                {
-                    towerEnergyNormalized = 0;
-                }
-                else
+                float towerEnergyNormalized = 0;
+                if (towerData.towerLevelData.MaxEnergy > 0)
                 {
                     towerEnergyNormalized =
                         Mathf.Clamp01(_towerHandler.CurrentEnergy / towerData.towerLevelData.MaxEnergy);

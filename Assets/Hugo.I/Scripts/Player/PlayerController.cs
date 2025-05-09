@@ -51,9 +51,9 @@ namespace Hugo.I.Scripts.Player
         // Inventory
         private Dictionary<ResourcesEnum, int> _inventory = new Dictionary<ResourcesEnum, int>()
         {
-            { ResourcesEnum.Stone, 200 },
-            { ResourcesEnum.Metal, 200 },
-            { ResourcesEnum.ElectricalCircuit, 200 }
+            { ResourcesEnum.Stone, 0 },
+            { ResourcesEnum.Metal, 0 },
+            { ResourcesEnum.ElectricalCircuit, 0 }
         };
         
         // Internals Components
@@ -87,6 +87,8 @@ namespace Hugo.I.Scripts.Player
             SceneManager.sceneLoaded += OnSceneLoaded;
             
             _characterController = GetComponent<CharacterController>();
+            
+            CurrentHealth = _maxHealth;
 
             _equippedWeapon = _revolverWeapon;
             _equippedWeapon.gameObject.SetActive(true);
@@ -213,10 +215,6 @@ namespace Hugo.I.Scripts.Player
                 _pressesButtonSouth = true;
 
                 GameObject nearestInteractable = _interactableTriggerCollider.GetNearestObject();
-                if (nearestInteractable)
-                {
-                    Debug.Log("Nearest interactable : " + nearestInteractable.name + " / " + nearestInteractable.tag);
-                }
                 
                 if (nearestInteractable && !_isInteracting)
                 {
@@ -236,19 +234,10 @@ namespace Hugo.I.Scripts.Player
                     }
                     if (nearestInteractable.CompareTag("Tower"))
                     {
-                        foreach (KeyValuePair<ResourcesEnum, int> resource in _inventory)
-                        {
-                            Debug.Log($"key: {resource.Key}, value: {resource.Value}");
-                        }
                         Debug.Log("Interact with a Tower");
                         
                         _lastInteractableTower = nearestInteractable.GetComponent<TowerHandler>();
                         _inventory = _lastInteractableTower.ReceiveResources(_inventory);
-                        
-                        foreach (KeyValuePair<ResourcesEnum, int> resource in _inventory)
-                        {
-                            Debug.Log($"key: {resource.Key}, value: {resource.Value}");
-                        }
                         
                     }
                     if (nearestInteractable.CompareTag("Reload"))
@@ -321,10 +310,16 @@ namespace Hugo.I.Scripts.Player
             _equippedWeapon.Shoot(readValue);
         }
 
-        public (float, float, float, float, Dictionary<ResourcesEnum, int>, int, int, int) GetHudData()
+        public (float, float, float, float, Dictionary<ResourcesEnum, int>, int, int, int) GetCanvasHudData()
         {
             return (_maxHealth, CurrentHealth, _equippedWeapon.WeaponData.Capacity, _equippedWeapon.CurrentCapacity,
                 _inventory, _maxStone, _maxMetal, _maxCircuit);
+        }
+
+        public (float, float, float, float) GetCanvasWorldSpaceData()
+        {
+            return (_maxHealth, CurrentHealth, _equippedWeapon.WeaponData.OverheatingLimit,
+                _equippedWeapon.CurrentOverheating);
         }
         
         private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -371,10 +366,6 @@ namespace Hugo.I.Scripts.Player
             {
                 (ResourcesEnum resource, int value) tupleResource = _lastInteractableResource.GetResources(_actualPadQte.Score);
                 _inventory[tupleResource.resource] += tupleResource.value;
-                foreach (KeyValuePair<ResourcesEnum, int> resource in _inventory)
-                {
-                    Debug.Log($"key: {resource.Key}, value: {resource.Value}");
-                }
             }
             if (_actualInteractableName == "PowerPlant")
             {

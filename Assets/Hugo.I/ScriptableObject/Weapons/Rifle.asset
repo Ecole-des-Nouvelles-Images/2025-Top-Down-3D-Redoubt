@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e7861acc956f448b070a07e49555fd, type: 3}
   m_Name: Rifle
   m_EditorClassIdentifier: 
-  WeaponType: 1
+  _weaponTypesEnum: 1
   Damage: 5
   Capacity: 50
+  CapacityRestoreRate: 0
   FireRate: 0.1
   Range: 0.4
   BulletSpeed: 100
   OverheatingLimit: 50
   OverheatingIncreaseRate: 1
-  OverheatingDecreaseRate: 1
-  OverheatingDecreaseSpeed: 10
+  OverheatingDecreaseRate: 2
+  OverheatingDecreaseSpeed: 1

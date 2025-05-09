@@ -37,7 +37,7 @@ namespace Hugo.I.Scripts.Displays.HUD
             
             (float maxHealth, float currentHealth, float capacity, float currentCapacity, 
                 Dictionary<ResourcesEnum, int> inventory, int maxStone, int maxMetal, int maxCircuit) playerData
-                    = _playerController.GetHudData();
+                    = _playerController.GetCanvasHudData();
             
             // Health
             float playerHealthNormalized =
