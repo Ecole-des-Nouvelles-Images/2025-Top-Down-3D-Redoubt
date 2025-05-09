@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Hugo.I.Scripts.Interactable.Resources
+namespace Hugo.I.Scripts.Interactable.PowerPlant
 {
-    public class ResourceTriggerCollider : MonoBehaviour
+    public class PowerPlantTriggerCollider : MonoBehaviour
     {
-        [SerializeField] private ResourceHandler _resourceHandler;
+        [SerializeField] private PowerPlantHandler _powerPlantHandler;
 
         private List<GameObject> _players = new List<GameObject>();
 
@@ -13,7 +13,7 @@ namespace Hugo.I.Scripts.Interactable.Resources
         {
             if (other.CompareTag("Player"))
             {
-                _resourceHandler.OnEnterZone();
+                _powerPlantHandler.OnEnterZone();
                 _players.Add(other.gameObject);
             }
         }
@@ -26,7 +26,7 @@ namespace Hugo.I.Scripts.Interactable.Resources
 
                 if (_players.Count == 0)
                 {
-                    _resourceHandler.OnExitZone();
+                    _powerPlantHandler.OnExitZone();
                 }
             }
         }

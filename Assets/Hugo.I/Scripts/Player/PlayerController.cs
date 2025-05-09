@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Hugo.I.Scripts.Displays.InGame_WorldSpace;
 using Hugo.I.Scripts.Game;
 using Hugo.I.Scripts.Interactable.PowerPlant;
 using Hugo.I.Scripts.Interactable.Resources;
@@ -30,6 +31,7 @@ namespace Hugo.I.Scripts.Player
         [SerializeField] private TriggerCollider _repelTriggerCollider;
         [SerializeField] private WeaponHandler _revolverWeapon;
         [SerializeField] private WeaponHandler _rifleWeapon;
+        [SerializeField] private PlayerWorldSpaceDisplay _playerWorldSpaceDisplay;
 
         public float CurrentHealth
         {
@@ -51,9 +53,9 @@ namespace Hugo.I.Scripts.Player
         // Inventory
         private Dictionary<ResourcesEnum, int> _inventory = new Dictionary<ResourcesEnum, int>()
         {
-            { ResourcesEnum.Stone, 0 },
-            { ResourcesEnum.Metal, 0 },
-            { ResourcesEnum.ElectricalCircuit, 0 }
+            { ResourcesEnum.Stone, 200 },
+            { ResourcesEnum.Metal, 200 },
+            { ResourcesEnum.ElectricalCircuit, 200 }
         };
         
         // Internals Components
@@ -325,6 +327,7 @@ namespace Hugo.I.Scripts.Player
         private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
             transform.position = GameManager.SpawnPoints[PlayerId];
+            _playerWorldSpaceDisplay.OnSceneLoaded();
         }
 
         private IEnumerator TmeBeforeCollecting(string interactableName)
@@ -341,7 +344,23 @@ namespace Hugo.I.Scripts.Player
 
                     if (interactableName == "Resource")
                     {
-                        _actualPadQte = new PadQte(_lastInteractableResource.ResourcesICanCollect());
+                        (ResourcesEnum, int) resource = _lastInteractableResource.ResourcesICanCollect();
+                        int size = 0;
+                        
+                        if (resource.Item1 == ResourcesEnum.Stone)
+                        {
+                            size = Mathf.Min(_maxStone - _inventory[resource.Item1], resource.Item2);
+                        }
+                        if (resource.Item1 == ResourcesEnum.Metal)
+                        {
+                            size = Mathf.Min(_maxMetal - _inventory[resource.Item1], resource.Item2);
+                        }
+                        if (resource.Item1 == ResourcesEnum.ElectricalCircuit)
+                        {
+                            size = Mathf.Min(_maxCircuit - _inventory[resource.Item1], resource.Item2);
+                        }
+                        
+                        _actualPadQte = new PadQte(size);
                     }
                     if (interactableName == "PowerPlant")
                     {

@@ -53,6 +53,15 @@ namespace Hugo.I.Scripts.Weapon
             _currentOverheating = 0;
         }
 
+        private void OnEnable()
+        {
+            if (_currentOverheating >= 0)
+            {
+                _isCoolingDown = true;
+                StartCoroutine(CoolDown());
+            }
+        }
+
         public void Shoot(float readValue)
         {
             if (readValue > 0 && !_isShooting && _canShoot && _lastFireTime + WeaponData.FireRate < Time.time)

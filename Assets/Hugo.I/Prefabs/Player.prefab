@@ -113,7 +113,7 @@ MonoBehaviour:
   _moveSpeed: 8
   _factorAimingSpeed: 0.5
   _timeBeforeCollecting: 3
-  _maxStone: 50
+  _maxStone: 4
   _maxMetal: 30
   _maxCircuit: 10
   _gravityScale: -9.81
@@ -121,6 +121,7 @@ MonoBehaviour:
   _repelTriggerCollider: {fileID: 6409527901554189643}
   _revolverWeapon: {fileID: 1299178300611406369}
   _rifleWeapon: {fileID: 5876720911722562231}
+  _playerWorldSpaceDisplay: {fileID: 740004140725930310}
 --- !u!143 &5591632560035350207
 CharacterController:
   m_ObjectHideFlags: 0

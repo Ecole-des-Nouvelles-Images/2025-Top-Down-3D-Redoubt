@@ -30,11 +30,11 @@ namespace Hugo.I.Scripts.Interactable.Resources
             return (_resourceData.ResourceEnumType, canCollect);
         }
 
-        public int ResourcesICanCollect()
+        public (ResourcesEnum, int) ResourcesICanCollect()
         {
             int canCollect = Mathf.Min(CurrentCapacity, _resourceData.MaxCollectableAtOnce);
             
-            return canCollect;
+            return (_resourceData.ResourceEnumType, canCollect);
         }
 
         public void OnEnterZone()

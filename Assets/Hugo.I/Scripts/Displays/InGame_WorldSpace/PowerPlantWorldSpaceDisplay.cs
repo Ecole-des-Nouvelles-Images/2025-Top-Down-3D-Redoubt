@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Hugo.I.Scripts.Displays.InGame_WorldSpace
 {
-    public class ResourceWorldSpaceDisplay : MonoBehaviour
+    public class PowerPlantWorldSpaceDisplay : MonoBehaviour
     {
-        [Header("Settings")]
-        [SerializeField] private TextMeshProUGUI _currentResourceText;
+        [SerializeField] private TextMeshProUGUI _currentAdvancement;
+        [SerializeField] private TextMeshProUGUI _maxAdvancement;
         
         private Transform _mainCameraTransform;
-
+        
         private void Start()
         {
             if (UnityEngine.Camera.main != null) _mainCameraTransform = UnityEngine.Camera.main.transform;
@@ -19,10 +19,11 @@ namespace Hugo.I.Scripts.Displays.InGame_WorldSpace
 
             transform.rotation = Quaternion.Euler(xAngle, yAngle, 0f);
         }
-
-        public void UpdateDisplay(int currentResource)
+        
+        public void UpdateDisplay(int currentAdvancement, int maxAdvancement)
         {
-            _currentResourceText.text = currentResource.ToString();
+            _currentAdvancement.text = currentAdvancement.ToString();
+            _maxAdvancement.text = "/ " + maxAdvancement;
         }
     }
 }

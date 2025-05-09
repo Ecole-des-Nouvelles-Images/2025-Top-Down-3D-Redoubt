@@ -1,3 +1,5 @@
+using System;
+using Hugo.I.Scripts.Displays.InGame_WorldSpace;
 using Hugo.I.Scripts.Game;
 using Hugo.I.Scripts.Utils;
 using UnityEngine;
@@ -10,10 +12,17 @@ namespace Hugo.I.Scripts.Interactable.PowerPlant
         public int QteSize;
         [SerializeField] private int _repairedAdvancement;
         [SerializeField] private int _numberOfRepairs;
+        [SerializeField] private PowerPlantWorldSpaceDisplay _powerPlantWorldSpaceDisplay;
+
+        private void Awake()
+        {
+            _powerPlantWorldSpaceDisplay.UpdateDisplay(_repairedAdvancement, _numberOfRepairs);
+        }
 
         public void Repair()
         {
             _repairedAdvancement++;
+            _powerPlantWorldSpaceDisplay.UpdateDisplay(_repairedAdvancement, _numberOfRepairs);
 
             if (_repairedAdvancement >= _numberOfRepairs)
             {
@@ -27,12 +36,12 @@ namespace Hugo.I.Scripts.Interactable.PowerPlant
 
         public void OnEnterZone()
         {
-            throw new System.NotImplementedException();
+            _powerPlantWorldSpaceDisplay.gameObject.SetActive(true);
         }
 
         public void OnExitZone()
         {
-            throw new System.NotImplementedException();
+            _powerPlantWorldSpaceDisplay.gameObject.SetActive(false);
         }
     }
 }
