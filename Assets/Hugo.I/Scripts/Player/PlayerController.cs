@@ -12,7 +12,7 @@ using UnityEngine.SceneManagement;
 
 namespace Hugo.I.Scripts.Player
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IHaveHealth
     {
         public int PlayerId;
         
@@ -57,9 +57,9 @@ namespace Hugo.I.Scripts.Player
         // Inventory
         private Dictionary<ResourcesEnum, int> _inventory = new Dictionary<ResourcesEnum, int>()
         {
-            { ResourcesEnum.Stone, 0 },
-            { ResourcesEnum.Metal, 0 },
-            { ResourcesEnum.ElectricalCircuit, 0 }
+            { ResourcesEnum.Stone, 200 },
+            { ResourcesEnum.Metal, 200 },
+            { ResourcesEnum.ElectricalCircuit, 200 }
         };
         
         // Internals Components
@@ -402,6 +402,11 @@ namespace Hugo.I.Scripts.Player
             // Display
             _playerWorldSpaceDisplayInteractions.HideQteButton();
             _playerWorldSpaceDisplayInteractions.DisplayInteractionsButton();
+        }
+
+        public void TakeDamage(float damage)
+        {
+            CurrentHealth -= damage;
         }
     }
 }

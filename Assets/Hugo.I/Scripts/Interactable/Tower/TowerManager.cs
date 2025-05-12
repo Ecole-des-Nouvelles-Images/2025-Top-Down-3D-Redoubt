@@ -24,7 +24,7 @@ namespace Hugo.I.Scripts.Interactable.Tower
         private void Awake()
         {
             Debug.Log("Number player : " + GameManager.Players.Count);
-            GameManager.IsPowerPlantRepairs = false;
+            GameManager.IsPowerPlantRepairs = true;
             GameManager.ActualTowerGameObject = _towers[0].GetComponent<TowerHandler>();
         }
 

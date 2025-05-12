@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Hugo.I.Scripts.Interactable.Tower
 {
-    public class TowerHandler : MonoBehaviour
+    public class TowerHandler : MonoBehaviour, IHaveHealth
     {
         [Header("Settings")]
         [SerializeField] private TowerManager _towerManager;
@@ -94,6 +94,11 @@ namespace Hugo.I.Scripts.Interactable.Tower
             {
                 _towerManager.UpgradeTower(gameObject);
             }
+        }
+
+        public void TakeDamage(float damage)
+        {
+            CurrentHealth -= damage;
         }
     }
 }

@@ -11,11 +11,14 @@ TagManager:
   - Lobby
   - Reload
   - Heal
+  - Enemy
+  - Weapon
+  - PlayerSight
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - IsNotBake
   - Water
   - UI
   - 

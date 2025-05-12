@@ -1,8 +1,10 @@
+using System.Collections;
 using Hugo.I.Scripts.Enemies.States;
-using Hugo.I.Scripts.Interactable.PowerPlant;
+using Hugo.I.Scripts.Game;
 using Hugo.I.Scripts.Interactable.Tower;
 using Hugo.I.Scripts.Player;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Hugo.I.Scripts.Enemies
 {
@@ -16,45 +18,69 @@ namespace Hugo.I.Scripts.Enemies
         
         [Header("Datas")]
         public float MaxHealth;
-        public float IncreaseHealthRate;
         public float Damage;
+        public float AttackSpeed;
         public float AttackRange;
         public float RangeDontSwitchTarget;
         public float WalkSpeed;
+        public float AngularSpeed;
+        public float Acceleration;
 
-        [Header("Boll")]
-        public bool TargetTower;
-        public bool CanAttack => TargetGameObject && Vector3.Distance(transform.position, TargetGameObject.transform.position) <= AttackRange;
+        [Header("States")]
+        public bool HaveRangeToAttackTarget => TargetGameObject && Vector3.Distance(transform.position, TargetGameObject.transform.position) <= AttackRange;
+        public bool IsAttacking;
         public bool IsDead => CurrentHealth <= 0;
 
+        [Header("Target")]
+        public TowerHandler TowerHandler;
+        public PlayerController PlayerController;
         public GameObject TargetGameObject
         {
-            get => TargetGameObject;
-            set
+            get
             {
-                TargetGameObject = TowerHandler.gameObject;
-
-                if (PowerPlantHandler.gameObject || PlayerController.gameObject 
-                    && Vector3.Distance(transform.position, TowerHandler.gameObject.transform.position) > RangeDontSwitchTarget)
+                if (Vector3.Distance(transform.position, TowerHandler.transform.position) >= RangeDontSwitchTarget)
                 {
-                    if (PlayerController.gameObject)
+                    if (PlayerController)
                     {
-                        TargetGameObject = PlayerController.gameObject;
+                        return PlayerController.gameObject;
                     }
-                    else if (PowerPlantHandler.gameObject)
+                    
+                    if (TowerHandler)
                     {
-                        TargetGameObject = PowerPlantHandler.gameObject;
-                    }
-                    else
-                    {
-                        TargetGameObject = TowerHandler.gameObject;
+                        return TowerHandler.gameObject;
                     }
                 }
+                else
+                {
+                    return TowerHandler.gameObject;
+                }
+
+                return null;
             }
         }
 
-        public TowerHandler TowerHandler;
-        public PowerPlantHandler PowerPlantHandler;
-        public PlayerController PlayerController;
+        [Header("Internal Components")]
+        public NavMeshAgent NavMeshAgent;
+        public Rigidbody Rigidbody;
+
+        private void Awake()
+        {
+            NavMeshAgent = GetComponent<NavMeshAgent>();
+            Rigidbody = GetComponent<Rigidbody>();
+            
+            NavMeshAgent.speed = WalkSpeed;
+            NavMeshAgent.angularSpeed = AngularSpeed;
+            NavMeshAgent.acceleration = Acceleration;
+            
+            CurrentHealth = MaxHealth;
+            
+            TowerHandler = GameManager.ActualTowerGameObject.GetComponent<TowerHandler>();
+        }
+
+        public IEnumerator CoroutineIsAttacking()
+        {
+            yield return new WaitForSeconds(AttackSpeed);
+            IsAttacking = false;
+        }
     }
 }

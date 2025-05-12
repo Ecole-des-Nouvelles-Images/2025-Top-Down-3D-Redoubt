@@ -97,7 +97,7 @@ namespace Hugo.I.Scripts.Weapon
                 
                 //Visuel
                 GameObject newBullet = Instantiate(_bulletGameObject, _spawnBulletTransform.position, transform.rotation);
-                newBullet.GetComponent<BulletHandler>().SetUp(WeaponData.Range, WeaponData.BulletSpeed, _directionBulletTransform);
+                newBullet.GetComponent<BulletHandler>().SetUp(WeaponData.Damage, WeaponData.Range, WeaponData.BulletSpeed, _directionBulletTransform);
                 
                 yield return new WaitForSeconds(WeaponData.FireRate);
             }

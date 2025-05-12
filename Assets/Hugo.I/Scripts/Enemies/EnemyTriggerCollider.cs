@@ -1,24 +1,27 @@
 using System.Collections.Generic;
-using Hugo.I.Scripts.Displays.InGame_WorldSpace;
+using Hugo.I.Scripts.Interactable.PowerPlant;
+using Hugo.I.Scripts.Player;
 using UnityEngine;
 
-namespace Hugo.I.Scripts.Player
+namespace Hugo.I.Scripts.Enemies
 {
-    public class TriggerCollider : MonoBehaviour
+    public class EnemyTriggerCollider : MonoBehaviour
     {
+        [Header("References")]
+        [SerializeField] private EnemyData _enemyData;
+        [Header("Settings")]
         [SerializeField] private List<Collider> _colliders = new List<Collider>();
         
-        [Header("References")]
-        [SerializeField] private PlayerWorldSpaceDisplayInteractions _playerWorldSpaceDisplayInteractions;
-
         private void OnTriggerEnter(Collider other)
         {
             _colliders.RemoveAll(collider => collider == null);
             _colliders.RemoveAll(collider => !collider.gameObject.activeSelf);
             
-            if (other.CompareTag("Untagged") || other.CompareTag("Player")) return;
-            _colliders.Add(other);
-            _playerWorldSpaceDisplayInteractions.DisplayInteractionsButton();
+            if (other.CompareTag("Player"))
+            {
+                _enemyData.PlayerController = other.GetComponent<PlayerController>();
+                _colliders.Add(other);
+            }
         }
 
         private void OnTriggerExit(Collider other)
@@ -26,7 +29,6 @@ namespace Hugo.I.Scripts.Player
             _colliders.Remove(other);
             _colliders.RemoveAll(collider => collider == null);
             _colliders.RemoveAll(collider => !collider.gameObject.activeSelf);
-            _playerWorldSpaceDisplayInteractions.HideInteractionsButton();
         }
 
         public GameObject GetNearestObject()

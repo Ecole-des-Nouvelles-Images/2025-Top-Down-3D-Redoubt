@@ -1,16 +1,18 @@
 using Hugo.I.Scripts.Enemies.States;
+using Hugo.I.Scripts.Utils;
+using UnityEngine;
 
 namespace Hugo.I.Scripts.Enemies
 {
-    public class EnemyAIHandler : EnemyData
+    public class EnemyAIHandler : EnemyData, IHaveHealth
     {
         private void Update()
         {
-            if (!CanAttack)
+            if (TargetGameObject && !HaveRangeToAttackTarget)
             {
                 CurrentState = new GoToTarget();
             }
-            else
+            else if (TargetGameObject && HaveRangeToAttackTarget)
             {
                 CurrentState = new Attack();
             }
@@ -21,6 +23,18 @@ namespace Hugo.I.Scripts.Enemies
             }
             
             CurrentState.Execute(this);
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, AttackRange);
+            Gizmos.DrawWireSphere(transform.position, RangeDontSwitchTarget);
+        }
+
+        public void TakeDamage(float damage)
+        {
+            CurrentHealth -= damage;
         }
     }
 }
