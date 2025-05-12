@@ -23,9 +23,9 @@ namespace Hugo.I.Scripts.Interactable.Resources
         {
             int canCollect = Mathf.Min(CurrentCapacity, value);
 
-            CurrentCapacity -= value;
+            CurrentCapacity -= canCollect;
             
-            _resourceWorldSpaceDisplay.UpdateDisplay(canCollect);
+            _resourceWorldSpaceDisplay.UpdateDisplay(CurrentCapacity);
             
             return (_resourceData.ResourceEnumType, canCollect);
         }
