@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Hugo.I.Scripts.Displays.InGame_WorldSpace;
 using UnityEngine;
 
 namespace Hugo.I.Scripts.Player
@@ -6,6 +7,9 @@ namespace Hugo.I.Scripts.Player
     public class TriggerCollider : MonoBehaviour
     {
         [SerializeField] private List<Collider> _colliders = new List<Collider>();
+        
+        [Header("References")]
+        [SerializeField] private PlayerWorldSpaceDisplayInteractions _playerWorldSpaceDisplayInteractions;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -14,6 +18,7 @@ namespace Hugo.I.Scripts.Player
             
             if (other.CompareTag("Untagged") || other.CompareTag("Player")) return;
             _colliders.Add(other);
+            _playerWorldSpaceDisplayInteractions.DisplayInteractionsButton();
         }
 
         private void OnTriggerExit(Collider other)
@@ -21,6 +26,7 @@ namespace Hugo.I.Scripts.Player
             _colliders.Remove(other);
             _colliders.RemoveAll(collider => collider == null);
             _colliders.RemoveAll(collider => !collider.gameObject.activeSelf);
+            _playerWorldSpaceDisplayInteractions.HideInteractionsButton();
         }
 
         public GameObject GetNearestObject()

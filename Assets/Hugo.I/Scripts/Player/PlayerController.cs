@@ -31,7 +31,11 @@ namespace Hugo.I.Scripts.Player
         [SerializeField] private TriggerCollider _repelTriggerCollider;
         [SerializeField] private WeaponHandler _revolverWeapon;
         [SerializeField] private WeaponHandler _rifleWeapon;
+        
+        [Header("Displays")]
+        [SerializeField] private CanvasLookCameraHandler _canvasLookCameraHandler;
         [SerializeField] private PlayerWorldSpaceDisplay _playerWorldSpaceDisplay;
+        [SerializeField] private PlayerWorldSpaceDisplayInteractions _playerWorldSpaceDisplayInteractions;
 
         public float CurrentHealth
         {
@@ -53,9 +57,9 @@ namespace Hugo.I.Scripts.Player
         // Inventory
         private Dictionary<ResourcesEnum, int> _inventory = new Dictionary<ResourcesEnum, int>()
         {
-            { ResourcesEnum.Stone, 200 },
-            { ResourcesEnum.Metal, 200 },
-            { ResourcesEnum.ElectricalCircuit, 200 }
+            { ResourcesEnum.Stone, 0 },
+            { ResourcesEnum.Metal, 0 },
+            { ResourcesEnum.ElectricalCircuit, 0 }
         };
         
         // Internals Components
@@ -174,9 +178,10 @@ namespace Hugo.I.Scripts.Player
             // Debug.Log("Pad : " + readValue);
             if (_isInteracting && readValue != Vector2.zero)
             {
-                bool isQteFinished = _actualPadQte.CheckQte(readValue);
+                (int advancement, bool isCorrect, bool isFinished) tuple = _actualPadQte.CheckQte(readValue);
+                _playerWorldSpaceDisplayInteractions.DisplayQteAdvancement(tuple.advancement, tuple.isCorrect);
 
-                if (isQteFinished)
+                if (tuple.isFinished)
                 {
                     QuitQte();
                 }
@@ -327,7 +332,8 @@ namespace Hugo.I.Scripts.Player
         private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
             transform.position = GameManager.SpawnPoints[PlayerId];
-            _playerWorldSpaceDisplay.OnSceneLoaded();
+            _canvasLookCameraHandler.OnSceneLoaded();
+            _playerWorldSpaceDisplayInteractions.HideInteractionsButton();
         }
 
         private IEnumerator TmeBeforeCollecting(string interactableName)
@@ -367,10 +373,9 @@ namespace Hugo.I.Scripts.Player
                         _actualPadQte = new PadQte(_lastInteractablePowerPlant.QteSize);
                     }
                     
-                    foreach (Vector2 vector2 in _actualPadQte.Qte)
-                    {
-                        Debug.Log(vector2);
-                    }
+                    // Display
+                    _playerWorldSpaceDisplayInteractions.HideInteractionsButton();
+                    _playerWorldSpaceDisplayInteractions.DisplayQteButton(_actualPadQte.Qte);
                     yield break;
                 }
                 yield return new WaitForSeconds(1f);
@@ -393,6 +398,10 @@ namespace Hugo.I.Scripts.Player
                     _lastInteractablePowerPlant.Repair();
                 }
             }
+            
+            // Display
+            _playerWorldSpaceDisplayInteractions.HideQteButton();
+            _playerWorldSpaceDisplayInteractions.DisplayInteractionsButton();
         }
     }
 }

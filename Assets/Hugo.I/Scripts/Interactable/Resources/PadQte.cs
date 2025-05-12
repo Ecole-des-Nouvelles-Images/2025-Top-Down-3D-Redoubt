@@ -34,27 +34,25 @@ namespace Hugo.I.Scripts.Interactable.Resources
             return qte;
         }
         
-        public bool CheckQte(Vector2 readValue)
+        public (int advancement, bool isCorrect, bool isFinished) CheckQte(Vector2 readValue)
         {
+            bool isCorrect = false;
+            bool isFinished = false;
+            
             if (readValue == Qte[_advancement])
             {
-                Debug.Log("Succes");
                 Score++;
-            }
-            else
-            {
-                Debug.Log("Fail");
+                isCorrect = true;
             }
             
             if (_advancement == Qte.Count - 1)
             {
-                Debug.Log("QTE fini, score : " + Score);
-                return true;
+                isFinished = true;
             }
             
             _advancement++;
             
-            return false;
+            return (_advancement, isCorrect, isFinished);
         }
     }
 }
