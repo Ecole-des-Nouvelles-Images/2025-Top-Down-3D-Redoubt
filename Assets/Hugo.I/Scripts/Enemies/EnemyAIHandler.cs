@@ -1,19 +1,26 @@
-using UnityEngine;
+using Hugo.I.Scripts.Enemies.States;
 
 namespace Hugo.I.Scripts.Enemies
 {
     public class EnemyAIHandler : EnemyData
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        private void Update()
         {
-        
-        }
+            if (!CanAttack)
+            {
+                CurrentState = new GoToTarget();
+            }
+            else
+            {
+                CurrentState = new Attack();
+            }
 
-        // Update is called once per frame
-        void Update()
-        {
-        
+            if (IsDead)
+            {
+                CurrentState = new Dead();
+            }
+            
+            CurrentState.Execute(this);
         }
     }
 }
