@@ -21,6 +21,8 @@ namespace Hugo.I.Scripts.Weapon
         private float _currentOverheating;
         private float _lastFireTime;
         
+        private Coroutine _isCoolingDownCoroutine;
+        
         public float CurrentCapacity
         {
             get => _currentCapacity;
@@ -42,7 +44,7 @@ namespace Hugo.I.Scripts.Weapon
                     _isOverheating = true;
                     _isCoolingDown = true;
                     _canShoot = false;
-                    StartCoroutine(CoolDown());
+                    _isCoolingDownCoroutine = StartCoroutine(CoolDown());
                 }
             }
         }
@@ -50,24 +52,43 @@ namespace Hugo.I.Scripts.Weapon
         private void Start()
         {
             _currentCapacity = WeaponData.Capacity;
-            _currentOverheating = 0;
+            CurrentOverheating = 0;
         }
 
         private void OnEnable()
         {
-            if (_currentOverheating >= 0)
+            if (CurrentOverheating >= 0)
             {
                 _isCoolingDown = true;
-                StartCoroutine(CoolDown());
+                _isCoolingDownCoroutine = StartCoroutine(CoolDown());
+            }
+        }
+
+        private void OnDisable()
+        {
+            CancelInvoke(nameof(StartCollingDown));
+            
+            if (_isCoolingDownCoroutine != null)
+            {
+                StopCoroutine(_isCoolingDownCoroutine);
+                _isCoolingDownCoroutine = null;
             }
         }
 
         public void Shoot(float readValue)
         {
-            if (readValue > 0 && !_isShooting && _canShoot && _lastFireTime + WeaponData.FireRate < Time.time)
+            if (readValue > 0 && !_isShooting && _canShoot && _lastFireTime + WeaponData.FireRate < Time.time
+                && CurrentCapacity > 0)
             {
                 _isShooting = true;
+                _isCoolingDown = false;
                 StartCoroutine(Shooting());
+
+                if (_isCoolingDownCoroutine != null)
+                {
+                    StopCoroutine(_isCoolingDownCoroutine);
+                    _isCoolingDownCoroutine = null;
+                }
             }
             else
             {
@@ -76,7 +97,8 @@ namespace Hugo.I.Scripts.Weapon
                 if (CurrentOverheating >= 0)
                 {
                     _isCoolingDown = true;
-                    StartCoroutine(CoolDown());
+                    CancelInvoke(nameof(StartCollingDown));
+                    Invoke(nameof(StartCollingDown), WeaponData.FireRate + 0.1f);
                 }
             }
         }
@@ -103,6 +125,14 @@ namespace Hugo.I.Scripts.Weapon
             }
         }
 
+        private void StartCollingDown()
+        {
+            if (_isCoolingDownCoroutine == null)
+            {
+                _isCoolingDownCoroutine = StartCoroutine(CoolDown());
+            }
+        }
+
         private IEnumerator CoolDown()
         {
             while (_isCoolingDown && !_isShooting)
@@ -112,10 +142,12 @@ namespace Hugo.I.Scripts.Weapon
                 
                 if (CurrentOverheating <= 0)
                 {
-                    _currentOverheating = 0;
+                    CurrentOverheating = 0;
                     _isCoolingDown = false;
                     _isOverheating = false;
                     _canShoot = true;
+                    
+                    _isCoolingDownCoroutine = null;
                 }
                 
                 yield return new WaitForSeconds(WeaponData.OverheatingDecreaseSpeed);

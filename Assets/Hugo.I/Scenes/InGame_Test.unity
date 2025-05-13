@@ -11525,6 +11525,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1183015709545642753, guid: dde570d29a4b7124786767514c9a9ce7, type: 3}
+      propertyPath: _cinemachineCamera
+      value: 
+      objectReference: {fileID: 453972017}
     - target: {fileID: 2625330937763917714, guid: dde570d29a4b7124786767514c9a9ce7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
