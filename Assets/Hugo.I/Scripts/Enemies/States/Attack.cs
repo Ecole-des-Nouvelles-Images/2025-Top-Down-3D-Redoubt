@@ -1,5 +1,4 @@
 using Hugo.I.Scripts.Utils;
-using UnityEngine;
 
 namespace Hugo.I.Scripts.Enemies.States
 {
@@ -11,7 +10,6 @@ namespace Hugo.I.Scripts.Enemies.States
             {
                 enemy.NavMeshAgent.ResetPath();
                 enemy.TargetGameObject.GetComponent<IHaveHealth>().TakeDamage(enemy.Damage);
-                // Debug.Log("Attack : " + enemy.TargetGameObject.name);
                 enemy.IsAttacking = true;
                 enemy.StartCoroutine(enemy.CoroutineIsAttacking());
             }

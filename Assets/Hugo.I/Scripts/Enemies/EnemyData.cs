@@ -14,7 +14,12 @@ namespace Hugo.I.Scripts.Enemies
         
         [Header("Currents")]
         public State CurrentState;
-        public float CurrentHealth;
+        private float _currentHealth;
+        public float CurrentHealth
+        {
+            get => _currentHealth;
+            set => _currentHealth = Mathf.Clamp(value, 0, MaxHealth);
+        }
         
         [Header("Datas")]
         public float MaxHealth;
@@ -30,6 +35,7 @@ namespace Hugo.I.Scripts.Enemies
         public bool HaveRangeToAttackTarget => TargetGameObject && Vector3.Distance(transform.position, TargetGameObject.transform.position) <= AttackRange;
         public bool IsAttacking;
         public bool IsDead => CurrentHealth <= 0;
+        public bool IsDying;
 
         [Header("Target")]
         public TowerHandler TowerHandler;
@@ -62,11 +68,13 @@ namespace Hugo.I.Scripts.Enemies
         [Header("Internal Components")]
         public NavMeshAgent NavMeshAgent;
         public Rigidbody Rigidbody;
+        public Collider Collider;
 
         private void Awake()
         {
             NavMeshAgent = GetComponent<NavMeshAgent>();
             Rigidbody = GetComponent<Rigidbody>();
+            Collider = GetComponent<Collider>();
             
             NavMeshAgent.speed = WalkSpeed;
             NavMeshAgent.angularSpeed = AngularSpeed;
@@ -81,6 +89,11 @@ namespace Hugo.I.Scripts.Enemies
         {
             yield return new WaitForSeconds(AttackSpeed);
             IsAttacking = false;
+        }
+
+        public void Die()
+        {
+            Destroy(gameObject, 3f);
         }
     }
 }

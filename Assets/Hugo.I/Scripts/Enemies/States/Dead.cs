@@ -1,12 +1,17 @@
-using UnityEngine;
-
 namespace Hugo.I.Scripts.Enemies.States
 {
     public class Dead : State
     {
         public override void Execute(EnemyData enemy)
         {
-            // Debug.Log("Is dead");
+            if (!enemy.IsDying)
+            {
+                enemy.IsDying = true;
+                enemy.Collider.enabled = false;
+                enemy.NavMeshAgent.ResetPath();
+                enemy.NavMeshAgent.isStopped = true;
+                enemy.Die();
+            }
         }
     }
 }

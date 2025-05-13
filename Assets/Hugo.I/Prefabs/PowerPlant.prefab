@@ -546,7 +546,7 @@ GameObject:
   - component: {fileID: 6534732507104477717}
   - component: {fileID: 6523341475143532314}
   - component: {fileID: 3796243034767848391}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PowerPlant
   m_TagString: PowerPlant
   m_Icon: {fileID: 0}

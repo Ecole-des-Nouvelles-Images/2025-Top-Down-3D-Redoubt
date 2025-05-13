@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 8746537038645706241}
   - component: {fileID: 691458708287975820}
   - component: {fileID: 7896556112204933432}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tower_T2
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -500,7 +500,7 @@ GameObject:
   - component: {fileID: 8392173240434630660}
   - component: {fileID: 4099137806329354075}
   - component: {fileID: 1236360671926579330}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tower_T3
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -733,7 +733,7 @@ GameObject:
   - component: {fileID: 974324748001441112}
   - component: {fileID: 1383240127134629779}
   - component: {fileID: 3440685809504046722}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tower_T1
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -880,7 +880,7 @@ GameObject:
   - component: {fileID: 5305334014290285807}
   - component: {fileID: 3333961131771092909}
   - component: {fileID: 3629767228647323198}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tower_T0
   m_TagString: Tower
   m_Icon: {fileID: 0}

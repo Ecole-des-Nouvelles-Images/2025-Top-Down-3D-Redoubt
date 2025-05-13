@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 6096490515978480512}
   - component: {fileID: 7354583014914096307}
   - component: {fileID: 2407358994168771863}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -171,7 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d34a50e69f304ff4e8f48cf190c766d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealth: 0
   MaxHealth: 20
   Damage: 2
   AttackSpeed: 1
@@ -181,6 +180,7 @@ MonoBehaviour:
   AngularSpeed: 240
   Acceleration: 16
   IsAttacking: 0
+  IsDying: 0
   TowerHandler: {fileID: 0}
   PlayerController: {fileID: 0}
   NavMeshAgent: {fileID: 0}

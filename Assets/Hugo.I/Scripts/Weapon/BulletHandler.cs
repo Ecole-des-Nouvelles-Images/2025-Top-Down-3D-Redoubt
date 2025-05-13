@@ -9,9 +9,13 @@ namespace Hugo.I.Scripts.Weapon
         private float _duration;
         private float _speed;
         private Vector3 _direction;
+
+        private Vector3 _lastPosition;
         
         private void Update()
         {
+            CheckCollision(transform.position);
+            
             transform.position += _direction * (_speed * Time.deltaTime);
         }
 
@@ -22,15 +26,32 @@ namespace Hugo.I.Scripts.Weapon
             _speed = speed;
             _direction = (direction.position - transform.position).normalized;
             
+            _lastPosition = transform.position;
+            
             Destroy(gameObject, _duration);
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void CheckCollision(Vector3 actualPosition)
         {
-            if (other.CompareTag("Enemy"))
+            int layerMask = LayerMask.GetMask("HitBullet");
+            Vector3 direction = (_lastPosition - actualPosition).normalized;
+            float distance = Vector3.Distance(actualPosition, _lastPosition);
+            
+            RaycastHit[] hits = Physics.RaycastAll(actualPosition, direction, distance, layerMask);
+
+            if (hits.Length > 0)
             {
-                other.GetComponent<IHaveHealth>().TakeDamage(_damage);
+                foreach (RaycastHit hit in hits)
+                {
+                    if (hit.collider.gameObject.CompareTag("Enemy"))
+                    {
+                        hit.collider.gameObject.GetComponent<IHaveHealth>().TakeDamage(_damage);
+                    }
+                    Destroy(gameObject);
+                }
             }
+            
+            _lastPosition = actualPosition;
         }
     }
 }
