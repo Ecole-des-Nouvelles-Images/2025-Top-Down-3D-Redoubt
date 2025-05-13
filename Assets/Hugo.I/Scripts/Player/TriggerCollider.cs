@@ -6,6 +6,8 @@ namespace Hugo.I.Scripts.Player
 {
     public class TriggerCollider : MonoBehaviour
     {
+        [Header("Settings")]
+        [SerializeField] private List<string> _includedTags = new List<string>();
         [SerializeField] private List<Collider> _colliders = new List<Collider>();
         
         [Header("References")]
@@ -15,10 +17,19 @@ namespace Hugo.I.Scripts.Player
         {
             _colliders.RemoveAll(collider => collider == null);
             _colliders.RemoveAll(collider => !collider.gameObject.activeSelf);
-            
-            if (other.CompareTag("Untagged") || other.CompareTag("Player")) return;
-            _colliders.Add(other);
-            _playerWorldSpaceDisplayInteractions.DisplayInteractionsButton();
+
+            foreach (string tag in _includedTags)
+            {
+                if (other.CompareTag(tag))
+                {
+                    _colliders.Add(other);
+
+                    if (_playerWorldSpaceDisplayInteractions)
+                    {
+                        _playerWorldSpaceDisplayInteractions.DisplayInteractionsButton();
+                    }
+                }
+            }
         }
 
         private void OnTriggerExit(Collider other)
@@ -26,7 +37,11 @@ namespace Hugo.I.Scripts.Player
             _colliders.Remove(other);
             _colliders.RemoveAll(collider => collider == null);
             _colliders.RemoveAll(collider => !collider.gameObject.activeSelf);
-            _playerWorldSpaceDisplayInteractions.HideInteractionsButton();
+            
+            if (_playerWorldSpaceDisplayInteractions)
+            {
+                _playerWorldSpaceDisplayInteractions.HideInteractionsButton();
+            }
         }
 
         public GameObject GetNearestObject()

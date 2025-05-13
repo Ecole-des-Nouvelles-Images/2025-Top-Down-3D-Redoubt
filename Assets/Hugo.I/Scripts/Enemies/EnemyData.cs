@@ -91,6 +91,30 @@ namespace Hugo.I.Scripts.Enemies
             IsAttacking = false;
         }
 
+        public void IsPushed(Vector3 direction, float force, float duration)
+        {
+            Debug.Log("Is Pushed");
+            
+            StartCoroutine(ApplyPush(direction, force, duration));
+        }
+
+        private IEnumerator ApplyPush(Vector3 direction, float force, float duration)
+        {
+            NavMeshAgent.isStopped = true;
+            NavMeshAgent.enabled = false;
+
+            Rigidbody.isKinematic = false;
+            Rigidbody.AddForce(direction.normalized * force, ForceMode.Impulse);
+            Debug.Log("Apply Push. Direction : " + direction);
+
+            yield return new WaitForSeconds(duration);
+
+            Rigidbody.isKinematic = true;
+
+            NavMeshAgent.enabled = true;
+            NavMeshAgent.isStopped = false;
+        }
+
         public void Die()
         {
             Destroy(gameObject, 3f);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Hugo.I.Scripts.Displays.InGame_WorldSpace;
+using Hugo.I.Scripts.Enemies;
 using Hugo.I.Scripts.Game;
 using Hugo.I.Scripts.Interactable.PowerPlant;
 using Hugo.I.Scripts.Interactable.Resources;
@@ -22,6 +23,8 @@ namespace Hugo.I.Scripts.Player
         [SerializeField] private float _increaseRateHealth;
         [SerializeField] private float _moveSpeed;
         [SerializeField] private float _factorAimingSpeed;
+        [SerializeField] private float _pushForce;
+        [SerializeField] private float _pushDuration;
         [SerializeField] private int _timeBeforeCollecting;
         [SerializeField] private int _maxStone;
         [SerializeField] private int _maxMetal;
@@ -300,13 +303,18 @@ namespace Hugo.I.Scripts.Player
                 QuitQte();
             }
 
-            List<GameObject> enemiesGameObjects = new List<GameObject>();
-            enemiesGameObjects = _repelTriggerCollider.GetGameObjectsWithTag("Enemy");
-
-            foreach (GameObject enemy in enemiesGameObjects)
+            if (readValue > 0)
             {
-                // lance la methode dans les ennemis directement qui vas les pousser
-            } 
+                List<GameObject> enemiesGameObjects = new List<GameObject>();
+                enemiesGameObjects = _repelTriggerCollider.GetGameObjectsWithTag("Enemy");
+
+                Debug.Log("Enemy pushed : " + enemiesGameObjects.Count);
+                foreach (GameObject enemy in enemiesGameObjects)
+                {
+                    Vector3 direction = (enemy.transform.position - transform.position).normalized;
+                    enemy.GetComponent<EnemyAIHandler>().IsPushed(direction, _pushForce, _pushDuration);
+                } 
+            }
         }
 
         public void OnShoot(float readValue)

@@ -185,6 +185,7 @@ MonoBehaviour:
   PlayerController: {fileID: 0}
   NavMeshAgent: {fileID: 0}
   Rigidbody: {fileID: 0}
+  Collider: {fileID: 0}
 --- !u!195 &6096490515978480512
 NavMeshAgent:
   m_ObjectHideFlags: 0

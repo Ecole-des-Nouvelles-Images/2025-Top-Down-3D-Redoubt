@@ -4,7 +4,10 @@ namespace Hugo.I.Scripts.Enemies.States
     {
         public override void Execute(EnemyData enemy)
         {
-            enemy.NavMeshAgent.SetDestination(enemy.TargetGameObject.transform.position);
+            if (enemy.NavMeshAgent.enabled)
+            {
+                enemy.NavMeshAgent.SetDestination(enemy.TargetGameObject.transform.position);
+            }
         }
     }
 }
