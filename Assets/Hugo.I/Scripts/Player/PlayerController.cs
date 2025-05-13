@@ -57,9 +57,9 @@ namespace Hugo.I.Scripts.Player
         // Inventory
         private Dictionary<ResourcesEnum, int> _inventory = new Dictionary<ResourcesEnum, int>()
         {
-            { ResourcesEnum.Stone, 200 },
-            { ResourcesEnum.Metal, 200 },
-            { ResourcesEnum.ElectricalCircuit, 200 }
+            { ResourcesEnum.Stone, 0 },
+            { ResourcesEnum.Metal, 0 },
+            { ResourcesEnum.ElectricalCircuit, 0 }
         };
         
         // Internals Components
@@ -338,10 +338,11 @@ namespace Hugo.I.Scripts.Player
 
         private IEnumerator TmeBeforeCollecting(string interactableName)
         {
-            int time = 0;
+            float time = 0f;
             while (_pressesButtonSouth)
             {
-                time++;
+                time += 0.1f;
+                _playerWorldSpaceDisplayInteractions.UpdateInteractionButtonFill(time, _timeBeforeCollecting);
 
                 if (time >= _timeBeforeCollecting)
                 {
@@ -378,7 +379,7 @@ namespace Hugo.I.Scripts.Player
                     _playerWorldSpaceDisplayInteractions.DisplayQteButton(_actualPadQte.Qte);
                     yield break;
                 }
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.1f);
             }
         }
 

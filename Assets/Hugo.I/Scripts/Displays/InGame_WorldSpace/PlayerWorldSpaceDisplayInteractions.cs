@@ -10,6 +10,7 @@ namespace Hugo.I.Scripts.Displays.InGame_WorldSpace
         [Header("Settings")]
         [SerializeField] private PlayerController _playerController;
         [SerializeField] private GameObject _panelInteractions;
+        [SerializeField] private Image _fillInteractionButtonImage;
         [SerializeField] private GameObject _panelQte;
         [SerializeField] private GameObject _qtePrefabGameObject;
         [SerializeField] private Sprite _topSprite;
@@ -21,12 +22,19 @@ namespace Hugo.I.Scripts.Displays.InGame_WorldSpace
 
         public void DisplayInteractionsButton()
         {
+            _fillInteractionButtonImage.fillAmount = 0;
             _panelInteractions.SetActive(true);
         }
 
         public void HideInteractionsButton()
         {
             _panelInteractions.SetActive(false);
+        }
+
+        public void UpdateInteractionButtonFill(float value, int maxValue)
+        {
+            float valueNormalized = Mathf.Clamp01(value / maxValue);
+            _fillInteractionButtonImage.fillAmount = valueNormalized;
         }
 
         public void DisplayQteButton(List<Vector2> qteList)
