@@ -41,8 +41,8 @@ namespace Hugo.I.Scripts.Player
             _playerInput.actions["SwitchWeapon"].canceled += OnSwitchWeapon;
             _playerInput.actions["Interact"].performed += OnInteract;
             _playerInput.actions["Interact"].canceled += OnInteract;
-            _playerInput.actions["Repel"].performed += OnRepel;
-            _playerInput.actions["Repel"].canceled += OnRepel;
+            _playerInput.actions["Repel"].performed += OnPush;
+            _playerInput.actions["Repel"].canceled += OnPush;
             _playerInput.actions["Shoot"].performed += OnShoot;
             _playerInput.actions["Shoot"].canceled += OnShoot;
         }
@@ -62,8 +62,8 @@ namespace Hugo.I.Scripts.Player
             _playerInput.actions["SwitchWeapon"].canceled -= OnSwitchWeapon;
             _playerInput.actions["Interact"].performed -= OnInteract;
             _playerInput.actions["Interact"].canceled -= OnInteract;
-            _playerInput.actions["Repel"].performed -= OnRepel;
-            _playerInput.actions["Repel"].canceled -= OnRepel;
+            _playerInput.actions["Repel"].performed -= OnPush;
+            _playerInput.actions["Repel"].canceled -= OnPush;
             _playerInput.actions["Shoot"].performed -= OnShoot;
             _playerInput.actions["Shoot"].canceled -= OnShoot;
         }
@@ -123,11 +123,11 @@ namespace Hugo.I.Scripts.Player
             }
         }
         
-        private void OnRepel(InputAction.CallbackContext context)
+        private void OnPush(InputAction.CallbackContext context)
         {
             if (InputAreEnable)
             {
-                _playerController.OnRepel(context.ReadValue<float>());
+                _playerController.OnPush(context.ReadValue<float>());
             }
         }
         

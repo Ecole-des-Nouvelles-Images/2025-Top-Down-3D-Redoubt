@@ -295,7 +295,7 @@ namespace Hugo.I.Scripts.Player
             }
         }
 
-        public void OnRepel(float readValue)
+        public void OnPush(float readValue)
         {
             // Debug.Log("ButtonWest : " + readValue);
             if (_isInteracting)
