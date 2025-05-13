@@ -286,6 +286,9 @@ namespace Hugo.I.Scripts.Player
                 _pressesButtonSouth = false;
                 _wantToReload = false;
                 _wantToHeal = false;
+                
+                // Display
+                _playerWorldSpaceDisplayInteractions.ResetInteractionButtonFill();
             }
         }
 
@@ -341,7 +344,7 @@ namespace Hugo.I.Scripts.Player
             float time = 0f;
             while (_pressesButtonSouth)
             {
-                time += 0.1f;
+                time += 0.01f;
                 _playerWorldSpaceDisplayInteractions.UpdateInteractionButtonFill(time, _timeBeforeCollecting);
 
                 if (time >= _timeBeforeCollecting)
@@ -379,7 +382,7 @@ namespace Hugo.I.Scripts.Player
                     _playerWorldSpaceDisplayInteractions.DisplayQteButton(_actualPadQte.Qte);
                     yield break;
                 }
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.01f);
             }
         }
 

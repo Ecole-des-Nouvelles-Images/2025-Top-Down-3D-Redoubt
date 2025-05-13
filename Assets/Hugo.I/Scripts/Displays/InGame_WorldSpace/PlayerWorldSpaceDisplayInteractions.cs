@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using Hugo.I.Scripts.Player;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,7 +23,7 @@ namespace Hugo.I.Scripts.Displays.InGame_WorldSpace
 
         public void DisplayInteractionsButton()
         {
-            _fillInteractionButtonImage.fillAmount = 0;
+            ResetInteractionButtonFill();
             _panelInteractions.SetActive(true);
         }
 
@@ -35,6 +36,11 @@ namespace Hugo.I.Scripts.Displays.InGame_WorldSpace
         {
             float valueNormalized = Mathf.Clamp01(value / maxValue);
             _fillInteractionButtonImage.fillAmount = valueNormalized;
+        }
+
+        public void ResetInteractionButtonFill()
+        {
+            DOTween.To(() => _fillInteractionButtonImage.fillAmount, value => _fillInteractionButtonImage.fillAmount = value, 0, 0.2f);
         }
 
         public void DisplayQteButton(List<Vector2> qteList)
