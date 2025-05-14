@@ -392,6 +392,7 @@ Transform:
   - {fileID: 3797789176830347011}
   - {fileID: 6415072437321381364}
   - {fileID: 3545357244671080954}
+  - {fileID: 1862622819270410967}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7234065166048694185
@@ -465,6 +466,7 @@ MonoBehaviour:
   _increaseRateHealth: 5
   _moveSpeed: 8
   _factorAimingSpeed: 0.5
+  _factorCarryingSpeed: 0.7
   _pushForce: 30
   _pushDuration: 0.2
   _timeBeforeCollecting: 2
@@ -476,6 +478,7 @@ MonoBehaviour:
   _repelTriggerCollider: {fileID: 6409527901554189643}
   _revolverWeapon: {fileID: 1299178300611406369}
   _rifleWeapon: {fileID: 5876720911722562231}
+  _carrieShieldTransform: {fileID: 1862622819270410967}
   _canvasLookCameraHandler: {fileID: 565198294663152941}
   _playerWorldSpaceDisplay: {fileID: 3355656769517609946}
   _playerWorldSpaceDisplayInteractions: {fileID: 8247136303321276531}
@@ -547,6 +550,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InputAreEnable: 1
+--- !u!1 &2644582277757980758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1862622819270410967}
+  m_Layer: 0
+  m_Name: CarrieShield
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1862622819270410967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2644582277757980758}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.25, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8352367785832012316}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3475148959735038740
 GameObject:
   m_ObjectHideFlags: 0

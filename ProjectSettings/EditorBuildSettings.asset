@@ -18,5 +18,5 @@ EditorBuildSettings:
     path: Assets/Hugo.I/Scenes/SceneProto_Hugo.I.unity
     guid: 81bed89e2f1bc904da40f4487c9296da
   m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 765b44a9ef7e8ef45a1ad205d14197ed, type: 3}
   m_UseUCBPForAssetBundles: 0

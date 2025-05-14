@@ -86,6 +86,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &340289062267267925
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3225949317106859272}
+  m_Layer: 0
+  m_Name: ShieldZoneSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3225949317106859272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340289062267267925}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2625330937763917714}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &483688719063976040
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,6 +227,7 @@ MonoBehaviour:
   _currentElectricalCircuit: 0
   _isRestoringCapacity: 0
   _isGivingCapacity: 0
+  _isDestroy: 0
 --- !u!65 &691458708287975820
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -437,6 +469,7 @@ Transform:
   - {fileID: 2026797344970433860}
   - {fileID: 3209126396242319857}
   - {fileID: 7384460774956848084}
+  - {fileID: 3225949317106859272}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1183015709545642753
@@ -459,6 +492,9 @@ MonoBehaviour:
   - {fileID: 7693601916163565377}
   _reloadZone: {fileID: 2089432195923607832}
   _healingZone: {fileID: 4374683425191655992}
+  _enemySpawnPoints: {fileID: 0}
+  _shieldZonePrefab: {fileID: 790350623387009348, guid: 5843f020600f16c46bad09c1a974c83b, type: 3}
+  _shieldZoneSpawnPoint: {fileID: 3225949317106859272}
   _cinemachineCamera: {fileID: 0}
   _cameraLens: 0a0000000f0000001400000019000000
   _duration: 3
@@ -596,6 +632,7 @@ MonoBehaviour:
   _currentElectricalCircuit: 0
   _isRestoringCapacity: 0
   _isGivingCapacity: 0
+  _isDestroy: 0
 --- !u!65 &4099137806329354075
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -829,6 +866,7 @@ MonoBehaviour:
   _currentElectricalCircuit: 0
   _isRestoringCapacity: 0
   _isGivingCapacity: 0
+  _isDestroy: 0
 --- !u!65 &1383240127134629779
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -976,6 +1014,7 @@ MonoBehaviour:
   _currentElectricalCircuit: 0
   _isRestoringCapacity: 0
   _isGivingCapacity: 0
+  _isDestroy: 0
 --- !u!65 &3333961131771092909
 BoxCollider:
   m_ObjectHideFlags: 0

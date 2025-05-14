@@ -6,6 +6,7 @@ using Hugo.I.Scripts.Game;
 using Hugo.I.Scripts.Interactable.PowerPlant;
 using Hugo.I.Scripts.Interactable.Resources;
 using Hugo.I.Scripts.Interactable.Tower;
+using Hugo.I.Scripts.Shield;
 using Hugo.I.Scripts.Utils;
 using Hugo.I.Scripts.Weapon;
 using UnityEngine;
@@ -23,6 +24,7 @@ namespace Hugo.I.Scripts.Player
         [SerializeField] private float _increaseRateHealth;
         [SerializeField] private float _moveSpeed;
         [SerializeField] private float _factorAimingSpeed;
+        [SerializeField] private float _factorCarryingSpeed;
         [SerializeField] private float _pushForce;
         [SerializeField] private float _pushDuration;
         [SerializeField] private int _timeBeforeCollecting;
@@ -34,6 +36,7 @@ namespace Hugo.I.Scripts.Player
         [SerializeField] private TriggerCollider _repelTriggerCollider;
         [SerializeField] private WeaponHandler _revolverWeapon;
         [SerializeField] private WeaponHandler _rifleWeapon;
+        [SerializeField] private Transform _carrieShieldTransform;
         
         [Header("Displays")]
         [SerializeField] private CanvasLookCameraHandler _canvasLookCameraHandler;
@@ -52,7 +55,7 @@ namespace Hugo.I.Scripts.Player
                 }
                 if (_currentHealth <= 0)
                 {
-                    // Joueur tombe au sol
+                    Die();
                 }
             }
         }
@@ -60,19 +63,22 @@ namespace Hugo.I.Scripts.Player
         // Inventory
         private Dictionary<ResourcesEnum, int> _inventory = new Dictionary<ResourcesEnum, int>()
         {
-            { ResourcesEnum.Stone, 0 },
-            { ResourcesEnum.Metal, 0 },
-            { ResourcesEnum.ElectricalCircuit, 0 }
+            { ResourcesEnum.Stone, 200 },
+            { ResourcesEnum.Metal, 200 },
+            { ResourcesEnum.ElectricalCircuit, 200 }
         };
         
         // Internals Components
         private CharacterController _characterController;
+        private PlayerInputHandler _playerInputHandler;
         
         // States
         private bool _isInteracting;
         private bool _pressesButtonSouth;
         private bool _wantToReload;
         private bool _wantToHeal;
+        private bool _isCarrying;
+        private bool _isDead;
         
         // Movements - Rotations
         private Vector2 _movement;
@@ -89,6 +95,7 @@ namespace Hugo.I.Scripts.Player
         private TowerHandler _lastInteractableTower;
         private PowerPlantHandler _lastInteractablePowerPlant;
         private ReloadHealingHandler _lastInteractableReloadHealing;
+        private ShieldHandler _lastInteractableShield;
 
         private void Awake()
         {
@@ -96,6 +103,7 @@ namespace Hugo.I.Scripts.Player
             SceneManager.sceneLoaded += OnSceneLoaded;
             
             _characterController = GetComponent<CharacterController>();
+            _playerInputHandler = GetComponent<PlayerInputHandler>();
             
             CurrentHealth = _maxHealth;
 
@@ -104,14 +112,23 @@ namespace Hugo.I.Scripts.Player
         }
 
         private void Update()
-        { 
+        {
+            if (_isDead) return;
+            
             // Movement - Rotation
             Vector3 movement = new Vector3(_movement.x * _moveSpeed, _gravityScale, _movement.y * _moveSpeed);
             float angle;
             
             if (_aiming == Vector2.zero)
             {
-                _characterController.Move(movement * Time.deltaTime);
+                if (!_isCarrying)
+                {
+                    _characterController.Move(movement * Time.deltaTime);
+                }
+                else
+                {
+                    _characterController.Move(movement * _factorCarryingSpeed * Time.deltaTime);
+                }
                 
                 angle = Mathf.Atan2(_nonNullAim.x, _nonNullAim.y) * Mathf.Rad2Deg;
             }
@@ -148,6 +165,8 @@ namespace Hugo.I.Scripts.Player
 
         public void OnMove(Vector2 readValue)
         {
+            if (_isDead) return;
+            
             // Debug.Log("Left Joystick : " + readValue);
             if (_isInteracting)
             {
@@ -163,6 +182,8 @@ namespace Hugo.I.Scripts.Player
 
         public void OnAim(Vector2 readValue)
         {
+            if (_isDead || _isCarrying) return;
+            
             // Debug.Log("Right Joystick : " + readValue);
             if (_isInteracting)
             {
@@ -178,6 +199,8 @@ namespace Hugo.I.Scripts.Player
         
         public void OnQte(Vector2 readValue)
         {
+            if (_isDead || _isCarrying) return;
+            
             // Debug.Log("Pad : " + readValue);
             if (_isInteracting && readValue != Vector2.zero)
             {
@@ -193,6 +216,8 @@ namespace Hugo.I.Scripts.Player
         
         public void OnSwitchWeapon(float readValue)
         {
+            if (_isDead || _isCarrying) return;
+            
             // Debug.Log("ButtonNorth : " + readValue);
             if (_isInteracting)
             {
@@ -218,11 +243,25 @@ namespace Hugo.I.Scripts.Player
 
         public void OnInteract(float readValue)
         {
+            if (_isDead) return;
+            
             // Debug.Log("ButtonSouth : " + readValue);
             
             if (readValue > 0)
             {
                 _pressesButtonSouth = true;
+
+                if (_isCarrying)
+                {
+                    List<GameObject> towersGameObjects = _interactableTriggerCollider.GetGameObjectsWithTag("Tower");
+
+                    if (towersGameObjects.Count > 0)
+                    {
+                        towersGameObjects[0].GetComponent<TowerHandler>().ReceiveShield();
+                        _lastInteractableShield.Disappears();
+                        return;
+                    }
+                }
 
                 GameObject nearestInteractable = _interactableTriggerCollider.GetNearestObject();
                 
@@ -248,7 +287,6 @@ namespace Hugo.I.Scripts.Player
                         
                         _lastInteractableTower = nearestInteractable.GetComponent<TowerHandler>();
                         _inventory = _lastInteractableTower.ReceiveResources(_inventory);
-                        
                     }
                     if (nearestInteractable.CompareTag("Reload"))
                     {
@@ -276,6 +314,19 @@ namespace Hugo.I.Scripts.Player
                     if (nearestInteractable.CompareTag("Shield"))
                     {
                         Debug.Log("Interact with a Shield");
+
+                        _lastInteractableShield = nearestInteractable.GetComponent<ShieldHandler>();
+
+                        if (!_isCarrying)
+                        {
+                            _isCarrying = true;
+                            _lastInteractableShield.Carrie(_carrieShieldTransform);
+                        }
+                        else
+                        {
+                            _isCarrying = false;
+                            _lastInteractableShield.Drop();
+                        }
                     }
                     if (nearestInteractable.CompareTag("Lobby"))
                     {
@@ -297,6 +348,8 @@ namespace Hugo.I.Scripts.Player
 
         public void OnPush(float readValue)
         {
+            if (_isDead || _isCarrying) return;
+            
             // Debug.Log("ButtonWest : " + readValue);
             if (_isInteracting)
             {
@@ -319,6 +372,8 @@ namespace Hugo.I.Scripts.Player
 
         public void OnShoot(float readValue)
         {
+            if (_isDead || _isCarrying) return;
+            
             // Debug.Log("R2 : " + readValue);
             if (_isInteracting)
             {
@@ -342,6 +397,7 @@ namespace Hugo.I.Scripts.Player
         
         private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
+            _playerInputHandler.InputAreEnable = true;
             transform.position = GameManager.SpawnPoints[PlayerId];
             _canvasLookCameraHandler.OnSceneLoaded();
             _playerWorldSpaceDisplayInteractions.HideInteractionsButton();
@@ -418,7 +474,16 @@ namespace Hugo.I.Scripts.Player
 
         public void TakeDamage(float damage)
         {
+            if (_isDead) return;
+            
             CurrentHealth -= damage;
+        }
+
+        private void Die()
+        {
+            _isDead = true;
+            GameManager.APlayerDie(gameObject);
+            Destroy(gameObject, 2f);
         }
     }
 }

@@ -33,6 +33,11 @@ namespace Hugo.I.Scripts.Enemies
             SpawnEnemy(_totalCredit);
         }
 
+        public void ChangeSpawnPoints()
+        {
+            
+        }
+
         public void SpawnEnemy(int number)
         {
             for (int i = 0; i < number; i++)

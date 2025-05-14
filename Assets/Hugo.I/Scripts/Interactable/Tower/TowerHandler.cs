@@ -17,11 +17,20 @@ namespace Hugo.I.Scripts.Interactable.Tower
         [SerializeField] private int _currentElectricalCircuit;
         [SerializeField] private bool _isRestoringCapacity;
         [SerializeField] private bool _isGivingCapacity;
+        [SerializeField] private bool _isDestroy;
 
         public float CurrentHealth
         {
             get => _currentHealth;
-            set => _currentHealth = Mathf.Clamp(value, 0, _towerLevelData.MaxHealth);
+            set
+            {
+                _currentHealth = Mathf.Clamp(value, 0, _towerLevelData.MaxHealth);
+
+                if (_currentHealth <= 0 && !_isDestroy)
+                {
+                    IsDestroy();
+                }
+            } 
         }
         
         public float CurrentEnergy
@@ -42,6 +51,8 @@ namespace Hugo.I.Scripts.Interactable.Tower
 
         private void Update()
         {
+            if (_isDestroy) return;
+            
             if (_isRestoringCapacity && GameManager.IsPowerPlantRepairs)
             {
                 CurrentEnergy += _towerLevelData.EnergyRestoreRate * Time.deltaTime;
@@ -77,6 +88,11 @@ namespace Hugo.I.Scripts.Interactable.Tower
             return newPlayerInventory;
         }
 
+        public void ReceiveShield()
+        {
+            _towerManager.TowerReceiveShield();
+        }
+
         public void GiveEnergy()
         {
             CurrentEnergy -= _towerLevelData.EnergyDecreaseRate * Time.deltaTime;
@@ -99,6 +115,12 @@ namespace Hugo.I.Scripts.Interactable.Tower
         public void TakeDamage(float damage)
         {
             CurrentHealth -= damage;
+        }
+
+        private void IsDestroy()
+        {
+            _isDestroy = true;
+            GameManager.GameOver();
         }
     }
 }

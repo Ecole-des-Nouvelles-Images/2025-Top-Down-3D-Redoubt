@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Hugo.I.Scripts.Interactable.Tower;
+using Hugo.I.Scripts.Player;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Hugo.I.Scripts.Game
 {
@@ -18,10 +21,44 @@ namespace Hugo.I.Scripts.Game
         public static bool IsPowerPlantRepairs;
         public static TowerHandler ActualTowerGameObject;
 
+        // Events
         public static event Action OnTriggerActive;
         public static void TriggerAction()
         {
             OnTriggerActive?.Invoke();
+        }
+        
+        // Game over
+        public static void APlayerDie(GameObject player)
+        {
+            if (Players.Contains(player))
+            {
+                Players.Remove(player);
+            }
+
+            if (Players.Count == 0)
+            {
+                GameOver();
+            }
+        }
+
+        public static void GameOver()
+        {
+            Debug.Log("Game Over");
+
+            foreach (GameObject player in Players)
+            {
+                player.GetComponent<PlayerInputHandler>().InputAreEnable = false;
+            }
+            
+            ChangeScene(1);
+        }
+
+        public static async void ChangeScene(int index)
+        {
+            await Task.Delay(2000);
+            
+            SceneManager.LoadScene(index);
         }
     }
 }
