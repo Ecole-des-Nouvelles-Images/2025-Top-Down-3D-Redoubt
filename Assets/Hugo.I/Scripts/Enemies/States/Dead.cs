@@ -10,6 +10,7 @@ namespace Hugo.I.Scripts.Enemies.States
                 enemy.Collider.enabled = false;
                 enemy.NavMeshAgent.ResetPath();
                 enemy.NavMeshAgent.isStopped = true;
+                enemy.EnemySpawnerManager.CurrentCredit--;
                 enemy.Die();
             }
         }

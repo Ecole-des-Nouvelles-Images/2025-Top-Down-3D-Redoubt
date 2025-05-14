@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Hugo.I.Scripts.Enemies.States;
 using Hugo.I.Scripts.Game;
@@ -70,6 +71,9 @@ namespace Hugo.I.Scripts.Enemies
         public Rigidbody Rigidbody;
         public Collider Collider;
 
+        [Header("External Components")]
+        public EnemySpawnerManager EnemySpawnerManager;
+
         private void Awake()
         {
             NavMeshAgent = GetComponent<NavMeshAgent>();
@@ -83,6 +87,11 @@ namespace Hugo.I.Scripts.Enemies
             CurrentHealth = MaxHealth;
             
             TowerHandler = GameManager.ActualTowerGameObject.GetComponent<TowerHandler>();
+        }
+
+        private void Start()
+        {
+            EnemySpawnerManager = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<EnemySpawnerManager>();
         }
 
         public IEnumerator CoroutineIsAttacking()

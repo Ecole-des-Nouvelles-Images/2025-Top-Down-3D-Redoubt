@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startSize: {x: 1, y: 1, z: 1}
-  _endSize: {x: 50, y: 50, z: 50}
+  _endSize: {x: 88, y: 50, z: 58}
   _duration: 3
   _sizeCurve:
     serializedVersion: 2

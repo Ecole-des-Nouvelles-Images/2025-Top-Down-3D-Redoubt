@@ -24,11 +24,12 @@ namespace Hugo.I.Scripts.Interactable.Tower
         [SerializeField] private List<int> _cameraLens;
         [SerializeField] private float _duration;
         [SerializeField] private AnimationCurve _curve;
+        
+        [Header("Enemies")]
+        [SerializeField] private EnemySpawnerManager _enemySpawnerManager;
 
         private void Awake()
         {
-            Debug.Log("Number player : " + GameManager.Players.Count);
-            GameManager.IsPowerPlantRepairs = true;
             GameManager.ActualTowerGameObject = _towers[0].GetComponent<TowerHandler>();
         }
 
@@ -45,6 +46,7 @@ namespace Hugo.I.Scripts.Interactable.Tower
         public void UpgradeTower(GameObject currentTower)
         {
             if (_towers[1].activeSelf && !GameManager.IsPowerPlantRepairs) return;
+            if (_towers[3].activeSelf) return;
             
             // Tower
             int index = _towers.IndexOf(currentTower);
@@ -68,6 +70,9 @@ namespace Hugo.I.Scripts.Interactable.Tower
             {
                 _healingZone.SetActive(true);
             }
+            
+            // Change enemies spawn
+            _enemySpawnerManager.ChangeSpawnPoints(index + 1);
         }
 
         public void TowerReceiveShield()
@@ -78,8 +83,8 @@ namespace Hugo.I.Scripts.Interactable.Tower
             GameManager.ActualTowerGameObject = ActiveTower.GetComponent<TowerHandler>();
             
             // Lance la win
-            Debug.Log("Win");
             Instantiate(_shieldZonePrefab, _shieldZoneSpawnPoint.position, Quaternion.identity);
+            GameManager.WinGame();
         }
 
         private void ActiveReloadZone()

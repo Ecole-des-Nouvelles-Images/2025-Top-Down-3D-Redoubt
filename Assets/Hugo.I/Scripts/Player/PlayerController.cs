@@ -63,9 +63,9 @@ namespace Hugo.I.Scripts.Player
         // Inventory
         private Dictionary<ResourcesEnum, int> _inventory = new Dictionary<ResourcesEnum, int>()
         {
-            { ResourcesEnum.Stone, 200 },
-            { ResourcesEnum.Metal, 200 },
-            { ResourcesEnum.ElectricalCircuit, 200 }
+            { ResourcesEnum.Stone, 0 },
+            { ResourcesEnum.Metal, 0 },
+            { ResourcesEnum.ElectricalCircuit, 0 }
         };
         
         // Internals Components
@@ -118,6 +118,11 @@ namespace Hugo.I.Scripts.Player
             // Movement - Rotation
             Vector3 movement = new Vector3(_movement.x * _moveSpeed, _gravityScale, _movement.y * _moveSpeed);
             float angle;
+
+            if (_playerInputHandler.InputAreEnable == false)
+            {
+                movement = Vector3.zero;
+            }
             
             if (_aiming == Vector2.zero)
             {
@@ -257,6 +262,7 @@ namespace Hugo.I.Scripts.Player
 
                     if (towersGameObjects.Count > 0)
                     {
+                        _isCarrying = false;
                         towersGameObjects[0].GetComponent<TowerHandler>().ReceiveShield();
                         _lastInteractableShield.Disappears();
                         return;
@@ -321,6 +327,7 @@ namespace Hugo.I.Scripts.Player
                         {
                             _isCarrying = true;
                             _lastInteractableShield.Carrie(_carrieShieldTransform);
+                            _playerWorldSpaceDisplayInteractions.HideInteractionsButton();
                         }
                         else
                         {
@@ -401,6 +408,10 @@ namespace Hugo.I.Scripts.Player
             transform.position = GameManager.SpawnPoints[PlayerId];
             _canvasLookCameraHandler.OnSceneLoaded();
             _playerWorldSpaceDisplayInteractions.HideInteractionsButton();
+            
+            _inventory[ResourcesEnum.Stone] = 200;
+            _inventory[ResourcesEnum.Metal] = 200;
+            _inventory[ResourcesEnum.ElectricalCircuit] = 200;
         }
 
         private IEnumerator TmeBeforeCollecting(string interactableName)

@@ -46,19 +46,37 @@ namespace Hugo.I.Scripts.Game
         {
             Debug.Log("Game Over");
 
+            // foreach (GameObject player in Players)
+            // {
+            //     player.GetComponent<PlayerInputHandler>().InputAreEnable = false;
+            // }
+            //
+            // ResetGame();
+            // ChangeScene(1, 2000);
+        }
+
+        public static void WinGame()
+        {
+            Debug.Log("Game Win");
+            
             foreach (GameObject player in Players)
             {
                 player.GetComponent<PlayerInputHandler>().InputAreEnable = false;
             }
             
-            ChangeScene(1);
+            ResetGame();
+            ChangeScene(1, 5000);
         }
 
-        public static async void ChangeScene(int index)
+        private static async void ChangeScene(int index, int delay)
         {
-            await Task.Delay(2000);
-            
+            await Task.Delay(delay);
             SceneManager.LoadScene(index);
+        }
+
+        private static void ResetGame()
+        {
+            IsPowerPlantRepairs = false;
         }
     }
 }

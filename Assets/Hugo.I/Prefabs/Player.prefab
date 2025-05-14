@@ -469,7 +469,7 @@ MonoBehaviour:
   _factorCarryingSpeed: 0.7
   _pushForce: 30
   _pushDuration: 0.2
-  _timeBeforeCollecting: 2
+  _timeBeforeCollecting: 1
   _maxStone: 50
   _maxMetal: 30
   _maxCircuit: 10

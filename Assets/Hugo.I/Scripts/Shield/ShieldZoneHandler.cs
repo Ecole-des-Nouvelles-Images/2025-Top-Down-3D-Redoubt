@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Hugo.I.Scripts.Utils;
 using UnityEngine;
 
 namespace Hugo.I.Scripts.Shield
@@ -15,6 +16,14 @@ namespace Hugo.I.Scripts.Shield
         {
             transform.localScale = _startSize;
             transform.DOScale(_endSize, _duration).SetEase(_sizeCurve);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Enemy"))
+            {
+                other.gameObject.GetComponent<IHaveHealth>().TakeDamage(1000);
+            }
         }
     }
 }
