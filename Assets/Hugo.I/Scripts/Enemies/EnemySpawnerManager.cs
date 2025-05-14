@@ -30,7 +30,7 @@ namespace Hugo.I.Scripts.Enemies
         {
             if (CurrentCredit < _totalCredit && IsSpawning)
             {
-                SpawnEnemy(Random.Range(CurrentCredit, _totalCredit + (int)(_totalCredit * 1.2f)));
+                SpawnEnemy(Random.Range(CurrentCredit, _totalCredit + (int)(_totalCredit * 0.2f)));
             }
         }
 
