@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Hugo.I.Scripts.Enemies.States
 {
     public class GoToTarget : State
@@ -6,6 +8,8 @@ namespace Hugo.I.Scripts.Enemies.States
         {
             if (enemy.NavMeshAgent.enabled)
             {
+                Vector3 targetTransform = enemy.TargetGameObject.transform.position + new Vector3(0, 0, -1);
+                
                 enemy.NavMeshAgent.SetDestination(enemy.TargetGameObject.transform.position);
 
                 if (enemy.NavMeshAgent.hasPath && enemy.TargetGameObject == enemy.TowerHandler.gameObject && enemy.NavMeshAgent.remainingDistance <= enemy.NavMeshAgent.stoppingDistance)

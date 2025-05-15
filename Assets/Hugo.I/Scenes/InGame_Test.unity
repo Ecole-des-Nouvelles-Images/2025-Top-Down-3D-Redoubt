@@ -12439,7 +12439,7 @@ MonoBehaviour:
   - {fileID: 1965591777}
   - {fileID: 2034260486}
   - {fileID: 977093554}
-  _totalCredit: 2
+  _totalCredit: 10
   _spawnRate: 5
   _increaseTotalCreditRate: 40
   IsSpawning: 1
