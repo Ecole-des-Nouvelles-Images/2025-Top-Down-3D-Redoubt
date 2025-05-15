@@ -12,9 +12,14 @@ namespace Hugo.I.Scripts.Game
     {
         // Players
         public static List<GameObject> Players = new List<GameObject>();
-        public static List<Vector3> SpawnPoints = new List<Vector3>()
+        public static List<Vector3> SpawnPointsInGame = new List<Vector3>()
         {
-            new Vector3(5, 0, 12), new Vector3(7, 0, 10),new Vector3(9, 0, 12),new Vector3(7, 0, 14),
+            new Vector3(5, 0, 12), new Vector3(7, 0, 10),new Vector3(9, 0, 12),new Vector3(7, 0, 14)
+        };
+
+        public static List<Vector3> SpawnPointsLobby = new List<Vector3>()
+        {
+            new Vector3(5, 0, 12), new Vector3(7, 0, 10), new Vector3(9, 0, 12), new Vector3(7, 0, 14)
         };
         
         // Tower
@@ -46,13 +51,13 @@ namespace Hugo.I.Scripts.Game
         {
             Debug.Log("Game Over");
 
-            // foreach (GameObject player in Players)
-            // {
-            //     player.GetComponent<PlayerInputHandler>().InputAreEnable = false;
-            // }
-            //
-            // ResetGame();
-            // ChangeScene(1, 2000);
+            foreach (GameObject player in Players)
+            {
+                player.GetComponent<PlayerInputHandler>().InputAreEnable = false;
+            }
+            
+            ResetGame();
+            ChangeScene(1, 2000);
         }
 
         public static void WinGame()

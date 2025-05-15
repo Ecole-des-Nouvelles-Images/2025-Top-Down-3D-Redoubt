@@ -10931,6 +10931,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1725261476577554267, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: m_MaterialTemplate
+      value: 
+      objectReference: {fileID: 2100000, guid: c40f6e928a4944a4fb405a977fa425f2, type: 2}
     - target: {fileID: 4736161312194192780, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
       propertyPath: m_Name
       value: Terrain
@@ -12435,8 +12439,9 @@ MonoBehaviour:
   - {fileID: 1965591777}
   - {fileID: 2034260486}
   - {fileID: 977093554}
-  _totalCredit: 5
-  _spawnRate: 1.5
+  _totalCredit: 2
+  _spawnRate: 5
+  _increaseTotalCreditRate: 40
   IsSpawning: 1
   CurrentCredit: 0
 --- !u!4 &2102010558

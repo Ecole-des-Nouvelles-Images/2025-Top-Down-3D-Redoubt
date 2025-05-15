@@ -116,8 +116,9 @@ namespace Hugo.I.Scripts.Player
             if (_isDead) return;
             
             // Movement - Rotation
-            Vector3 movement = new Vector3(_movement.x * _moveSpeed, _gravityScale, _movement.y * _moveSpeed);
-            float angle;
+            Vector3 movement = new Vector3(_movement.x, _gravityScale, _movement.y);
+            Quaternion targetRotation;
+            // float angle;
 
             if (_playerInputHandler.InputAreEnable == false)
             {
@@ -128,22 +129,22 @@ namespace Hugo.I.Scripts.Player
             {
                 if (!_isCarrying)
                 {
-                    _characterController.Move(movement * Time.deltaTime);
+                    _characterController.Move(movement * (_moveSpeed * Time.deltaTime));
                 }
                 else
                 {
-                    _characterController.Move(movement * _factorCarryingSpeed * Time.deltaTime);
+                    _characterController.Move(movement * (_moveSpeed * _factorCarryingSpeed * Time.deltaTime));
                 }
                 
-                angle = Mathf.Atan2(_nonNullAim.x, _nonNullAim.y) * Mathf.Rad2Deg;
+                targetRotation = Quaternion.LookRotation(new Vector3(_nonNullAim.x, 0, _nonNullAim.y));
             }
             else
             {
-                _characterController.Move(movement * _factorAimingSpeed * Time.deltaTime);
+                _characterController.Move(movement * (_moveSpeed * _factorAimingSpeed * Time.deltaTime));
                 
-                angle = Mathf.Atan2(_aiming.x, _aiming.y) * Mathf.Rad2Deg;
+                targetRotation = Quaternion.LookRotation(new Vector3(_aiming.x, 0, _aiming.y));
             }
-            transform.rotation = Quaternion.Euler(0, angle, 0);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
             
             // Reload - Heal
             if (_wantToReload && _equippedWeapon.CurrentCapacity < _equippedWeapon.WeaponData.Capacity)
@@ -405,7 +406,7 @@ namespace Hugo.I.Scripts.Player
         private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
             _playerInputHandler.InputAreEnable = true;
-            transform.position = GameManager.SpawnPoints[PlayerId];
+            transform.position = GameManager.SpawnPointsInGame[PlayerId];
             _canvasLookCameraHandler.OnSceneLoaded();
             _playerWorldSpaceDisplayInteractions.HideInteractionsButton();
             

@@ -16,8 +16,10 @@ namespace Hugo.I.Scripts.Enemies
         [Header("Settings")]
         [SerializeField] private int _totalCredit;
         [SerializeField] private float _spawnRate;
+        [SerializeField] private float _increaseTotalCreditRate;
 
-        private float _timer;
+        private float _timerSpawn;
+        private float _timerIncreaseTotalCredit;
         
         private List<(Vector3, Vector3)> _edges = new List<(Vector3, Vector3)>();
 
@@ -31,12 +33,18 @@ namespace Hugo.I.Scripts.Enemies
 
         private void Update()
         {
-            _timer += Time.deltaTime;
+            _timerSpawn += Time.deltaTime;
+            _timerIncreaseTotalCredit += Time.deltaTime;
             
-            if (CurrentCredit < _totalCredit && IsSpawning && _timer >= _spawnRate)
+            if (CurrentCredit < _totalCredit && IsSpawning && _timerSpawn >= _spawnRate)
             {
                 SpawnEnemy(Random.Range(CurrentCredit, _totalCredit + (int)(_totalCredit * 0.2f)));
-                _timer = 0f;
+                _timerSpawn = 0f;
+            }
+
+            if (_timerIncreaseTotalCredit >= _increaseTotalCreditRate)
+            {
+                _totalCredit++;
             }
         }
 
