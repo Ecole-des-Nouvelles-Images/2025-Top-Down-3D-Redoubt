@@ -14,9 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Hugo.I/Scenes/InGame_Test.unity
     guid: 40237d8f050b57f448c2931a0cfbedc7
-  - enabled: 1
-    path: Assets/Hugo.I/Scenes/SceneProto_Hugo.I.unity
-    guid: 81bed89e2f1bc904da40f4487c9296da
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 765b44a9ef7e8ef45a1ad205d14197ed, type: 3}
   m_UseUCBPForAssetBundles: 0
