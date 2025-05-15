@@ -17,6 +17,7 @@ namespace Hugo.I.Scripts.Interactable.Tower
         [SerializeField] private int _currentElectricalCircuit;
         [SerializeField] private bool _isRestoringCapacity;
         [SerializeField] private bool _isGivingCapacity;
+        [SerializeField] private bool _isRestoringHealth;
         [SerializeField] private bool _isDestroy;
 
         public float CurrentHealth
@@ -25,6 +26,11 @@ namespace Hugo.I.Scripts.Interactable.Tower
             set
             {
                 _currentHealth = Mathf.Clamp(value, 0, _towerLevelData.MaxHealth);
+
+                if (Mathf.Approximately(_currentHealth, _towerLevelData.MaxHealth))
+                {
+                    _isRestoringHealth = false;
+                }
 
                 if (_currentHealth <= 0 && !_isDestroy)
                 {
@@ -46,7 +52,18 @@ namespace Hugo.I.Scripts.Interactable.Tower
         private void Awake()
         {
             CurrentEnergy = 0;
-            CurrentHealth = _towerLevelData.MaxHealth;
+            if (_towerLevelData.TowerLevelsEnum == TowerLevelsEnum.T0)
+            {
+                CurrentHealth = _towerLevelData.MaxHealth;
+            }
+        }
+
+        private void OnEnable()
+        {
+            if (_towerLevelData.TowerLevelsEnum != TowerLevelsEnum.T0)
+            {
+                _isRestoringHealth = true;
+            }
         }
 
         private void Update()
@@ -56,6 +73,11 @@ namespace Hugo.I.Scripts.Interactable.Tower
             if (_isRestoringCapacity && GameManager.IsPowerPlantRepairs)
             {
                 CurrentEnergy += _towerLevelData.EnergyRestoreRate * Time.deltaTime;
+            }
+
+            if (_isRestoringHealth)
+            {
+                CurrentHealth += _towerLevelData.HealthRestoreRate * Time.deltaTime;
             }
         }
 
@@ -115,6 +137,7 @@ namespace Hugo.I.Scripts.Interactable.Tower
         public void TakeDamage(float damage)
         {
             CurrentHealth -= damage;
+            _isRestoringHealth = false;
         }
 
         private void IsDestroy()

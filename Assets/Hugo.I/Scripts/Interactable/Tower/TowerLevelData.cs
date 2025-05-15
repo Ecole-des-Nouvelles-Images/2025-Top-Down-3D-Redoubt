@@ -9,6 +9,7 @@ namespace Hugo.I.Scripts.Interactable.Tower
         public Sprite Icon;
         public TowerLevelsEnum TowerLevelsEnum;
         public float MaxHealth;
+        public float HealthRestoreRate;
         public float MaxEnergy;
         public float EnergyRestoreRate;
         public float EnergyDecreaseRate;

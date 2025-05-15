@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Hugo.I.Scripts.Enemies.States;
 using Hugo.I.Scripts.Game;
@@ -34,6 +33,7 @@ namespace Hugo.I.Scripts.Enemies
 
         [Header("States")]
         public bool HaveRangeToAttackTarget => TargetGameObject && Vector3.Distance(transform.position, TargetGameObject.transform.position) <= AttackRange;
+        public bool HasReachDestination = false;
         public bool IsAttacking;
         public bool IsDead => CurrentHealth <= 0;
         public bool IsDying;
@@ -105,8 +105,14 @@ namespace Hugo.I.Scripts.Enemies
             Debug.Log("Is Pushed");
             
             StartCoroutine(ApplyPush(direction, force, duration));
+            HasReachDestination = false;
         }
 
+        public void Die()
+        {
+            Destroy(gameObject, 3f);
+        }
+        
         private IEnumerator ApplyPush(Vector3 direction, float force, float duration)
         {
             NavMeshAgent.isStopped = true;
@@ -122,11 +128,6 @@ namespace Hugo.I.Scripts.Enemies
 
             NavMeshAgent.enabled = true;
             NavMeshAgent.isStopped = false;
-        }
-
-        public void Die()
-        {
-            Destroy(gameObject, 3f);
         }
     }
 }

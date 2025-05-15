@@ -19,7 +19,7 @@ namespace Hugo.I.Scripts.Game
 
         public static List<Vector3> SpawnPointsLobby = new List<Vector3>()
         {
-            new Vector3(5, 0, 12), new Vector3(7, 0, 10), new Vector3(9, 0, 12), new Vector3(7, 0, 14)
+            new Vector3(-6, 0, 2), new Vector3(-2, 0, 2), new Vector3(2, 0, 2), new Vector3(6, 0, 2)
         };
         
         // Tower

@@ -7,6 +7,11 @@ namespace Hugo.I.Scripts.Enemies.States
             if (enemy.NavMeshAgent.enabled)
             {
                 enemy.NavMeshAgent.SetDestination(enemy.TargetGameObject.transform.position);
+
+                if (enemy.NavMeshAgent.hasPath && enemy.TargetGameObject == enemy.TowerHandler.gameObject && enemy.NavMeshAgent.remainingDistance <= enemy.NavMeshAgent.stoppingDistance)
+                {
+                    enemy.HasReachDestination = true;
+                }
             }
         }
     }

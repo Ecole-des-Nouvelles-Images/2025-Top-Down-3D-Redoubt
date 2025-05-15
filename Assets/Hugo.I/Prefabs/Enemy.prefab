@@ -174,11 +174,12 @@ MonoBehaviour:
   MaxHealth: 20
   Damage: 2
   AttackSpeed: 1
-  AttackRange: 4
+  AttackRange: 2
   RangeDontSwitchTarget: 7.5
   WalkSpeed: 7
   AngularSpeed: 240
   Acceleration: 16
+  HasReachDestination: 0
   IsAttacking: 0
   IsDying: 0
   TowerHandler: {fileID: 0}
@@ -186,6 +187,7 @@ MonoBehaviour:
   NavMeshAgent: {fileID: 0}
   Rigidbody: {fileID: 0}
   Collider: {fileID: 0}
+  EnemySpawnerManager: {fileID: 0}
 --- !u!195 &6096490515978480512
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -200,7 +202,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

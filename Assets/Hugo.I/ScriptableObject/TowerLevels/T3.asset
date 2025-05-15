@@ -15,6 +15,7 @@ MonoBehaviour:
   Icon: {fileID: 0}
   TowerLevelsEnum: 3
   MaxHealth: 200
+  HealthRestoreRate: 10
   MaxEnergy: 150
   EnergyRestoreRate: 6
   EnergyDecreaseRate: 8

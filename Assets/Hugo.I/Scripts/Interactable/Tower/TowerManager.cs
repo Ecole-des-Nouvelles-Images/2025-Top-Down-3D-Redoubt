@@ -55,6 +55,7 @@ namespace Hugo.I.Scripts.Interactable.Tower
             _towers[index + 1].gameObject.SetActive(true);
 
             ActiveTower.GetComponent<TowerHandler>().CurrentEnergy = currentTower.GetComponent<TowerHandler>().CurrentEnergy;
+            ActiveTower.GetComponent<TowerHandler>().CurrentHealth = currentTower.GetComponent<TowerHandler>().CurrentHealth;
             GameManager.ActualTowerGameObject = ActiveTower.GetComponent<TowerHandler>();
             
             // Camera dezoom
@@ -73,6 +74,7 @@ namespace Hugo.I.Scripts.Interactable.Tower
             
             // Change enemies spawn
             _enemySpawnerManager.ChangeSpawnPoints(index + 1);
+            _enemySpawnerManager.UpdateTowerHandler();
         }
 
         public void TowerReceiveShield()

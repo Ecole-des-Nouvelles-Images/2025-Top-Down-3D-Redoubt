@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Hugo.I.Scripts.Game;
+using Hugo.I.Scripts.Interactable.Tower;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -17,6 +19,8 @@ namespace Hugo.I.Scripts.Enemies
         [SerializeField] private int _totalCredit;
         [SerializeField] private float _spawnRate;
         [SerializeField] private float _increaseTotalCreditRate;
+
+        private List<EnemyData> _enemies = new List<EnemyData>();
 
         private float _timerSpawn;
         private float _timerIncreaseTotalCredit;
@@ -38,13 +42,15 @@ namespace Hugo.I.Scripts.Enemies
             
             if (CurrentCredit < _totalCredit && IsSpawning && _timerSpawn >= _spawnRate)
             {
-                SpawnEnemy(Random.Range(CurrentCredit, _totalCredit + (int)(_totalCredit * 0.2f)));
+                int number = Random.Range(CurrentCredit + 1, _totalCredit + (int)(_totalCredit * 0.2f));
+                SpawnEnemy(number);
                 _timerSpawn = 0f;
             }
 
             if (_timerIncreaseTotalCredit >= _increaseTotalCreditRate)
             {
                 _totalCredit++;
+                _timerIncreaseTotalCredit = 0;
             }
         }
 
@@ -61,6 +67,14 @@ namespace Hugo.I.Scripts.Enemies
             if (towerLevel == 3)
             {
                 CreateEdges(_spawnPointsT3);
+            }
+        }
+
+        public void UpdateTowerHandler()
+        {
+            foreach (var enemy in _enemies)
+            {
+                enemy.TowerHandler = GameManager.ActualTowerGameObject.GetComponent<TowerHandler>();
             }
         }
 
@@ -85,8 +99,10 @@ namespace Hugo.I.Scripts.Enemies
             {
                 (Vector3, Vector3) _edge = _edges[Random.Range(0, _edges.Count)];
                 Vector3 position = new Vector3(Random.Range(_edge.Item1.x, _edge.Item2.x), 0, Random.Range(_edge.Item1.z, _edge.Item2.z));
-                Instantiate(_enemyPrefab, position, Quaternion.identity);
+                GameObject newEnemy = Instantiate(_enemyPrefab, position, Quaternion.identity);
                 CurrentCredit++;
+                
+                _enemies.Add(newEnemy.GetComponent<EnemyData>());
             }
         }
     }

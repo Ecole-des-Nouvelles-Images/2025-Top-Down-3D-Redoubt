@@ -1,5 +1,6 @@
 using Hugo.I.Scripts.Enemies.States;
 using Hugo.I.Scripts.Utils;
+using Unity.Cinemachine;
 using UnityEngine;
 
 namespace Hugo.I.Scripts.Enemies
@@ -8,13 +9,27 @@ namespace Hugo.I.Scripts.Enemies
     {
         private void Update()
         {
-            if (TargetGameObject && !HaveRangeToAttackTarget)
+            if (TargetGameObject == TowerHandler.gameObject)
             {
-                CurrentState = new GoToTarget();
+                if (TargetGameObject && !HasReachDestination)
+                {
+                    CurrentState = new GoToTarget();
+                }
+                else if (TargetGameObject && HasReachDestination)
+                {
+                    CurrentState = new Attack();
+                }
             }
-            else if (TargetGameObject && HaveRangeToAttackTarget)
+            else if (TargetGameObject == PlayerController.gameObject)
             {
-                CurrentState = new Attack();
+                if (TargetGameObject && !HaveRangeToAttackTarget)
+                {
+                    CurrentState = new GoToTarget();
+                }
+                else if (TargetGameObject && HaveRangeToAttackTarget)
+                {
+                    CurrentState = new Attack();
+                }
             }
 
             if (IsDead)

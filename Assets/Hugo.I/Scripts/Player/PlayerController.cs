@@ -111,6 +111,11 @@ namespace Hugo.I.Scripts.Player
             _equippedWeapon.gameObject.SetActive(true);
         }
 
+        private void Start()
+        {
+            OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
+        }
+
         private void Update()
         {
             if (_isDead) return;
@@ -405,14 +410,22 @@ namespace Hugo.I.Scripts.Player
         
         private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
+            if (arg0.buildIndex == 1)
+            {
+                transform.position = GameManager.SpawnPointsLobby[PlayerId];
+            }
+            else if (arg0.buildIndex == 2)
+            {
+                transform.position = GameManager.SpawnPointsInGame[PlayerId];
+            }
+            
             _playerInputHandler.InputAreEnable = true;
-            transform.position = GameManager.SpawnPointsInGame[PlayerId];
             _canvasLookCameraHandler.OnSceneLoaded();
             _playerWorldSpaceDisplayInteractions.HideInteractionsButton();
             
-            _inventory[ResourcesEnum.Stone] = 0;
-            _inventory[ResourcesEnum.Metal] = 0;
-            _inventory[ResourcesEnum.ElectricalCircuit] = 0;
+            _inventory[ResourcesEnum.Stone] = 200;
+            _inventory[ResourcesEnum.Metal] = 200;
+            _inventory[ResourcesEnum.ElectricalCircuit] = 200;
         }
 
         private IEnumerator TmeBeforeCollecting(string interactableName)
