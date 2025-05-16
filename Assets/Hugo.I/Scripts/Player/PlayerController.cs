@@ -71,8 +71,11 @@ namespace Hugo.I.Scripts.Player
         // Internals Components
         private CharacterController _characterController;
         private PlayerInputHandler _playerInputHandler;
+        private Animator _animator;
         
         // States
+        private bool _isShooting;
+        private bool _isAiming;
         private bool _isInteracting;
         private bool _pressesButtonSouth;
         private bool _wantToReload;
@@ -104,6 +107,7 @@ namespace Hugo.I.Scripts.Player
             
             _characterController = GetComponent<CharacterController>();
             _playerInputHandler = GetComponent<PlayerInputHandler>();
+            _animator = GetComponent<Animator>();
             
             CurrentHealth = _maxHealth;
 
@@ -167,6 +171,12 @@ namespace Hugo.I.Scripts.Player
                     CurrentHealth += _increaseRateHealth * Time.deltaTime;;
                 }
             }
+            
+            // Animator
+            _animator.SetFloat("Move", _characterController.velocity.magnitude);
+            _animator.SetBool("IsAiming", _isAiming);
+            _animator.SetBool("IsShooting", _isShooting);
+            _animator.SetBool("IsInteracting", _isInteracting);
         }
 
         private void OnDestroy()
@@ -199,6 +209,15 @@ namespace Hugo.I.Scripts.Player
             if (_isInteracting)
             {
                 QuitQte();
+            }
+            
+            if (readValue != Vector2.zero)
+            {
+                _isAiming = true;
+            }
+            else
+            {
+                _isAiming = false;
             }
             
             _aiming = readValue;
@@ -249,6 +268,9 @@ namespace Hugo.I.Scripts.Player
                     _equippedWeapon = _revolverWeapon;
                     _equippedWeapon.gameObject.SetActive(true);
                 }
+                
+                // Animator
+                _animator.SetTrigger("SwitchWeapon");
             }
         }
 
@@ -380,6 +402,9 @@ namespace Hugo.I.Scripts.Player
                     Vector3 direction = (enemy.transform.position - transform.position).normalized;
                     enemy.GetComponent<EnemyAIHandler>().IsPushed(direction, _pushForce, _pushDuration);
                 } 
+                
+                // Animator
+                _animator.SetTrigger("Push");
             }
         }
 
@@ -391,6 +416,15 @@ namespace Hugo.I.Scripts.Player
             if (_isInteracting)
             {
                 QuitQte();
+            }
+
+            if (Mathf.Approximately(readValue, 1))
+            {
+                _isShooting = true;
+            }
+            else
+            {
+                _isShooting = false;
             }
             
             _equippedWeapon.Shoot(readValue);
