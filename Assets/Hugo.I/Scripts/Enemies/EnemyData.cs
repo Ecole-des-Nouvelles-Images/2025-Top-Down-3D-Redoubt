@@ -33,8 +33,9 @@ namespace Hugo.I.Scripts.Enemies
 
         [Header("States")]
         public bool HaveRangeToAttackTarget => TargetGameObject && Vector3.Distance(transform.position, TargetGameObject.transform.position) <= AttackRange;
-        public bool HasReachDestination = false;
+        public bool HasReachDestination;
         public bool IsAttacking;
+        public bool IsPush;
         public bool IsDead => CurrentHealth <= 0;
         public bool IsDying;
 
@@ -70,6 +71,7 @@ namespace Hugo.I.Scripts.Enemies
         public NavMeshAgent NavMeshAgent;
         public Rigidbody Rigidbody;
         public Collider Collider;
+        public Animator Animator;
 
         [Header("External Components")]
         public EnemySpawnerManager EnemySpawnerManager;
@@ -79,6 +81,7 @@ namespace Hugo.I.Scripts.Enemies
             NavMeshAgent = GetComponent<NavMeshAgent>();
             Rigidbody = GetComponent<Rigidbody>();
             Collider = GetComponent<Collider>();
+            Animator = GetComponent<Animator>();
             
             NavMeshAgent.speed = WalkSpeed;
             NavMeshAgent.angularSpeed = AngularSpeed;
@@ -115,6 +118,8 @@ namespace Hugo.I.Scripts.Enemies
         
         private IEnumerator ApplyPush(Vector3 direction, float force, float duration)
         {
+            IsPush = true;
+            
             NavMeshAgent.isStopped = true;
             NavMeshAgent.enabled = false;
 
@@ -124,6 +129,8 @@ namespace Hugo.I.Scripts.Enemies
 
             yield return new WaitForSeconds(duration);
 
+            IsPush = false;
+            
             Rigidbody.isKinematic = true;
 
             NavMeshAgent.enabled = true;

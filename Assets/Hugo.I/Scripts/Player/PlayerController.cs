@@ -177,6 +177,7 @@ namespace Hugo.I.Scripts.Player
             _animator.SetBool("IsAiming", _isAiming);
             _animator.SetBool("IsShooting", _isShooting);
             _animator.SetBool("IsInteracting", _isInteracting);
+            _animator.SetBool("IsDead", _isDead);
         }
 
         private void OnDestroy()
@@ -536,6 +537,9 @@ namespace Hugo.I.Scripts.Player
             if (_isDead) return;
             
             CurrentHealth -= damage;
+            
+            // Animator
+            _animator.SetTrigger("TakeDamage");
         }
 
         private void Die()

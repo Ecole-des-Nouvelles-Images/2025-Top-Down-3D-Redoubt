@@ -1,6 +1,5 @@
 using Hugo.I.Scripts.Enemies.States;
 using Hugo.I.Scripts.Utils;
-using Unity.Cinemachine;
 using UnityEngine;
 
 namespace Hugo.I.Scripts.Enemies
@@ -38,6 +37,12 @@ namespace Hugo.I.Scripts.Enemies
             }
             
             CurrentState.Execute(this);
+            
+            // Aninmator
+            Animator.SetFloat("Move", NavMeshAgent.velocity.magnitude);
+            Animator.SetBool("Attack", IsAttacking);
+            Animator.SetBool("IsPush", IsPush);
+            Animator.SetBool("Dead", IsDead);
         }
 
         private void OnDrawGizmos()
@@ -50,6 +55,7 @@ namespace Hugo.I.Scripts.Enemies
         public void TakeDamage(float damage)
         {
             CurrentHealth -= damage;
+            Animator.SetTrigger("TakeDamage");
         }
     }
 }

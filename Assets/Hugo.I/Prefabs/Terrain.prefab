@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5151710806505497971}
   - component: {fileID: 2834050998185750311}
   - component: {fileID: 2901922295133005841}
+  - component: {fileID: 6757419037786782781}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -139,3 +140,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2ce5c017d76ca34d8459f44de2b8d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6757419037786782781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4736161312194192780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 649a5ae1d6532d14e91ef91b5d73d22c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _resourceSpawns:
+  - _zone: T0
+    _resourceSpawnType:
+    - _resource: 0
+      _maxResourcesPerChunk: 0
+    - _resource: 2
+      _maxResourcesPerChunk: 0
+    _spawningPoints: []
+  - _zone: T1
+    _resourceSpawnType:
+    - _resource: 1
+      _maxResourcesPerChunk: 0
+    - _resource: 2
+      _maxResourcesPerChunk: 0
+    _spawningPoints: []
+  - _zone: T2
+    _resourceSpawnType:
+    - _resource: 0
+      _maxResourcesPerChunk: 0
+    - _resource: 1
+      _maxResourcesPerChunk: 0
+    - _resource: 2
+      _maxResourcesPerChunk: 0
+    _spawningPoints: []
+  _stones: []
+  _metals: []
+  _electronics: []
