@@ -5807,6 +5807,64 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410544184}
   m_CullTransparentMesh: 1
+--- !u!1 &1486701966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1486701968}
+  - component: {fileID: 1486701967}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1486701967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486701966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ef810f9c450d6449717b7b6af6e583, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Players: []
+  PlayersMeshes: []
+  SpawnPointsInGame:
+  - {x: 5, y: 0, z: 12}
+  - {x: 7, y: 0, z: 10}
+  - {x: 9, y: 0, z: 12}
+  - {x: 7, y: 0, z: 14}
+  SpawnPointsLobby:
+  - {x: -6, y: 0, z: 2}
+  - {x: -2, y: 0, z: 2}
+  - {x: 2, y: 0, z: 2}
+  - {x: 6, y: 0, z: 2}
+  IsPowerPlantRepairs: 0
+  ActualTowerGameObject: {fileID: 0}
+--- !u!4 &1486701968
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486701966}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1492165988
 GameObject:
   m_ObjectHideFlags: 0
@@ -9175,3 +9233,4 @@ SceneRoots:
   - {fileID: 1579136144}
   - {fileID: 67165821}
   - {fileID: 1731113179}
+  - {fileID: 1486701968}
