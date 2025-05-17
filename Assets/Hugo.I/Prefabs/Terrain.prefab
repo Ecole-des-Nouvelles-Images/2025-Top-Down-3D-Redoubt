@@ -295,7 +295,7 @@ MonoBehaviour:
   - _zone: T0
     _resourceSpawnType:
     - Resource: 0
-      NumberResourceToSpawn: 3
+      NumberResourceToSpawn: 2
   _parentGameObjectToSpawnResources:
   - {fileID: 3915344515730488717}
   _stones:
