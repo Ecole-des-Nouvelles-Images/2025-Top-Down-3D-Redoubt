@@ -394,6 +394,8 @@ namespace Hugo.I.Scripts.Player
 
             if (readValue > 0)
             {
+                _playerInputHandler.InputAreEnable = false;
+                
                 List<GameObject> enemiesGameObjects = new List<GameObject>();
                 enemiesGameObjects = _repelTriggerCollider.GetGameObjectsWithTag("Enemy");
 
@@ -403,6 +405,8 @@ namespace Hugo.I.Scripts.Player
                     Vector3 direction = (enemy.transform.position - transform.position).normalized;
                     enemy.GetComponent<EnemyAIHandler>().IsPushed(direction, _pushForce, _pushDuration);
                 } 
+                
+                StartCoroutine(SetEnableInputs(true, _pushDuration));
                 
                 // Animator
                 _animator.SetTrigger("Push");
@@ -530,6 +534,12 @@ namespace Hugo.I.Scripts.Player
             // Display
             _playerWorldSpaceDisplayInteractions.HideQteButton();
             _playerWorldSpaceDisplayInteractions.DisplayInteractionsButton();
+        }
+
+        private IEnumerator SetEnableInputs(bool enable, float duration)
+        {
+            yield return new WaitForSeconds(duration);
+            _playerInputHandler.InputAreEnable = enable;
         }
 
         public void TakeDamage(float damage)
