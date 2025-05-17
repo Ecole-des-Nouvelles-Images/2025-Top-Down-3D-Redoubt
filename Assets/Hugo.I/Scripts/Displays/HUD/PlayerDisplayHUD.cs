@@ -25,9 +25,9 @@ namespace Hugo.I.Scripts.Displays.HUD
         
         private void Start()
         {
-            if (GameManager.Players.Count - 1 >= _playerId)
+            if (GameManager.Instance.Players.Count - 1 >= _playerId)
             {
-                _playerController = GameManager.Players[_playerId].GetComponent<PlayerController>();
+                _playerController = GameManager.Instance.Players[_playerId].GetComponent<PlayerController>();
             }
         }
 

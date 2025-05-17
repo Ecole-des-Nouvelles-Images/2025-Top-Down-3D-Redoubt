@@ -3,38 +3,39 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Hugo.I.Scripts.Interactable.Tower;
 using Hugo.I.Scripts.Player;
+using Hugo.I.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Hugo.I.Scripts.Game
 {
-    public static class GameManager
+    public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         // Players
-        public static List<GameObject> Players = new List<GameObject>();
-        public static List<Vector3> SpawnPointsInGame = new List<Vector3>()
+        public List<GameObject> Players = new List<GameObject>();
+        public List<Vector3> SpawnPointsInGame = new List<Vector3>()
         {
             new Vector3(5, 0, 12), new Vector3(7, 0, 10),new Vector3(9, 0, 12),new Vector3(7, 0, 14)
         };
 
-        public static List<Vector3> SpawnPointsLobby = new List<Vector3>()
+        public List<Vector3> SpawnPointsLobby = new List<Vector3>()
         {
             new Vector3(-6, 0, 2), new Vector3(-2, 0, 2), new Vector3(2, 0, 2), new Vector3(6, 0, 2)
         };
         
         // Tower
-        public static bool IsPowerPlantRepairs;
-        public static TowerHandler ActualTowerGameObject;
+        public bool IsPowerPlantRepairs;
+        public TowerHandler ActualTowerGameObject;
 
         // Events
-        public static event Action OnTriggerActive;
-        public static void TriggerAction()
+        public event Action OnTriggerActive;
+        public void TriggerAction()
         {
             OnTriggerActive?.Invoke();
         }
         
         // Game over
-        public static void APlayerDie(GameObject player)
+        public void APlayerDie(GameObject player)
         {
             if (Players.Contains(player))
             {
@@ -47,7 +48,7 @@ namespace Hugo.I.Scripts.Game
             }
         }
 
-        public static void GameOver()
+        public void GameOver()
         {
             Debug.Log("Game Over");
 
@@ -60,7 +61,7 @@ namespace Hugo.I.Scripts.Game
             ChangeScene(1, 2000);
         }
 
-        public static void WinGame()
+        public void WinGame()
         {
             Debug.Log("Game Win");
             
@@ -73,13 +74,13 @@ namespace Hugo.I.Scripts.Game
             ChangeScene(1, 5000);
         }
 
-        private static async void ChangeScene(int index, int delay)
+        private async void ChangeScene(int index, int delay)
         {
             await Task.Delay(delay);
             SceneManager.LoadScene(index);
         }
 
-        private static void ResetGame()
+        private void ResetGame()
         {
             IsPowerPlantRepairs = false;
         }

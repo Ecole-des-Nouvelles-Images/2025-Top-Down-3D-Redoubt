@@ -30,22 +30,22 @@ namespace Hugo.I.Scripts.Interactable.Tower
 
         private void Awake()
         {
-            GameManager.ActualTowerGameObject = _towers[0].GetComponent<TowerHandler>();
+            GameManager.Instance.ActualTowerGameObject = _towers[0].GetComponent<TowerHandler>();
         }
 
         private void OnEnable()
         {
-            GameManager.OnTriggerActive += ActiveReloadZone;
+            GameManager.Instance.OnTriggerActive += ActiveReloadZone;
         }
         
         private void OnDisable()
         {
-            GameManager.OnTriggerActive -= ActiveReloadZone;
+            GameManager.Instance.OnTriggerActive -= ActiveReloadZone;
         }
 
         public void UpgradeTower(GameObject currentTower)
         {
-            if (_towers[1].activeSelf && !GameManager.IsPowerPlantRepairs) return;
+            if (_towers[1].activeSelf && !GameManager.Instance.IsPowerPlantRepairs) return;
             if (_towers[3].activeSelf) return;
             
             // Tower
@@ -56,7 +56,7 @@ namespace Hugo.I.Scripts.Interactable.Tower
 
             ActiveTower.GetComponent<TowerHandler>().CurrentEnergy = currentTower.GetComponent<TowerHandler>().CurrentEnergy;
             ActiveTower.GetComponent<TowerHandler>().CurrentHealth = currentTower.GetComponent<TowerHandler>().CurrentHealth;
-            GameManager.ActualTowerGameObject = ActiveTower.GetComponent<TowerHandler>();
+            GameManager.Instance.ActualTowerGameObject = ActiveTower.GetComponent<TowerHandler>();
             
             // Camera dezoom
             DOTween.To(
@@ -82,11 +82,11 @@ namespace Hugo.I.Scripts.Interactable.Tower
             _towers[2].gameObject.SetActive(false);
             _towers[3].gameObject.SetActive(true);
             ActiveTower = _towers[3].gameObject;
-            GameManager.ActualTowerGameObject = ActiveTower.GetComponent<TowerHandler>();
+            GameManager.Instance.ActualTowerGameObject = ActiveTower.GetComponent<TowerHandler>();
             
             // Lance la win
             Instantiate(_shieldZonePrefab, _shieldZoneSpawnPoint.position, Quaternion.identity);
-            GameManager.WinGame();
+            GameManager.Instance.WinGame();
         }
 
         private void ActiveReloadZone()

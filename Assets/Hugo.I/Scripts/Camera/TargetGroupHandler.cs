@@ -15,7 +15,7 @@ namespace Hugo.I.Scripts.Camera
 
         private void Start()
         {
-            foreach (GameObject player in GameManager.Players)
+            foreach (GameObject player in GameManager.Instance.Players)
             {
                 var newTarget = new CinemachineTargetGroup.Target
                 {

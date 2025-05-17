@@ -74,7 +74,7 @@ namespace Hugo.I.Scripts.Enemies
         {
             foreach (var enemy in _enemies)
             {
-                enemy.TowerHandler = GameManager.ActualTowerGameObject.GetComponent<TowerHandler>();
+                enemy.TowerHandler = GameManager.Instance.ActualTowerGameObject.GetComponent<TowerHandler>();
             }
         }
 

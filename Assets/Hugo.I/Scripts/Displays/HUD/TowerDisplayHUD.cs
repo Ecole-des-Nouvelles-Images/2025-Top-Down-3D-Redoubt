@@ -23,9 +23,9 @@ namespace Hugo.I.Scripts.Displays.HUD
 
         private void Update()
         {
-            if (GameManager.ActualTowerGameObject)
+            if (GameManager.Instance.ActualTowerGameObject)
             {
-                _towerHandler = GameManager.ActualTowerGameObject.GetComponent<TowerHandler>();
+                _towerHandler = GameManager.Instance.ActualTowerGameObject.GetComponent<TowerHandler>();
                 (TowerLevelData towerLevelData, int currentStone, int currentmetal, int currentCircuit) towerData = _towerHandler.GetTowerData();
                 
                 // Health

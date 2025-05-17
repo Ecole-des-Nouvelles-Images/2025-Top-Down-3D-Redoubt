@@ -89,7 +89,7 @@ namespace Hugo.I.Scripts.Enemies
             
             CurrentHealth = MaxHealth;
             
-            TowerHandler = GameManager.ActualTowerGameObject.GetComponent<TowerHandler>();
+            TowerHandler = GameManager.Instance.ActualTowerGameObject.GetComponent<TowerHandler>();
         }
 
         private void Start()

@@ -1,4 +1,3 @@
-using System;
 using Hugo.I.Scripts.Displays.InGame_WorldSpace;
 using Hugo.I.Scripts.Game;
 using Hugo.I.Scripts.Utils;
@@ -27,8 +26,8 @@ namespace Hugo.I.Scripts.Interactable.PowerPlant
             if (_repairedAdvancement >= _numberOfRepairs)
             {
                 IsRepaired = true;
-                GameManager.IsPowerPlantRepairs = true;
-                GameManager.TriggerAction();
+                GameManager.Instance.IsPowerPlantRepairs = true;
+                GameManager.Instance.TriggerAction();
             }
             
             Debug.Log("Repair advancement : " + _repairedAdvancement + ". Is repaired : " + IsRepaired);

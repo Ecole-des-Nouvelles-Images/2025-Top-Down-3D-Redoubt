@@ -447,11 +447,11 @@ namespace Hugo.I.Scripts.Player
         {
             if (arg0.buildIndex == 1)
             {
-                transform.position = GameManager.SpawnPointsLobby[PlayerId];
+                transform.position = GameManager.Instance.SpawnPointsLobby[PlayerId];
             }
             else if (arg0.buildIndex == 2)
             {
-                transform.position = GameManager.SpawnPointsInGame[PlayerId];
+                transform.position = GameManager.Instance.SpawnPointsInGame[PlayerId];
             }
             
             _playerInputHandler.InputAreEnable = true;
@@ -545,7 +545,7 @@ namespace Hugo.I.Scripts.Player
         private void Die()
         {
             _isDead = true;
-            GameManager.APlayerDie(gameObject);
+            GameManager.Instance.APlayerDie(gameObject);
             Destroy(gameObject, 2f);
         }
     }

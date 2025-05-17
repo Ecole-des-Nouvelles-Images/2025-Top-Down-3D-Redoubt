@@ -70,7 +70,7 @@ namespace Hugo.I.Scripts.Interactable.Tower
         {
             if (_isDestroy) return;
             
-            if (_isRestoringCapacity && GameManager.IsPowerPlantRepairs)
+            if (_isRestoringCapacity && GameManager.Instance.IsPowerPlantRepairs)
             {
                 CurrentEnergy += _towerLevelData.EnergyRestoreRate * Time.deltaTime;
             }
@@ -143,7 +143,7 @@ namespace Hugo.I.Scripts.Interactable.Tower
         private void IsDestroy()
         {
             _isDestroy = true;
-            GameManager.GameOver();
+            GameManager.Instance.GameOver();
         }
     }
 }
