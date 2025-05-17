@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Hugo.I.Scripts.Terrain
 {
-    public class TerrainHandler : MonoBehaviour
+    public class TerrainManager : MonoBehaviour
     {
         private NavMeshSurface _navMeshSurface;
 

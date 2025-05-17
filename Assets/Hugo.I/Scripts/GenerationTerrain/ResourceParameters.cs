@@ -7,10 +7,10 @@ using Random = UnityEngine.Random;
 namespace Hugo.I.Scripts.GenerationTerrain
 {
     [Serializable]
-    public class ResourceSpawn
+    public class ResourceParameters
     {
         [SerializeField] private string _zone;
-        [SerializeField] private List<ResourceSpawnType> _resourceSpawnType;
+        [SerializeField] private List<ResourceParametersType> _resourceSpawnType;
         
         private List<Transform> _spawningPoints;
 

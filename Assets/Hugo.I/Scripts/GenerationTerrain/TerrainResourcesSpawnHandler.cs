@@ -7,7 +7,7 @@ namespace Hugo.I.Scripts.GenerationTerrain
     public class TerrainResourcesSpawnHandler : MonoBehaviour
     {
         [Header("Spawning Points Settings")]
-        [SerializeField] private List<ResourceSpawn> _resourceSpawns;
+        [SerializeField] private List<ResourceParameters> _resourceSpawns;
         [SerializeField] private List<GameObject> _parentGameObjectToSpawnResources;
         
         [Header("Resources References")]
