@@ -9,6 +9,7 @@ namespace Hugo.I.Scripts.GenerationTerrain
         [Header("Spawning Points Settings")]
         [SerializeField] private List<ResourceParameters> _resourceSpawns;
         [SerializeField] private List<GameObject> _parentGameObjectToSpawnResources;
+        [SerializeField] private Transform _resourcesParent;
         
         [Header("Resources References")]
         [SerializeField] private List<GameObject> _stones;
@@ -41,7 +42,9 @@ namespace Hugo.I.Scripts.GenerationTerrain
                     {
                         foreach (var position in keyValuePair.Value)
                         {
-                            Instantiate(_stones[Random.Range(0, _stones.Count)], position, Quaternion.identity);
+                            Vector3 eulerRotation = new Vector3(0f, Random.Range(-30f, 30f), 0f);
+                            Quaternion rotation = Quaternion.Euler(eulerRotation);
+                            Instantiate(_stones[Random.Range(0, _stones.Count)], position, rotation, _resourcesParent);
                         }
                     }
 
@@ -49,7 +52,9 @@ namespace Hugo.I.Scripts.GenerationTerrain
                     {
                         foreach (var position in keyValuePair.Value)
                         {
-                            Instantiate(_metals[Random.Range(0, _stones.Count)], position, Quaternion.identity);
+                            Vector3 eulerRotation = new Vector3(0f, Random.Range(-30f, 30f), 0f);
+                            Quaternion rotation = Quaternion.Euler(eulerRotation);
+                            Instantiate(_metals[Random.Range(0, _metals.Count)], position, rotation, _resourcesParent);
                         }
                     }
                     
@@ -57,7 +62,9 @@ namespace Hugo.I.Scripts.GenerationTerrain
                     {
                         foreach (var position in keyValuePair.Value)
                         {
-                            Instantiate(_electronics[Random.Range(0, _stones.Count)], position, Quaternion.identity);
+                            Vector3 eulerRotation = new Vector3(0f, Random.Range(-30f, 30f), 0f);
+                            Quaternion rotation = Quaternion.Euler(eulerRotation);
+                            Instantiate(_electronics[Random.Range(0, _electronics.Count)], position, rotation, _resourcesParent);
                         }
                     }
                 }

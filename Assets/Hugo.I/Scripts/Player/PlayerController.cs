@@ -37,6 +37,7 @@ namespace Hugo.I.Scripts.Player
         [SerializeField] private WeaponHandler _revolverWeapon;
         [SerializeField] private WeaponHandler _rifleWeapon;
         [SerializeField] private Transform _carrieShieldTransform;
+        [SerializeField] private Animator _animator;
         
         [Header("Displays")]
         [SerializeField] private CanvasLookCameraHandler _canvasLookCameraHandler;
@@ -71,7 +72,6 @@ namespace Hugo.I.Scripts.Player
         // Internals Components
         private CharacterController _characterController;
         private PlayerInputHandler _playerInputHandler;
-        private Animator _animator;
         
         // States
         private bool _isShooting;
@@ -107,7 +107,6 @@ namespace Hugo.I.Scripts.Player
             
             _characterController = GetComponent<CharacterController>();
             _playerInputHandler = GetComponent<PlayerInputHandler>();
-            _animator = GetComponent<Animator>();
             
             CurrentHealth = _maxHealth;
 

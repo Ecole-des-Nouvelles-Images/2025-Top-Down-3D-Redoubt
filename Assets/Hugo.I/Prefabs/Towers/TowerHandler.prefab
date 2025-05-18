@@ -227,6 +227,7 @@ MonoBehaviour:
   _currentElectricalCircuit: 0
   _isRestoringCapacity: 0
   _isGivingCapacity: 0
+  _isRestoringHealth: 0
   _isDestroy: 0
 --- !u!65 &691458708287975820
 BoxCollider:
@@ -522,6 +523,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _enemySpawnerManager: {fileID: 0}
 --- !u!1 &7693601916163565377
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,6 +634,7 @@ MonoBehaviour:
   _currentElectricalCircuit: 0
   _isRestoringCapacity: 0
   _isGivingCapacity: 0
+  _isRestoringHealth: 0
   _isDestroy: 0
 --- !u!65 &4099137806329354075
 BoxCollider:
@@ -866,6 +869,7 @@ MonoBehaviour:
   _currentElectricalCircuit: 0
   _isRestoringCapacity: 0
   _isGivingCapacity: 0
+  _isRestoringHealth: 0
   _isDestroy: 0
 --- !u!65 &1383240127134629779
 BoxCollider:
@@ -933,13 +937,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9058031543134373372}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.38268343, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 4, y: 6, z: 4}
+  m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2026797344970433860}
-  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
 --- !u!33 &1808652252154583134
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -947,7 +951,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9058031543134373372}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -8848731756282166712, guid: c119cbf9cc551734eaf0d31438a6f2e5, type: 3}
 --- !u!23 &1161040189423951268
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -971,7 +975,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 6127895830230269200, guid: c119cbf9cc551734eaf0d31438a6f2e5, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1014,6 +1018,7 @@ MonoBehaviour:
   _currentElectricalCircuit: 0
   _isRestoringCapacity: 0
   _isGivingCapacity: 0
+  _isRestoringHealth: 0
   _isDestroy: 0
 --- !u!65 &3333961131771092909
 BoxCollider:
@@ -1034,8 +1039,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 6, y: 7, z: 5.5}
+  m_Center: {x: 0, y: 3.5, z: 0}
 --- !u!208 &3629767228647323198
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -1046,9 +1051,9 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_Extents: {x: 3, y: 3.5, z: 2.75}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 3.5, z: 0}
   m_TimeToStationary: 0.5

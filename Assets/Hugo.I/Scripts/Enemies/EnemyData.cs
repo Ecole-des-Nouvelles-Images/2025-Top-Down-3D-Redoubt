@@ -81,7 +81,6 @@ namespace Hugo.I.Scripts.Enemies
             NavMeshAgent = GetComponent<NavMeshAgent>();
             Rigidbody = GetComponent<Rigidbody>();
             Collider = GetComponent<Collider>();
-            Animator = GetComponent<Animator>();
             
             NavMeshAgent.speed = WalkSpeed;
             NavMeshAgent.angularSpeed = AngularSpeed;
