@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: efa23575bcf86a8408802bf161d37ef3
+guid: 0b283f4c67679dd4991509e573d36c96
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,11 +31,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: IsDamaged_Pillards
+      name: IsRepel_Pillards
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 32
+      lastFrame: 98
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
