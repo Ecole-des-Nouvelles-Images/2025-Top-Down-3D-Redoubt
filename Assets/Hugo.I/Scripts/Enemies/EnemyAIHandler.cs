@@ -42,7 +42,7 @@ namespace Hugo.I.Scripts.Enemies
             Animator.SetFloat("Move", NavMeshAgent.velocity.magnitude);
             Animator.SetBool("Attack", IsAttacking);
             Animator.SetBool("IsPush", IsPush);
-            Animator.SetBool("Dead", IsDead);
+            Animator.SetBool("IsDead", IsDead);
         }
 
         private void OnDrawGizmos()
