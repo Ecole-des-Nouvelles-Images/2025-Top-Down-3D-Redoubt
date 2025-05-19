@@ -86,7 +86,7 @@ namespace Hugo.I.Scripts.Player
         
         // Movements - Rotations
         private Vector2 _movement;
-        private Vector2 _nonNullAim;
+        private Vector2 _lastMovementBeforeZero;
         private Vector2 _aiming;
         
         // Weapons
@@ -100,6 +100,12 @@ namespace Hugo.I.Scripts.Player
         private PowerPlantHandler _lastInteractablePowerPlant;
         private ReloadHealingHandler _lastInteractableReloadHealing;
         private ShieldHandler _lastInteractableShield;
+        
+        // Animator
+        private Vector3 _previousPosition;
+        public Vector3 Velocity { get; private set; }
+        public float SignedForwardSpeed { get; private set; }
+        public float SignedRightSpeed { get; private set; }
 
         private void Awake()
         {
@@ -118,6 +124,7 @@ namespace Hugo.I.Scripts.Player
         private void Start()
         {
             OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
+            _previousPosition = transform.position;
         }
 
         private void Update()
@@ -126,37 +133,35 @@ namespace Hugo.I.Scripts.Player
             
             // Movement - Rotation
             Vector3 movement = new Vector3(_movement.x, _gravityScale, _movement.y);
-            Quaternion targetRotation;
-            // float angle;
 
             if (_playerInputHandler.InputAreEnable == false)
             {
                 movement = Vector3.zero;
             }
             
-            if (_aiming == Vector2.zero)
+            if (_isCarrying)
             {
-                if (!_isCarrying)
-                {
-                    _characterController.Move(movement * (_moveSpeed * Time.deltaTime));
-                }
-                else
-                {
-                    _characterController.Move(movement * (_moveSpeed * _factorCarryingSpeed * Time.deltaTime));
-                }
-                
-                targetRotation = Quaternion.LookRotation(new Vector3(_nonNullAim.x, 0, _nonNullAim.y));
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
-                
-                _upperBodyAimGameObject.transform.localPosition = new Vector3(0, 2, 1);
+                movement *= _factorCarryingSpeed;
             }
-            else
+                
+            var upperBodyAimDirection = new Vector3(_lastMovementBeforeZero.x, 0f, _lastMovementBeforeZero.y).normalized;
+            var targetRotation = Quaternion.LookRotation(new Vector3(_lastMovementBeforeZero.x, 0, _lastMovementBeforeZero.y));
+            
+            if (_isAiming)
             {
-                _characterController.Move(movement * (_moveSpeed * _factorAimingSpeed * Time.deltaTime));
+                movement *= _factorAimingSpeed;
 
-                Vector3 direction = new Vector3(_aiming.x, 0f, _aiming.y).normalized;
-                _upperBodyAimGameObject.transform.position = transform.position + direction * 1f;
+                upperBodyAimDirection = new Vector3(_aiming.x, 0f, _aiming.y).normalized;
+
+                if (Vector2.Dot(_movement, _aiming)  < 0f)
+                {
+                    targetRotation = Quaternion.LookRotation(new Vector3(_aiming.x, 0, _aiming.y));
+                }
             }
+            
+            _characterController.Move(movement * (_moveSpeed * Time.deltaTime));
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+            _upperBodyAimGameObject.transform.position = transform.position + upperBodyAimDirection * 1f;
             
             // Reload - Heal
             if (_wantToReload && _equippedWeapon.CurrentCapacity < _equippedWeapon.WeaponData.Capacity)
@@ -175,8 +180,27 @@ namespace Hugo.I.Scripts.Player
                 }
             }
             
+            // Animator Speed
+            Vector3 displacement = transform.position - _previousPosition;
+            Velocity = displacement / Time.deltaTime;
+
+            Vector3 forward = transform.forward;
+            Vector3 right = transform.right;
+
+            forward.y = 0f;
+            right.y = 0f;
+            forward.Normalize();
+            right.Normalize();
+
+            SignedForwardSpeed = Vector3.Dot(Velocity, forward);
+            SignedRightSpeed = Vector3.Dot(Velocity, right);
+
+            _previousPosition = transform.position;
+            
             // Animator
-            _animator.SetFloat("Move", _characterController.velocity.magnitude);
+            Debug.Log(SignedForwardSpeed + " / " + SignedRightSpeed);
+            _animator.SetFloat("SpeedX", SignedForwardSpeed);
+            _animator.SetFloat("SpeedY", SignedRightSpeed);
             _animator.SetBool("IsAiming", _isAiming);
             _animator.SetBool("IsShooting", _isShooting);
             _animator.SetBool("IsInteracting", _isInteracting);
@@ -199,9 +223,10 @@ namespace Hugo.I.Scripts.Player
             }
             
             _movement = readValue;
+            
             if (readValue != Vector2.zero)
             {
-                _nonNullAim = readValue;
+                _lastMovementBeforeZero = readValue;
             }
         }
 
@@ -215,6 +240,8 @@ namespace Hugo.I.Scripts.Player
                 QuitQte();
             }
             
+            _aiming = readValue;
+            
             if (readValue != Vector2.zero)
             {
                 _isAiming = true;
@@ -222,12 +249,6 @@ namespace Hugo.I.Scripts.Player
             else
             {
                 _isAiming = false;
-            }
-            
-            _aiming = readValue;
-            if (readValue != Vector2.zero)
-            {
-                _nonNullAim = readValue;
             }
         }
         
