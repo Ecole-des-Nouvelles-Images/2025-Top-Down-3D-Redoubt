@@ -10,7 +10,6 @@ using Hugo.I.Scripts.Shield;
 using Hugo.I.Scripts.Utils;
 using Hugo.I.Scripts.Weapon;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 using UnityEngine.SceneManagement;
 
 namespace Hugo.I.Scripts.Player
@@ -24,6 +23,7 @@ namespace Hugo.I.Scripts.Player
         [SerializeField] private float _currentHealth;
         [SerializeField] private float _increaseRateHealth;
         [SerializeField] private float _moveSpeed;
+        [SerializeField] private GameObject _upperBodyAimGameObject;
         [SerializeField] private float _factorAimingSpeed;
         [SerializeField] private float _factorCarryingSpeed;
         [SerializeField] private float _pushForce;
@@ -146,14 +146,17 @@ namespace Hugo.I.Scripts.Player
                 }
                 
                 targetRotation = Quaternion.LookRotation(new Vector3(_nonNullAim.x, 0, _nonNullAim.y));
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+                
+                _upperBodyAimGameObject.transform.localPosition = new Vector3(0, 2, 1);
             }
             else
             {
                 _characterController.Move(movement * (_moveSpeed * _factorAimingSpeed * Time.deltaTime));
-                
-                targetRotation = Quaternion.LookRotation(new Vector3(_aiming.x, 0, _aiming.y));
+
+                Vector3 direction = new Vector3(_aiming.x, 0f, _aiming.y).normalized;
+                _upperBodyAimGameObject.transform.position = transform.position + direction * 1f;
             }
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
             
             // Reload - Heal
             if (_wantToReload && _equippedWeapon.CurrentCapacity < _equippedWeapon.WeaponData.Capacity)
@@ -173,9 +176,7 @@ namespace Hugo.I.Scripts.Player
             }
             
             // Animator
-            Debug.Log("MoveZ : " + _characterController.velocity.z);
-            _animator.SetFloat("MoveX", _characterController.velocity.x);
-            _animator.SetFloat("MoveZ", _characterController.velocity.z);
+            _animator.SetFloat("Move", _characterController.velocity.magnitude);
             _animator.SetBool("IsAiming", _isAiming);
             _animator.SetBool("IsShooting", _isShooting);
             _animator.SetBool("IsInteracting", _isInteracting);
