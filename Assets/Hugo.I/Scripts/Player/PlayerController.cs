@@ -10,6 +10,7 @@ using Hugo.I.Scripts.Shield;
 using Hugo.I.Scripts.Utils;
 using Hugo.I.Scripts.Weapon;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.SceneManagement;
 
 namespace Hugo.I.Scripts.Player
@@ -172,7 +173,9 @@ namespace Hugo.I.Scripts.Player
             }
             
             // Animator
-            _animator.SetFloat("Move", _characterController.velocity.magnitude);
+            Debug.Log("MoveZ : " + _characterController.velocity.z);
+            _animator.SetFloat("MoveX", _characterController.velocity.x);
+            _animator.SetFloat("MoveZ", _characterController.velocity.z);
             _animator.SetBool("IsAiming", _isAiming);
             _animator.SetBool("IsShooting", _isShooting);
             _animator.SetBool("IsInteracting", _isInteracting);
@@ -450,11 +453,12 @@ namespace Hugo.I.Scripts.Player
         {
             if (arg0.buildIndex == 1)
             {
-                transform.position = GameManager.Instance.SpawnPointsLobby[PlayerId];
+                // transform.position = GameManager.Instance.SpawnPointsLobby[PlayerId];
+                
             }
             else if (arg0.buildIndex == 2)
             {
-                transform.position = GameManager.Instance.SpawnPointsInGame[PlayerId];
+                // transform.position = GameManager.Instance.SpawnPointsInGame[PlayerId];
             }
             
             _playerInputHandler.InputAreEnable = true;
