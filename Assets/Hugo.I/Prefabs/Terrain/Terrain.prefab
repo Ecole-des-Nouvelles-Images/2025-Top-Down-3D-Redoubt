@@ -1603,6 +1603,7 @@ MonoBehaviour:
   _electronics:
   - {fileID: 7092852560852396265, guid: 0cb2af6b949c08c48b9352b0a89faf32, type: 3}
   - {fileID: 5355808338206773941, guid: 543934c36893a124b928331ceaca4c6e, type: 3}
+  _powerPlant: {fileID: 7558598412239585179, guid: 39c262a815c36ba44b86f302d0d73b50, type: 3}
 --- !u!1 &4748788779033304236
 GameObject:
   m_ObjectHideFlags: 0

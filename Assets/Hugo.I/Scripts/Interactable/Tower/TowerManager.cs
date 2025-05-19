@@ -15,7 +15,6 @@ namespace Hugo.I.Scripts.Interactable.Tower
         [SerializeField] private List<GameObject> _towers;
         [SerializeField] private GameObject _reloadZone;
         [SerializeField] private GameObject _healingZone;
-        [SerializeField] private EnemySpawnerManager _enemySpawnPoints;
         [SerializeField] private GameObject _shieldZonePrefab;
         [SerializeField] private Transform _shieldZoneSpawnPoint;
         

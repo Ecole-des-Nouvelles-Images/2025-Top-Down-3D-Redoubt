@@ -11,10 +11,11 @@ namespace Hugo.I.Scripts.GenerationTerrain
         [SerializeField] private List<GameObject> _parentGameObjectToSpawnResources;
         [SerializeField] private Transform _resourcesParent;
         
-        [Header("Resources References")]
+        [Header("Prefab References")]
         [SerializeField] private List<GameObject> _stones;
         [SerializeField] private List<GameObject> _metals;
         [SerializeField] private List<GameObject> _electronics;
+        [SerializeField] private GameObject _powerPlant;
         
         private UnityEngine.Terrain _terrain;
 
@@ -32,6 +33,7 @@ namespace Hugo.I.Scripts.GenerationTerrain
 
         private void Start()
         {
+            // Spawn Resources
             foreach (var resourceSpawn in _resourceSpawns)
             {
                 Dictionary<ResourcesEnum, List<Vector3>> dictionary = resourceSpawn.SpawnResources(_terrain);
@@ -69,6 +71,16 @@ namespace Hugo.I.Scripts.GenerationTerrain
                     }
                 }
             }
+            
+            // Spawn Power Plant
+            if (_powerPlant)
+            {
+                Transform randomChild = GetRandomChild(_parentGameObjectToSpawnResources[1]);
+                Vector3 eulerRotation = new Vector3(0f, Random.Range(-30f, 30f), 0f);
+                Quaternion rotation = Quaternion.Euler(eulerRotation);
+                
+                Instantiate(_powerPlant, randomChild.position, rotation, _resourcesParent);
+            }
         }
         
         private List<Transform> GetAllChildTransforms(GameObject parent)
@@ -82,5 +94,15 @@ namespace Hugo.I.Scripts.GenerationTerrain
 
             return children;
         }
+        
+        private Transform GetRandomChild(GameObject parent)
+        {
+            int childCount = parent.transform.childCount;
+            if (childCount == 0) return null;
+
+            int randomIndex = Random.Range(0, childCount);
+            return parent.transform.GetChild(randomIndex);
+        }
+
     }
 }

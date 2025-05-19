@@ -7,9 +7,13 @@ namespace Hugo.I.Scripts.Enemies.States
             if (!enemy.IsDying)
             {
                 enemy.IsDying = true;
+                
                 enemy.Collider.enabled = false;
                 enemy.NavMeshAgent.ResetPath();
                 enemy.NavMeshAgent.isStopped = true;
+                // enemy.NavMeshAgent.enabled = false;
+                enemy.Rigidbody.isKinematic = false;
+                
                 enemy.EnemySpawnerManager.CurrentCredit--;
                 enemy.Die();
             }
