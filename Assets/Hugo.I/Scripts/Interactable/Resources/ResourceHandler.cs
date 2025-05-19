@@ -1,6 +1,7 @@
 using Hugo.I.Scripts.Displays.InGame_WorldSpace;
 using Hugo.I.Scripts.Utils;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Hugo.I.Scripts.Interactable.Resources
 {
@@ -9,13 +10,29 @@ namespace Hugo.I.Scripts.Interactable.Resources
         [Header("Settings")]
         [SerializeField] private ResourceData _resourceData;
         [SerializeField] private ResourceWorldSpaceDisplay _resourceWorldSpaceDisplay;
-        [SerializeField] private int _capacity;
+        [FormerlySerializedAs("_capacity")] [SerializeField] private int _maxCapacity;
+        
+        [Header("Reference")]
+        [SerializeField] private GameObject _resourceEmptyObject;
 
-        public int CurrentCapacity;
+        private int _currentCapacity;
+
+        public int CurrentCapacity
+        {
+            get => _currentCapacity;
+            set
+            {
+                _currentCapacity = value;
+                if (_currentCapacity <= 0)
+                {
+                    Invoke(nameof(ResourceIsEmpty), 0.1f);
+                }
+            }
+        }
 
         private void Awake()
         {
-            CurrentCapacity = _capacity;
+            CurrentCapacity = _maxCapacity;
             _resourceWorldSpaceDisplay.UpdateDisplay(CurrentCapacity);
         }
 
@@ -45,6 +62,12 @@ namespace Hugo.I.Scripts.Interactable.Resources
         public void OnExitZone()
         {
             _resourceWorldSpaceDisplay.gameObject.SetActive(false);
+        }
+
+        private void ResourceIsEmpty()
+        {
+            _resourceEmptyObject.SetActive(true);
+            gameObject.SetActive(false);
         }
     }
 }
