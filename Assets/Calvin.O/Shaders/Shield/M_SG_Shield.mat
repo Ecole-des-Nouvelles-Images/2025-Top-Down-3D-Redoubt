@@ -43,13 +43,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _Fill: 0.03
-    - _Fresnel_Power: 2.79
+    - _Fresnel_Power: 5.42
     - _Offset: 1.47
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ScrollSpeed: 0.2
+    - _ScrollSpeed: 0.05
     m_Colors:
-    - _Emission: {r: 0.04317859, g: 1.4430851, b: 2.7490418, a: 0}
+    - _Emission: {r: 0, g: 1.7427771, b: 4.899987, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &1847714951484145591
