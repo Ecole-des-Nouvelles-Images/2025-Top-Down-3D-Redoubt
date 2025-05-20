@@ -11,6 +11,7 @@ using Hugo.I.Scripts.Utils;
 using Hugo.I.Scripts.Weapon;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace Hugo.I.Scripts.Player
 {
@@ -40,8 +41,9 @@ namespace Hugo.I.Scripts.Player
         [SerializeField] private Transform _carrieShieldTransform;
         [SerializeField] private Animator _animator;
         
+        [FormerlySerializedAs("_canvasLookCameraHandler")]
         [Header("Displays")]
-        [SerializeField] private CanvasLookCameraHandler _canvasLookCameraHandler;
+        [SerializeField] private CanvasLookSizeCameraHandler _canvasLookSizeCameraHandler;
         [SerializeField] private PlayerWorldSpaceDisplay _playerWorldSpaceDisplay;
         [SerializeField] private PlayerWorldSpaceDisplayInteractions _playerWorldSpaceDisplayInteractions;
 
@@ -153,9 +155,23 @@ namespace Hugo.I.Scripts.Player
 
                 upperBodyAimDirection = new Vector3(_aiming.x, 0f, _aiming.y).normalized;
 
-                if (Vector2.Dot(_movement, _aiming)  < 0f)
+                if (_movement != Vector2.zero)
                 {
-                    targetRotation = Quaternion.LookRotation(new Vector3(_aiming.x, 0, _aiming.y));
+                    if (Vector2.Dot(_movement, _aiming)  < 0f)
+                    {
+                        targetRotation = Quaternion.LookRotation(new Vector3(_aiming.x, 0, _aiming.y));
+                    }
+                }
+                else
+                {
+                    Debug.Log("PLayer immobile");
+                    Vector2 lookDirection = new Vector2(transform.forward.x, transform.forward.y).normalized;
+
+                    if (Vector2.Dot(lookDirection, _aiming.normalized)  < 0f)
+                    {
+                        Debug.Log("Test");
+                        targetRotation = Quaternion.LookRotation(new Vector3(_aiming.x, 0, _aiming.y));
+                    }
                 }
             }
             
@@ -198,7 +214,7 @@ namespace Hugo.I.Scripts.Player
             _previousPosition = transform.position;
             
             // Animator
-            Debug.Log(SignedForwardSpeed + " / " + SignedRightSpeed);
+            // Debug.Log(SignedForwardSpeed + " / " + SignedRightSpeed);
             _animator.SetFloat("SpeedX", SignedForwardSpeed);
             _animator.SetFloat("SpeedY", SignedRightSpeed);
             _animator.SetBool("IsAiming", _isAiming);
@@ -484,12 +500,12 @@ namespace Hugo.I.Scripts.Player
             }
             
             _playerInputHandler.InputAreEnable = true;
-            _canvasLookCameraHandler.OnSceneLoaded();
+            _canvasLookSizeCameraHandler.OnSceneLoaded();
             _playerWorldSpaceDisplayInteractions.HideInteractionsButton();
             
-            _inventory[ResourcesEnum.Stone] = 0;
-            _inventory[ResourcesEnum.Metal] = 0;
-            _inventory[ResourcesEnum.ElectricalCircuit] = 0;
+            _inventory[ResourcesEnum.Stone] = 200;
+            _inventory[ResourcesEnum.Metal] = 200;
+            _inventory[ResourcesEnum.ElectricalCircuit] = 200;
         }
 
         private IEnumerator TmeBeforeCollecting(string interactableName)

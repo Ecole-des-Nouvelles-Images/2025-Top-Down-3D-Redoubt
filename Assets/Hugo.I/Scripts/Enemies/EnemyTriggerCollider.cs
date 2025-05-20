@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Hugo.I.Scripts.Interactable.PowerPlant;
 using Hugo.I.Scripts.Player;
 using UnityEngine;
 

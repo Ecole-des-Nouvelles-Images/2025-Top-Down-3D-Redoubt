@@ -514,7 +514,7 @@ MonoBehaviour:
   _rifleWeapon: {fileID: 5876720911722562231}
   _carrieShieldTransform: {fileID: 1862622819270410967}
   _animator: {fileID: 2884191667407005252}
-  _canvasLookCameraHandler: {fileID: 565198294663152941}
+  _canvasLookSizeCameraHandler: {fileID: 565198294663152941}
   _playerWorldSpaceDisplay: {fileID: 3355656769517609946}
   _playerWorldSpaceDisplayInteractions: {fileID: 8247136303321276531}
 --- !u!143 &5591632560035350207
@@ -685,7 +685,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 2.5}
+  m_AnchoredPosition: {x: 0, y: 3}
   m_SizeDelta: {x: 2, y: 1.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2561733010421085727
@@ -763,6 +763,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0017c8020c717e94ca742382215bf0b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sizeAccordingToDistance: 1
+  _factorSize: 0.1
+  _minCanvasSize: {x: 0, y: 0, z: 0}
+  _maxCanvasSize: {x: 2, y: 2, z: 2}
+  _yOffsetAccordingToSize: 1
+  _yOffsetFactor: 1
+  _minCanvasPos: {x: 0, y: 3, z: 0}
+  _maxCanvasPos: {x: 0, y: 6, z: 0}
 --- !u!1 &3516187332609571562
 GameObject:
   m_ObjectHideFlags: 0
@@ -1756,6 +1764,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 3b94b0d77029fff4e8c4c489dabf2da4, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 16a714ecdecb43047be6d9a5b5a664d5, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

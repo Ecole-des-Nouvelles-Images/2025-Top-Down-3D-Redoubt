@@ -980,11 +980,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 729437449314061553, guid: 44f0135da06745646997098eb77e9d21, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6435489396180246686, guid: 44f0135da06745646997098eb77e9d21, type: 3}
       propertyPath: _totalCredit
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7002418313904666984, guid: 44f0135da06745646997098eb77e9d21, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11364,8 +11364,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 2129619589}
-  - {fileID: 360271781}
   - {fileID: 1061065879}
+  - {fileID: 360271781}
   - {fileID: 7785460364467498751}
   - {fileID: 88716942}
   - {fileID: 1746961686}
