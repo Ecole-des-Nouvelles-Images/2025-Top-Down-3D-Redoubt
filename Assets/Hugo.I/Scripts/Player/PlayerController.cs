@@ -41,9 +41,10 @@ namespace Hugo.I.Scripts.Player
         [SerializeField] private Transform _carrieShieldTransform;
         [SerializeField] private Animator _animator;
         
+        [FormerlySerializedAs("_canvasLookSizeCameraHandler")]
         [FormerlySerializedAs("_canvasLookCameraHandler")]
         [Header("Displays")]
-        [SerializeField] private CanvasLookSizeCameraHandler _canvasLookSizeCameraHandler;
+        [SerializeField] private CanvasHandler _canvasHandler;
         [SerializeField] private PlayerWorldSpaceDisplay _playerWorldSpaceDisplay;
         [SerializeField] private PlayerWorldSpaceDisplayInteractions _playerWorldSpaceDisplayInteractions;
 
@@ -500,7 +501,7 @@ namespace Hugo.I.Scripts.Player
             }
             
             _playerInputHandler.InputAreEnable = true;
-            _canvasLookSizeCameraHandler.OnSceneLoaded();
+            _canvasHandler.OnSceneLoaded();
             _playerWorldSpaceDisplayInteractions.HideInteractionsButton();
             
             _inventory[ResourcesEnum.Stone] = 200;

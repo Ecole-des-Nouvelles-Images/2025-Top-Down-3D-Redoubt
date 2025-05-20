@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Hugo.I.Scripts.Displays.InGame_WorldSpace
 {
-    public class CanvasLookSizeCameraHandler : MonoBehaviour
+    public class CanvasHandler : MonoBehaviour
     {
         [Header("Settings Size")]
         [SerializeField] private bool _sizeAccordingToDistance;
