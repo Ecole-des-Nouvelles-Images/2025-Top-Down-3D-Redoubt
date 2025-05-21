@@ -15,6 +15,7 @@ namespace Hugo.I.Scripts.NonInteractable
             {
                 if (col.gameObject != gameObject)
                 {
+                    Debug.Log("Overlapping");
                     Destroy(gameObject);
                     return;
                 }

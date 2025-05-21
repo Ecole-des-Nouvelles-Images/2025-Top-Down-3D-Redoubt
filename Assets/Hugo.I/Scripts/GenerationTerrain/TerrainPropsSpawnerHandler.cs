@@ -4,7 +4,7 @@ using Random = System.Random;
 
 namespace Hugo.I.Scripts.GenerationTerrain
 {
-    [RequireComponent(typeof(UnityEngine.Terrain)), ExecuteInEditMode]
+    [RequireComponent(typeof(UnityEngine.Terrain))]
     public class TerrainPropsSpawnerHandler : MonoBehaviour
     {
         [Header("<size=14><color=#E74C3C>   SETTINGS</color></size>")]
@@ -18,7 +18,8 @@ namespace Hugo.I.Scripts.GenerationTerrain
         [SerializeField, Range(0f, 0.5f)] private float _frequency;
         [SerializeField] private float _minHeight;
         [SerializeField] private float _maxHeight;
-        [SerializeField, Range(1f, 8f)] private float _density;
+        [SerializeField, Range(0f, 8f)] private float _density;
+        [SerializeField] private float _variationFactor;
         [Header("<size=13><color=#F5B041>📦 Object Prefabs Settings</color></size>")]
         [SerializeField] private Transform _parent;
         [SerializeField] private List<GameObject> _objectPrefabs = new List<GameObject>();
@@ -33,7 +34,8 @@ namespace Hugo.I.Scripts.GenerationTerrain
     
         private List<GameObject> _spawnObjects = new List<GameObject>();
         private Random _random;
-    
+
+        private bool _firstSpawn = true;
         private Vector3 _lastTerrainPosition;
         private bool _lastIsRandomSpawn;
         private string _lastSeed;
@@ -61,15 +63,33 @@ namespace Hugo.I.Scripts.GenerationTerrain
             _lastMaxHeight = _maxHeight;
             _lastSoilFertilityRate = _density;
             _lastTerrainOffsetSpeed = _terrainOffsetSpeed;
+            
+            Invoke(nameof(SpawnProps), 0.15f);
         }
 
-        void Update()
+        private void Update()
         {
+            SpawnProps();
+        }
+
+        public void SetUp(string seed)
+        {
+            _seed = seed;
+        }
+
+        private void SpawnProps()
+        {
+            if (_firstSpawn)
+            {
+                _firstSpawn = false;
+                _frequency += _variationFactor;
+            }
+            
             if (_lastTerrainPosition == transform.position && _lastIsRandomSpawn == _isRandomSpawn && _lastSeed == _seed && Mathf.Approximately(_lastFrequency, _frequency)
                 && Mathf.Approximately(_lastMinHeight, _minHeight) && Mathf.Approximately(_lastMaxHeight, _maxHeight) && Mathf.Approximately(_lastSoilFertilityRate, _density)
                 && Mathf.Approximately(_lastTerrainOffsetSpeed, _terrainOffsetSpeed)) return;
             
-            Debug.Log("Spawn");
+            // Debug.Log("Spawn");
         
             foreach (GameObject obj in _spawnObjects)
             {
@@ -107,7 +127,7 @@ namespace Hugo.I.Scripts.GenerationTerrain
                     
                             GameObject newTree = Instantiate(_objectPrefabs[_random.Next(0, _objectPrefabs.Count)], position, Quaternion.Euler(0, _random.Next(-180, 180), 0), _parent);
                             _spawnObjects.Add(newTree);
-                            Debug.Log("Nombre d'arbres instantié : " + _spawnObjects.Count);
+                            // Debug.Log("Nombre d'arbres instantié : " + _spawnObjects.Count);
                         }
                     }
                     else

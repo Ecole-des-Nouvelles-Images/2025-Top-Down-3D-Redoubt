@@ -13,6 +13,7 @@ namespace Hugo.I.Scripts.Interactable.Tower
         
         [Header("Settings Tower")]
         [SerializeField] private List<GameObject> _towers;
+        [SerializeField] private Transform _towersPivot;
         [SerializeField] private GameObject _reloadZone;
         [SerializeField] private GameObject _healingZone;
         [SerializeField] private GameObject _shieldZonePrefab;
@@ -26,10 +27,16 @@ namespace Hugo.I.Scripts.Interactable.Tower
         
         [Header("Enemies")]
         [SerializeField] private EnemySpawnerManager _enemySpawnerManager;
+        [SerializeField] private UnityEngine.Terrain _terrain;
 
         private void Awake()
         {
             GameManager.Instance.ActualTowerGameObject = _towers[0].GetComponent<TowerHandler>();
+        }
+
+        private void Start()
+        {
+            Invoke(nameof(SetPosition), 0.1f);
         }
 
         private void OnEnable()
@@ -91,6 +98,12 @@ namespace Hugo.I.Scripts.Interactable.Tower
         private void ActiveReloadZone()
         {
             _reloadZone.SetActive(true);
+        }
+
+        private void SetPosition()
+        {
+            float posY = _terrain.SampleHeight(_towersPivot.position) + _terrain.GetPosition().y;
+            _towersPivot.position = new Vector3(_towersPivot.position.x, posY, _towersPivot.position.z);
         }
     }
 }
