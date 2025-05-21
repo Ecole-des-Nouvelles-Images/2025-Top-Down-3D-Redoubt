@@ -11315,6 +11315,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1030612367258621413, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: _seed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030612367258621413, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: _density
+      value: 1.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 1030612367258621413, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: _frequency
+      value: 0.45
+      objectReference: {fileID: 0}
     - target: {fileID: 3349672187833195446, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
       propertyPath: _levelingRealTime
       value: 0
@@ -11327,9 +11339,33 @@ PrefabInstance:
       propertyPath: _terrainParameters.Array.data[0].Frequency
       value: 0.015
       objectReference: {fileID: 0}
+    - target: {fileID: 4037380877620155688, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037380877620155688, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 4736161312194192780, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
       propertyPath: m_Name
       value: Terrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 4915953566587849658, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: _seed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4915953566587849658, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: _density
+      value: 1.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 4915953566587849658, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: _frequency
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 5976910664374390709, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: _density
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8386964661888086921, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
       propertyPath: m_LocalPosition.x

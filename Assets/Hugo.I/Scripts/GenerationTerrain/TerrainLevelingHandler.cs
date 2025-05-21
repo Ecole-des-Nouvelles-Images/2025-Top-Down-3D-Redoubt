@@ -60,8 +60,6 @@ namespace Hugo.I.Scripts.GenerationTerrain
 
         private void LevelingTerrain()
         {
-            if (!_levelingRealTime) return;
-            
             float[,] heights = new float[_heightmapResolution, _heightmapResolution];
 
             if (_isTerrainOffset)
