@@ -38,7 +38,6 @@ namespace Hugo.I.Scripts.GenerationTerrain
 
         private void SpawnResources()
         {
-            Debug.Log("Start spawning resources");
             foreach (var resourceSpawn in _resourceSpawns)
             {
                 Dictionary<ResourcesEnum, List<Vector3>> dictionary = resourceSpawn.SpawnResources(_terrain);
@@ -86,7 +85,6 @@ namespace Hugo.I.Scripts.GenerationTerrain
                 
                 GameObject obj = Instantiate(_powerPlant, randomChild.position, rotation, _resourcesParent);
             }
-            Debug.Log("Finish spawning resources");
         }
         
         private List<Transform> GetAllChildTransforms(GameObject parent)

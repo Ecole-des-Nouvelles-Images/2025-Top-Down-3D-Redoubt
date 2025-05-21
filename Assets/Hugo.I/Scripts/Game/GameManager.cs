@@ -16,12 +16,12 @@ namespace Hugo.I.Scripts.Game
         public List<PlayerMesh> PlayersMeshes = new List<PlayerMesh>();
         public List<Vector3> SpawnPointsInGame = new List<Vector3>()
         {
-            new Vector3(5, 1, 12), new Vector3(7, 1, 10),new Vector3(9, 1, 12),new Vector3(7, 1, 14)
+            new Vector3(5, 5, 12), new Vector3(7, 5, 10),new Vector3(9, 5, 12),new Vector3(7, 5, 14)
         };
 
         public List<Vector3> SpawnPointsLobby = new List<Vector3>()
         {
-            new Vector3(-6, 1, 2), new Vector3(-2, 1, 2), new Vector3(2, 1, 2), new Vector3(6, 1, 2)
+            new Vector3(-6, 5, 2), new Vector3(-2, 5, 2), new Vector3(2, 5, 2), new Vector3(6, 5, 2)
         };
         
         // Tower

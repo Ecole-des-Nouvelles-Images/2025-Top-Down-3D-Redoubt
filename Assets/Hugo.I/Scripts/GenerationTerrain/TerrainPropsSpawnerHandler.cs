@@ -74,7 +74,6 @@ namespace Hugo.I.Scripts.GenerationTerrain
 
         private void SpawnProps()
         {
-            Debug.Log("Start spawn props : " + _objectPrefabs[0].name);
             if (_firstSpawn)
             {
                 _firstSpawn = false;
@@ -148,7 +147,6 @@ namespace Hugo.I.Scripts.GenerationTerrain
             _lastMaxHeight = _maxHeight;
             _lastSoilFertilityRate = _density;
             _lastTerrainOffsetSpeed = _terrainOffsetSpeed;
-            Debug.Log("Finish spawn props : " + _objectPrefabs[0].name);
         }
     
         private Vector3 HeightmapToWorldPosition(float heightmapX, float heightmapY)

@@ -492,12 +492,12 @@ namespace Hugo.I.Scripts.Player
         {
             if (arg0.buildIndex == 1)
             {
-                // transform.position = GameManager.Instance.SpawnPointsLobby[PlayerId];
+                transform.position = GameManager.Instance.SpawnPointsLobby[PlayerId];
                 
             }
             else if (arg0.buildIndex == 2)
             {
-                // transform.position = GameManager.Instance.SpawnPointsInGame[PlayerId];
+                transform.position = GameManager.Instance.SpawnPointsInGame[PlayerId];
             }
             
             _playerInputHandler.InputAreEnable = true;
