@@ -1541,10 +1541,10 @@ MonoBehaviour:
   _isRandomleveling: 0
   _isTerrainOffset: 0
   _terrainOffsetSpeed: 7.8
-  _levelingRealTime: 1
+  _levelingRealTime: 0
   _terrainParameters:
   - Seed: 
-    Frequency: 0.05
+    Frequency: 0.015
     Amplitude: 0.01
     TerrainHeightmapResolutionPositionZ: {x: 0, y: 513}
     TerrainHeightmapResolutionPositionX: {x: 0, y: 513}
@@ -1613,11 +1613,11 @@ MonoBehaviour:
   _isTerrainOffset: 0
   _isRandomSpawn: 1
   _terrainOffsetSpeed: 7.8
-  _seed: 
-  _frequency: 0.5
+  _seed: 0
+  _frequency: 0.45
   _minHeight: 0
   _maxHeight: 20
-  _density: 1
+  _density: 1.025
   _variationFactor: 0.001
   _parent: {fileID: 8252277153530631287}
   _objectPrefabs:
@@ -1639,11 +1639,11 @@ MonoBehaviour:
   _isTerrainOffset: 0
   _isRandomSpawn: 1
   _terrainOffsetSpeed: 7.8
-  _seed: 
-  _frequency: 0.5
+  _seed: 0
+  _frequency: 0.45
   _minHeight: 0
   _maxHeight: 20
-  _density: 1
+  _density: 1.025
   _variationFactor: 0.001
   _parent: {fileID: 8252277153530631287}
   _objectPrefabs:
@@ -1801,7 +1801,7 @@ MonoBehaviour:
   _frequency: 0.25
   _minHeight: 0
   _maxHeight: 20
-  _density: 1
+  _density: 0
   _variationFactor: 0.001
   _parent: {fileID: 8252277153530631287}
   _objectPrefabs:
@@ -3574,7 +3574,7 @@ Transform:
   m_GameObject: {fileID: 8810370757520021576}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 250, y: 0, z: 250}
+  m_LocalPosition: {x: 75, y: 0, z: 75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
