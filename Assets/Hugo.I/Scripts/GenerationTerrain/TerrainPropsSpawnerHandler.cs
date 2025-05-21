@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
@@ -63,9 +64,21 @@ namespace Hugo.I.Scripts.GenerationTerrain
             _lastMaxHeight = _maxHeight;
             _lastSoilFertilityRate = _density;
             _lastTerrainOffsetSpeed = _terrainOffsetSpeed;
+            
+            Invoke(nameof(SpawnProps), 0.15f);
         }
 
-        void Update()
+        private void Update()
+        {
+            SpawnProps();
+        }
+
+        public void SetUp(string seed)
+        {
+            _seed = seed;
+        }
+
+        private void SpawnProps()
         {
             if (_firstSpawn)
             {
@@ -77,7 +90,7 @@ namespace Hugo.I.Scripts.GenerationTerrain
                 && Mathf.Approximately(_lastMinHeight, _minHeight) && Mathf.Approximately(_lastMaxHeight, _maxHeight) && Mathf.Approximately(_lastSoilFertilityRate, _density)
                 && Mathf.Approximately(_lastTerrainOffsetSpeed, _terrainOffsetSpeed)) return;
             
-            Debug.Log("Spawn");
+            // Debug.Log("Spawn");
         
             foreach (GameObject obj in _spawnObjects)
             {
@@ -115,7 +128,7 @@ namespace Hugo.I.Scripts.GenerationTerrain
                     
                             GameObject newTree = Instantiate(_objectPrefabs[_random.Next(0, _objectPrefabs.Count)], position, Quaternion.Euler(0, _random.Next(-180, 180), 0), _parent);
                             _spawnObjects.Add(newTree);
-                            Debug.Log("Nombre d'arbres instantié : " + _spawnObjects.Count);
+                            // Debug.Log("Nombre d'arbres instantié : " + _spawnObjects.Count);
                         }
                     }
                     else
@@ -140,11 +153,6 @@ namespace Hugo.I.Scripts.GenerationTerrain
             _lastMaxHeight = _maxHeight;
             _lastSoilFertilityRate = _density;
             _lastTerrainOffsetSpeed = _terrainOffsetSpeed;
-        }
-
-        public void SetUp(string seed)
-        {
-            _seed = seed;
         }
     
         private Vector3 HeightmapToWorldPosition(float heightmapX, float heightmapY)

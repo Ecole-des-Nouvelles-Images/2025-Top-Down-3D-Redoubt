@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Hugo.I.Scripts.GenerationTerrain
 {
-    [RequireComponent(typeof(UnityEngine.Terrain)), ExecuteInEditMode]
+    [RequireComponent(typeof(UnityEngine.Terrain))]
     public class TerrainLevelingHandler : MonoBehaviour
     {
         [Header("<size=14><color=#E74C3C>   SETTINGS</color></size>")]
@@ -34,15 +33,35 @@ namespace Hugo.I.Scripts.GenerationTerrain
 
         private void Start()
         {
-            if (!_isRandomleveling) return;
-        
-            _terrainParameters.Add(new TerrainParameters("coucou", Random.Range(0.1f, 0.9f), Random.Range(-2f, 2f), new Vector2Int(0, 129), new Vector2Int(0, 129), 0));
+            LevelingTerrain();
         }
 
-        void Update()
+        // private void Update()
+        // {
+        //     if (!_levelingRealTime) return;
+        //
+        //     LevelingTerrain();
+        // }
+
+        public void SetUp(List<string> seed)
+        {
+            for (int i = 0; i < _terrainParameters.Count; i++)
+            {
+                TerrainParameters parameters = _terrainParameters[i];
+                parameters.SetUp(seed[i]);
+                _terrainParameters[i] = parameters;
+            }
+        }
+
+        public int GetTerrainParametersCount()
+        {
+            return _terrainParameters.Count;
+        }
+
+        private void LevelingTerrain()
         {
             if (!_levelingRealTime) return;
-        
+            
             float[,] heights = new float[_heightmapResolution, _heightmapResolution];
 
             if (_isTerrainOffset)
@@ -92,19 +111,6 @@ namespace Hugo.I.Scripts.GenerationTerrain
             }
         
             _terrainData.SetHeights(0, 0, heights);
-        }
-
-        public void SetUp(List<string> seed)
-        {
-            for (int i = 0; i < _terrainParameters.Count; i++)
-            {
-                _terrainParameters[i].SetUp(seed[i]);
-            }
-        }
-
-        public int GetTerrainParametersCount()
-        {
-            return _terrainParameters.Count;
         }
     }
 }

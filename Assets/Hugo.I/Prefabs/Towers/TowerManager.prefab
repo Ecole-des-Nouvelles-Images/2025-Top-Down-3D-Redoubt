@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 2625330937763917714}
   - component: {fileID: 1183015709545642753}
   m_Layer: 0
-  m_Name: TowerHandler
+  m_Name: TowerManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -491,9 +491,9 @@ MonoBehaviour:
   - {fileID: 8173730926431205526}
   - {fileID: 483688719063976040}
   - {fileID: 7693601916163565377}
+  _towersPivot: {fileID: 2026797344970433860}
   _reloadZone: {fileID: 2089432195923607832}
   _healingZone: {fileID: 4374683425191655992}
-  _enemySpawnPoints: {fileID: 0}
   _shieldZonePrefab: {fileID: 790350623387009348, guid: 5843f020600f16c46bad09c1a974c83b, type: 3}
   _shieldZoneSpawnPoint: {fileID: 3225949317106859272}
   _cinemachineCamera: {fileID: 0}
@@ -524,6 +524,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _enemySpawnerManager: {fileID: 0}
+  _terrain: {fileID: 0}
 --- !u!1 &7693601916163565377
 GameObject:
   m_ObjectHideFlags: 0

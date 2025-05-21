@@ -31,13 +31,19 @@ namespace Hugo.I.Scripts.Terrain
             
             // Navmesh
             _navMeshSurface = GetComponent<NavMeshSurface>();
-            _navMeshSurface.BuildNavMesh();
+            Invoke(nameof(BakeNavMesh), 0.1f);
             
             _terrainPropsSpawners = GetComponents<TerrainPropsSpawnerHandler>();
             _terrainLevelingHandler = GetComponent<TerrainLevelingHandler>();
             
             // Generate MainSeed
             _mainSeed = GenerateDeterministicSeed(_random, _seedLength);
+            
+            // Generate and apply seed leveling
+            List<string> childrenSeedsleveling =
+                GenerateChildSeeds(_mainSeed, _terrainLevelingHandler.GetTerrainParametersCount());
+
+            _terrainLevelingHandler.SetUp(childrenSeedsleveling);
             
             // Generate and apply seed props
             List<string> childrenSeedsProps = GenerateChildSeeds(_mainSeed, _terrainPropsSpawners.Length);
@@ -46,13 +52,6 @@ namespace Hugo.I.Scripts.Terrain
             {
                 _terrainPropsSpawners[i].SetUp(childrenSeedsProps[i]);
             }
-            
-            // Generate and apply seed leveling
-            List<string> childrenSeedsleveling =
-                GenerateChildSeeds(_mainSeed, _terrainLevelingHandler.GetTerrainParametersCount());
-            Debug.Log("Count terrain parameters : " + childrenSeedsleveling.Count);
-
-            _terrainLevelingHandler.SetUp(childrenSeedsleveling);
         }
         
         private string GenerateDeterministicSeed(Random random, int length = 16)
@@ -83,6 +82,10 @@ namespace Hugo.I.Scripts.Terrain
 
             return childSeeds;
         }
-        
+
+        private void BakeNavMesh()
+        {
+            _navMeshSurface.BuildNavMesh();
+        }
     }
 }

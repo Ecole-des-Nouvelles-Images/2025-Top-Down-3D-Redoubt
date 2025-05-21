@@ -33,7 +33,11 @@ namespace Hugo.I.Scripts.GenerationTerrain
 
         private void Start()
         {
-            // Spawn Resources
+            Invoke(nameof(SpawnResources), 0.1f);
+        }
+
+        private void SpawnResources()
+        {
             foreach (var resourceSpawn in _resourceSpawns)
             {
                 Dictionary<ResourcesEnum, List<Vector3>> dictionary = resourceSpawn.SpawnResources(_terrain);
