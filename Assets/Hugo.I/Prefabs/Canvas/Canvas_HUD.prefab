@@ -3403,6 +3403,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2982771419246695650, guid: a25800fba5bb8bc4ea31a52b5ccd311a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2f3b933413eff3848b91d6606fccb4c8, type: 3}
     - target: {fileID: 3999418468616570738, guid: a25800fba5bb8bc4ea31a52b5ccd311a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3503,6 +3507,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Panel_P1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8200660573500862914, guid: a25800fba5bb8bc4ea31a52b5ccd311a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f62b2de8b4630dc4bbbef74e8b176333, type: 3}
     - target: {fileID: 8228788376563056521, guid: a25800fba5bb8bc4ea31a52b5ccd311a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4039,6 +4047,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2982771419246695650, guid: a25800fba5bb8bc4ea31a52b5ccd311a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 41e17cd2d647b634da976568a70e8d31, type: 3}
     - target: {fileID: 3999418468616570738, guid: a25800fba5bb8bc4ea31a52b5ccd311a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4139,6 +4151,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Panel_P1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8200660573500862914, guid: a25800fba5bb8bc4ea31a52b5ccd311a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 53bed36221c50324ca66a8e245146e45, type: 3}
     - target: {fileID: 8228788376563056521, guid: a25800fba5bb8bc4ea31a52b5ccd311a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4357,6 +4373,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2982771419246695650, guid: a25800fba5bb8bc4ea31a52b5ccd311a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d6bcef9e7f067274a844ade210f07e19, type: 3}
     - target: {fileID: 3999418468616570738, guid: a25800fba5bb8bc4ea31a52b5ccd311a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4457,6 +4477,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Panel_P1
       objectReference: {fileID: 0}
+    - target: {fileID: 8200660573500862914, guid: a25800fba5bb8bc4ea31a52b5ccd311a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 393cdca0a4ffaf44980bc805a3d0aa5e, type: 3}
     - target: {fileID: 8228788376563056521, guid: a25800fba5bb8bc4ea31a52b5ccd311a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
