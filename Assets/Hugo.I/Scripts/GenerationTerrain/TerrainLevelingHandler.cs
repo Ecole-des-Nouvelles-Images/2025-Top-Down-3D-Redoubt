@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Hugo.I.Scripts.GenerationTerrain
 {
-    [RequireComponent(typeof(UnityEngine.Terrain))]
+    [RequireComponent(typeof(UnityEngine.Terrain)), ExecuteInEditMode]
     public class TerrainLevelingHandler : MonoBehaviour
     {
         [Header("<size=14><color=#E74C3C>   SETTINGS</color></size>")]
@@ -36,12 +36,12 @@ namespace Hugo.I.Scripts.GenerationTerrain
             LevelingTerrain();
         }
 
-        // private void Update()
-        // {
-        //     if (!_levelingRealTime) return;
-        //
-        //     LevelingTerrain();
-        // }
+        private void Update()
+        {
+            if (!_levelingRealTime) return;
+        
+            LevelingTerrain();
+        }
 
         public void SetUp(List<string> seed)
         {
