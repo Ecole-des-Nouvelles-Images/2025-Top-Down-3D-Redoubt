@@ -980,7 +980,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 729437449314061553, guid: 44f0135da06745646997098eb77e9d21, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6435489396180246686, guid: 44f0135da06745646997098eb77e9d21, type: 3}
       propertyPath: _totalCredit
@@ -11310,6 +11310,66 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3349672187833195446, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: _isRandomleveling
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3349672187833195446, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: _levelingRealTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3349672187833195446, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: _terrainOffsetSpeed
+      value: 7.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3349672187833195446, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: _terrainParameters.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3349672187833195446, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: _terrainParameters.Array.data[0].Seed
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3349672187833195446, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: _terrainParameters.Array.data[1].Seed
+      value: coucou
+      objectReference: {fileID: 0}
+    - target: {fileID: 3349672187833195446, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: _terrainParameters.Array.data[0].Amplitude
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3349672187833195446, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: _terrainParameters.Array.data[0].Frequency
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3349672187833195446, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: _terrainParameters.Array.data[1].Amplitude
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 3349672187833195446, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: _terrainParameters.Array.data[1].Frequency
+      value: 0.161
+      objectReference: {fileID: 0}
+    - target: {fileID: 3349672187833195446, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: _terrainParameters.Array.data[0].BlendingSize
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3349672187833195446, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: _terrainParameters.Array.data[0].TerrainHeightmapResolutionPositionX.y
+      value: 513
+      objectReference: {fileID: 0}
+    - target: {fileID: 3349672187833195446, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: _terrainParameters.Array.data[0].TerrainHeightmapResolutionPositionZ.y
+      value: 513
+      objectReference: {fileID: 0}
+    - target: {fileID: 3349672187833195446, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: _terrainParameters.Array.data[1].TerrainHeightmapResolutionPositionX.y
+      value: 513
+      objectReference: {fileID: 0}
+    - target: {fileID: 3349672187833195446, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: _terrainParameters.Array.data[1].TerrainHeightmapResolutionPositionZ.y
+      value: 513
+      objectReference: {fileID: 0}
     - target: {fileID: 4736161312194192780, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
       propertyPath: m_Name
       value: Terrain

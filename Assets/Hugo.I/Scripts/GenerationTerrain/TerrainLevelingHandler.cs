@@ -93,5 +93,18 @@ namespace Hugo.I.Scripts.GenerationTerrain
         
             _terrainData.SetHeights(0, 0, heights);
         }
+
+        public void SetUp(List<string> seed)
+        {
+            for (int i = 0; i < _terrainParameters.Count; i++)
+            {
+                _terrainParameters[i].SetUp(seed[i]);
+            }
+        }
+
+        public int GetTerrainParametersCount()
+        {
+            return _terrainParameters.Count;
+        }
     }
 }

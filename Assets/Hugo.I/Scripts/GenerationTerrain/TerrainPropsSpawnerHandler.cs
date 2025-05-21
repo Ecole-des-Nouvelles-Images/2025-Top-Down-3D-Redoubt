@@ -4,7 +4,7 @@ using Random = System.Random;
 
 namespace Hugo.I.Scripts.GenerationTerrain
 {
-    [RequireComponent(typeof(UnityEngine.Terrain)), ExecuteInEditMode]
+    [RequireComponent(typeof(UnityEngine.Terrain))]
     public class TerrainPropsSpawnerHandler : MonoBehaviour
     {
         [Header("<size=14><color=#E74C3C>   SETTINGS</color></size>")]
@@ -19,6 +19,7 @@ namespace Hugo.I.Scripts.GenerationTerrain
         [SerializeField] private float _minHeight;
         [SerializeField] private float _maxHeight;
         [SerializeField, Range(1f, 8f)] private float _density;
+        [SerializeField] private float _variationFactor;
         [Header("<size=13><color=#F5B041>📦 Object Prefabs Settings</color></size>")]
         [SerializeField] private Transform _parent;
         [SerializeField] private List<GameObject> _objectPrefabs = new List<GameObject>();
@@ -33,7 +34,8 @@ namespace Hugo.I.Scripts.GenerationTerrain
     
         private List<GameObject> _spawnObjects = new List<GameObject>();
         private Random _random;
-    
+
+        private bool _firstSpawn = true;
         private Vector3 _lastTerrainPosition;
         private bool _lastIsRandomSpawn;
         private string _lastSeed;
@@ -65,6 +67,12 @@ namespace Hugo.I.Scripts.GenerationTerrain
 
         void Update()
         {
+            if (_firstSpawn)
+            {
+                _firstSpawn = false;
+                _frequency += _variationFactor;
+            }
+            
             if (_lastTerrainPosition == transform.position && _lastIsRandomSpawn == _isRandomSpawn && _lastSeed == _seed && Mathf.Approximately(_lastFrequency, _frequency)
                 && Mathf.Approximately(_lastMinHeight, _minHeight) && Mathf.Approximately(_lastMaxHeight, _maxHeight) && Mathf.Approximately(_lastSoilFertilityRate, _density)
                 && Mathf.Approximately(_lastTerrainOffsetSpeed, _terrainOffsetSpeed)) return;
@@ -132,6 +140,11 @@ namespace Hugo.I.Scripts.GenerationTerrain
             _lastMaxHeight = _maxHeight;
             _lastSoilFertilityRate = _density;
             _lastTerrainOffsetSpeed = _terrainOffsetSpeed;
+        }
+
+        public void SetUp(string seed)
+        {
+            _seed = seed;
         }
     
         private Vector3 HeightmapToWorldPosition(float heightmapX, float heightmapY)

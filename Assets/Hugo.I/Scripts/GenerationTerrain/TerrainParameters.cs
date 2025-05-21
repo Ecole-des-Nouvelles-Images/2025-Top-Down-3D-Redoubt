@@ -40,5 +40,10 @@ namespace Hugo.I.Scripts.GenerationTerrain
             TerrainHeightmapResolutionPositionZ.x = Mathf.Clamp(TerrainHeightmapResolutionPositionZ.x, min, max);
             TerrainHeightmapResolutionPositionZ.y = Mathf.Clamp(TerrainHeightmapResolutionPositionZ.y, min, max);
         }
+
+        public void SetUp(string seed)
+        {
+            Seed = seed;
+        }
     }
 }
