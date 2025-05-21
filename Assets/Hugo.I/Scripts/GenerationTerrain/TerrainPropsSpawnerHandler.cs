@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
@@ -19,7 +18,7 @@ namespace Hugo.I.Scripts.GenerationTerrain
         [SerializeField, Range(0f, 0.5f)] private float _frequency;
         [SerializeField] private float _minHeight;
         [SerializeField] private float _maxHeight;
-        [SerializeField, Range(1f, 8f)] private float _density;
+        [SerializeField, Range(0f, 8f)] private float _density;
         [SerializeField] private float _variationFactor;
         [Header("<size=13><color=#F5B041>📦 Object Prefabs Settings</color></size>")]
         [SerializeField] private Transform _parent;

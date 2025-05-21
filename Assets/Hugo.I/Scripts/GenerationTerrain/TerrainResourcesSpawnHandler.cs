@@ -50,7 +50,7 @@ namespace Hugo.I.Scripts.GenerationTerrain
                         {
                             Vector3 eulerRotation = new Vector3(0f, Random.Range(-30f, 30f), 0f);
                             Quaternion rotation = Quaternion.Euler(eulerRotation);
-                            Instantiate(_stones[Random.Range(0, _stones.Count)], position, rotation, _resourcesParent);
+                            GameObject obj = Instantiate(_stones[Random.Range(0, _stones.Count)], position, rotation, _resourcesParent);
                         }
                     }
 
@@ -60,7 +60,7 @@ namespace Hugo.I.Scripts.GenerationTerrain
                         {
                             Vector3 eulerRotation = new Vector3(0f, Random.Range(-30f, 30f), 0f);
                             Quaternion rotation = Quaternion.Euler(eulerRotation);
-                            Instantiate(_metals[Random.Range(0, _metals.Count)], position, rotation, _resourcesParent);
+                            GameObject obj = Instantiate(_metals[Random.Range(0, _metals.Count)], position, rotation, _resourcesParent);
                         }
                     }
                     
@@ -70,7 +70,7 @@ namespace Hugo.I.Scripts.GenerationTerrain
                         {
                             Vector3 eulerRotation = new Vector3(0f, Random.Range(-30f, 30f), 0f);
                             Quaternion rotation = Quaternion.Euler(eulerRotation);
-                            Instantiate(_electronics[Random.Range(0, _electronics.Count)], position, rotation, _resourcesParent);
+                            GameObject obj = Instantiate(_electronics[Random.Range(0, _electronics.Count)], position, rotation, _resourcesParent);
                         }
                     }
                 }
@@ -83,7 +83,7 @@ namespace Hugo.I.Scripts.GenerationTerrain
                 Vector3 eulerRotation = new Vector3(0f, Random.Range(-30f, 30f), 0f);
                 Quaternion rotation = Quaternion.Euler(eulerRotation);
                 
-                Instantiate(_powerPlant, randomChild.position, rotation, _resourcesParent);
+                GameObject obj = Instantiate(_powerPlant, randomChild.position, rotation, _resourcesParent);
             }
         }
         

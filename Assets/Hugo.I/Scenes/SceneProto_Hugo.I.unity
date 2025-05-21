@@ -980,7 +980,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 729437449314061553, guid: 44f0135da06745646997098eb77e9d21, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6435489396180246686, guid: 44f0135da06745646997098eb77e9d21, type: 3}
       propertyPath: _totalCredit
@@ -2190,7 +2190,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60.000004
-    OrthographicSize: 10
+    OrthographicSize: 25
     NearClipPlane: 0.3
     FarClipPlane: 200
     Dutch: 0
@@ -11200,7 +11200,7 @@ Camera:
   far clip plane: 200
   field of view: 60.000004
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
