@@ -1969,7 +1969,7 @@ MonoBehaviour:
     m_Mid: {fileID: 6557098442476187261}
     m_Tip: {fileID: 6978763484033246237}
     m_Target: {fileID: 4039446977679604862}
-    m_Hint: {fileID: 4039446977679604862}
+    m_Hint: {fileID: 0}
     m_TargetPositionWeight: 1
     m_TargetRotationWeight: 1
     m_HintWeight: 1

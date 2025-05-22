@@ -300,6 +300,8 @@ namespace Hugo.I.Scripts.Player
             {
                 QuitQte();
             }
+            
+            _playerTwoBonesIkHandler.DisableTwoBonesIk();
 
             if (readValue > 0)
             {
@@ -307,16 +309,14 @@ namespace Hugo.I.Scripts.Player
                 {
                     _equippedWeapon.gameObject.SetActive(false);
                     _equippedWeapon = _rifleWeapon;
-                    _equippedWeapon.gameObject.SetActive(true);
                 }
                 else
                 {
                     _equippedWeapon.gameObject.SetActive(false);
                     _equippedWeapon = _revolverWeapon;
-                    _equippedWeapon.gameObject.SetActive(true);
                 }
                 
-                _playerTwoBonesIkHandler.OnSwitchWeapon(_equippedWeapon.WeaponData);
+                Invoke(nameof(EnableTwoBonesIk), 0.5f);
                 
                 // Animator
                 _animator.SetTrigger("SwitchWeapon");
@@ -598,6 +598,12 @@ namespace Hugo.I.Scripts.Player
             
             // Animator
             _animator.SetTrigger("TakeDamage");
+        }
+
+        private void EnableTwoBonesIk()
+        {
+            _playerTwoBonesIkHandler.EnableTwoBonesIk(_equippedWeapon.WeaponData);
+            _equippedWeapon.gameObject.SetActive(true);
         }
 
         private void Die()

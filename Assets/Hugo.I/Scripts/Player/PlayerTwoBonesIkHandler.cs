@@ -13,7 +13,7 @@ namespace Hugo.I.Scripts.Player
         [SerializeField] private Rig _rightHandHoldRiffle;
         [SerializeField] private Rig _leftHandHoldRiffle;
 
-        public void OnSwitchWeapon(WeaponData weapon)
+        public void EnableTwoBonesIk(WeaponData weapon)
         {
             if (weapon._weaponTypesEnum == WeaponTypesEnum.Revolver)
             {
@@ -31,6 +31,14 @@ namespace Hugo.I.Scripts.Player
                 _rightHandHoldRevolver.weight = 0;
                 _leftHandHoldRevolver.weight = 0;
             }
+        }
+
+        public void DisableTwoBonesIk()
+        {
+            _rightHandHoldRiffle.weight = 0;
+            _leftHandHoldRiffle.weight = 0;
+            _rightHandHoldRevolver.weight = 0;
+            _leftHandHoldRevolver.weight = 0;
         }
     }
 }
