@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Hugo.I.Scripts.Game;
 using Hugo.I.Scripts.Player;
 using Hugo.I.Scripts.Utils;
+using Hugo.I.Scripts.Weapon;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,17 +11,26 @@ namespace Hugo.I.Scripts.Displays.HUD
 {
     public class PlayerDisplayHUD : MonoBehaviour
     {
-        [Header("Settings")]
+        [Header("Refrences")]
         [SerializeField] private int _playerId;
         [SerializeField] private Sprite _playerIcon;
         [SerializeField] private Image _playerHealthImage;
-        [SerializeField] private Image _playerEnergyImage;
+        [SerializeField] private Image _playerEnergyBackGroundImage;
+        [SerializeField] private Image _playerEnergyFillImage;
         [SerializeField] private TextMeshProUGUI _playerCurrentStoneText;
         [SerializeField] private TextMeshProUGUI _playerMaxStoneText;
         [SerializeField] private TextMeshProUGUI _playerCurrentMetalText;
         [SerializeField] private TextMeshProUGUI _playerMaxMetalText;
         [SerializeField] private TextMeshProUGUI _playerCurrentCircuitText;
         [SerializeField] private TextMeshProUGUI _playerMaxCircuitText;
+        
+        [Header("Sprites")]
+        [SerializeField] private Sprite _revolverBackground;
+        [SerializeField] private Sprite _revolverFill;
+        [SerializeField] private Sprite _riffleBackground;
+        [SerializeField] private Sprite _riffleFill;
+        
+        
         private PlayerController _playerController;
         
         private void Start()
@@ -35,7 +45,7 @@ namespace Hugo.I.Scripts.Displays.HUD
         {
             if (!_playerController) return;
             
-            (float maxHealth, float currentHealth, float capacity, float currentCapacity, 
+            (float maxHealth, float currentHealth, WeaponHandler equippedWeapon, 
                 Dictionary<ResourcesEnum, int> inventory, int maxStone, int maxMetal, int maxCircuit) playerData
                     = _playerController.GetCanvasHudData();
             
@@ -45,9 +55,20 @@ namespace Hugo.I.Scripts.Displays.HUD
             _playerHealthImage.fillAmount = playerHealthNormalized;
             
             // Energy
+            if (playerData.equippedWeapon.WeaponData._weaponTypesEnum == WeaponTypesEnum.Revolver)
+            {
+                _playerEnergyBackGroundImage.sprite = _revolverBackground;
+                _playerEnergyFillImage.sprite = _revolverFill;
+            }
+            else
+            {
+                _playerEnergyBackGroundImage.sprite = _riffleBackground;
+                _playerEnergyFillImage.sprite = _riffleFill;
+            }
+            
             float playerEnergyNormalized =
-                Mathf.Clamp01(playerData.currentCapacity / playerData.capacity);
-            _playerEnergyImage.fillAmount = playerEnergyNormalized;
+                Mathf.Clamp01(playerData.equippedWeapon.CurrentCapacity / playerData.equippedWeapon.WeaponData.Capacity);
+            _playerEnergyFillImage.fillAmount = playerEnergyNormalized;
             
             // Stone
             _playerCurrentStoneText.text = playerData.inventory[ResourcesEnum.Stone].ToString();

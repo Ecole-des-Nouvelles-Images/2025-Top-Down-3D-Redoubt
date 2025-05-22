@@ -1321,13 +1321,18 @@ MonoBehaviour:
   _playerId: 0
   _playerIcon: {fileID: 0}
   _playerHealthImage: {fileID: 5182816625297626951}
-  _playerEnergyImage: {fileID: 5837924407726448560}
+  _playerEnergyBackGroundImage: {fileID: 2610785612204813094}
+  _playerEnergyFillImage: {fileID: 5837924407726448560}
   _playerCurrentStoneText: {fileID: 6778878693528293468}
   _playerMaxStoneText: {fileID: 3057509776274503107}
   _playerCurrentMetalText: {fileID: 1944584784818466560}
   _playerMaxMetalText: {fileID: 6043697545427674838}
   _playerCurrentCircuitText: {fileID: 1054841997826115283}
   _playerMaxCircuitText: {fileID: 7538972504526685183}
+  _revolverBackground: {fileID: 21300000, guid: 004b49fbb9717b548a3f84f3c79fce48, type: 3}
+  _revolverFill: {fileID: 21300000, guid: 097667f10df22d94982994a54e81f525, type: 3}
+  _riffleBackground: {fileID: 21300000, guid: 86f4f1376c13e5c4192de9917e9f8b18, type: 3}
+  _riffleFill: {fileID: 21300000, guid: 8edc7961758bda840911f03bf13d2769, type: 3}
 --- !u!1 &5889834456069092870
 GameObject:
   m_ObjectHideFlags: 0

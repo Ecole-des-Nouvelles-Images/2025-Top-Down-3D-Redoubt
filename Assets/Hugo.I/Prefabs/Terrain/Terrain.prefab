@@ -1745,7 +1745,7 @@ MonoBehaviour:
   _isRandomSpawn: 1
   _terrainOffsetSpeed: 7.8
   _seed: 
-  _frequency: 0.25
+  _frequency: 0.2
   _minHeight: 0
   _maxHeight: 20
   _density: 1
@@ -1771,7 +1771,7 @@ MonoBehaviour:
   _isRandomSpawn: 1
   _terrainOffsetSpeed: 7.8
   _seed: 
-  _frequency: 0.25
+  _frequency: 0.15
   _minHeight: 0
   _maxHeight: 20
   _density: 1

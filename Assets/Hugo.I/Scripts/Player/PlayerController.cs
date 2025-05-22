@@ -476,10 +476,9 @@ namespace Hugo.I.Scripts.Player
             _equippedWeapon.Shoot(readValue);
         }
 
-        public (float, float, float, float, Dictionary<ResourcesEnum, int>, int, int, int) GetCanvasHudData()
+        public (float, float, WeaponHandler, Dictionary<ResourcesEnum, int>, int, int, int) GetCanvasHudData()
         {
-            return (_maxHealth, CurrentHealth, _equippedWeapon.WeaponData.Capacity, _equippedWeapon.CurrentCapacity,
-                _inventory, _maxStone, _maxMetal, _maxCircuit);
+            return (_maxHealth, CurrentHealth, _equippedWeapon, _inventory, _maxStone, _maxMetal, _maxCircuit);
         }
 
         public (float, float, float, float) GetCanvasWorldSpaceData()
