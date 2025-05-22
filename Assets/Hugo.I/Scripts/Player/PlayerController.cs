@@ -58,7 +58,7 @@ namespace Hugo.I.Scripts.Player
                 {
                     _wantToHeal = false;
                 }
-                if (_currentHealth <= 0)
+                if (_currentHealth <= 0f)
                 {
                     Die();
                 }
@@ -76,6 +76,7 @@ namespace Hugo.I.Scripts.Player
         // Internals Components
         private CharacterController _characterController;
         private PlayerInputHandler _playerInputHandler;
+        private PlayerTwoBonesIkHandler _playerTwoBonesIkHandler;
         
         // States
         private bool _isShooting;
@@ -117,6 +118,7 @@ namespace Hugo.I.Scripts.Player
             
             _characterController = GetComponent<CharacterController>();
             _playerInputHandler = GetComponent<PlayerInputHandler>();
+            _playerTwoBonesIkHandler = GetComponent<PlayerTwoBonesIkHandler>();
             
             CurrentHealth = _maxHealth;
 
@@ -158,7 +160,7 @@ namespace Hugo.I.Scripts.Player
 
                 if (_movement != Vector2.zero)
                 {
-                    if (Vector2.Dot(_movement, _aiming)  < 0f)
+                    if (Vector2.Dot(_movement, _aiming)  < 0.7071f)
                     {
                         targetRotation = Quaternion.LookRotation(new Vector3(_aiming.x, 0, _aiming.y));
                     }
@@ -178,7 +180,10 @@ namespace Hugo.I.Scripts.Player
             
             _characterController.Move(movement * (_moveSpeed * Time.deltaTime));
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
-            _upperBodyAimGameObject.transform.position = transform.position + upperBodyAimDirection * 1f;
+            _upperBodyAimGameObject.transform.position = transform.position + new Vector3(
+                upperBodyAimDirection.x * 1f,
+                upperBodyAimDirection.y + 0.75f, 
+                upperBodyAimDirection.z * 1f);
             
             // Reload - Heal
             if (_wantToReload && _equippedWeapon.CurrentCapacity < _equippedWeapon.WeaponData.Capacity)
@@ -310,6 +315,8 @@ namespace Hugo.I.Scripts.Player
                     _equippedWeapon = _revolverWeapon;
                     _equippedWeapon.gameObject.SetActive(true);
                 }
+                
+                _playerTwoBonesIkHandler.OnSwitchWeapon(_equippedWeapon.WeaponData);
                 
                 // Animator
                 _animator.SetTrigger("SwitchWeapon");
@@ -595,6 +602,7 @@ namespace Hugo.I.Scripts.Player
 
         private void Die()
         {
+            Debug.Log("Die");
             _isDead = true;
             GameManager.Instance.APlayerDie(gameObject);
             Destroy(gameObject, 2f);
