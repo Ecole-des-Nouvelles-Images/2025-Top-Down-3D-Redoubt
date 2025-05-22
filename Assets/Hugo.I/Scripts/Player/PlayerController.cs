@@ -182,7 +182,7 @@ namespace Hugo.I.Scripts.Player
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
             _upperBodyAimGameObject.transform.position = transform.position + new Vector3(
                 upperBodyAimDirection.x * 1f,
-                upperBodyAimDirection.y + 0.75f, 
+                upperBodyAimDirection.y + 1f, 
                 upperBodyAimDirection.z * 1f);
             
             // Reload - Heal
