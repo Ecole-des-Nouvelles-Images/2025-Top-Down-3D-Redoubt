@@ -196,7 +196,7 @@ namespace Hugo.I.Scripts.Player
                     _equippedWeapon.Reload();
                     
                     // Event
-                    Events.Reloading();
+                    Events.Reloading(true);
                 }
             }
 
@@ -207,7 +207,7 @@ namespace Hugo.I.Scripts.Player
                     CurrentHealth += _increaseRateHealth * Time.deltaTime;
                     
                     // Event
-                    Events.Healing();
+                    Events.Healing(true);
                 }
             }
             

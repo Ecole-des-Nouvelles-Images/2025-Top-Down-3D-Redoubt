@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Hugo.I.Scripts.Player
@@ -37,26 +36,36 @@ namespace Hugo.I.Scripts.Player
 
             if (isMoving && !_vfxMove.isPlaying)
             {
-                Debug.Log("Move");
                 _vfxMove.Play();
             }
             else if (!isMoving && _vfxMove.isPlaying)
             {
-                Debug.Log("Don't Move");
                 _vfxMove.Stop();
             }
         }
         
-        private void Healing()
+        private void Healing(bool isHealing)
         {
-            Debug.Log("Heal");
-            _vfxHealing.Play();
+            if (isHealing && !_vfxHealing.isPlaying)
+            {
+                _vfxHealing.Play();
+            }
+            else if (!isHealing && _vfxMove.isPlaying)
+            {
+                _vfxHealing.Stop();
+            }
         }
         
-        private void Reloading()
+        private void Reloading(bool isReloading)
         {
-            Debug.Log("Reload");
-            _vfxReloading.Play();
+            if (isReloading && !_vfxReloading.isPlaying)
+            {
+                _vfxReloading.Play();
+            }
+            else if (!isReloading && _vfxReloading.isPlaying)
+            {
+                _vfxReloading.Stop();
+            }
         }
     }
 }
