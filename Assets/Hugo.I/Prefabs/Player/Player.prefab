@@ -507,6 +507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8352367785832012316}
   - component: {fileID: 5373651512587871272}
+  - component: {fileID: 2357100219337148948}
   - component: {fileID: 7516311394869257592}
   - component: {fileID: 5591632560035350207}
   - component: {fileID: 8260456692780234445}
@@ -574,6 +575,21 @@ MonoBehaviour:
   _canvasHandler: {fileID: 565198294663152941}
   _playerWorldSpaceDisplay: {fileID: 3355656769517609946}
   _playerWorldSpaceDisplayInteractions: {fileID: 8247136303321276531}
+--- !u!114 &2357100219337148948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940104906107449421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48f5573667ba0534fa0a40f32a63164e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerController: {fileID: 5373651512587871272}
+  _vfxHealing: {fileID: 0}
+  _vfxReloading: {fileID: 0}
 --- !u!114 &7516311394869257592
 MonoBehaviour:
   m_ObjectHideFlags: 0

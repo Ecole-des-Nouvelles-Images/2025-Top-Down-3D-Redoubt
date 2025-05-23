@@ -110,6 +110,9 @@ namespace Hugo.I.Scripts.Player
         public Vector3 Velocity { get; private set; }
         public float SignedForwardSpeed { get; private set; }
         public float SignedRightSpeed { get; private set; }
+        
+        // Events
+        public PlayerEvents Events { get; private set; } = new PlayerEvents();
 
         private void Awake()
         {
@@ -191,6 +194,9 @@ namespace Hugo.I.Scripts.Player
                 if (_lastInteractableReloadHealing.UseEnergy())
                 {
                     _equippedWeapon.Reload();
+                    
+                    // Event
+                    Events.Reloading();
                 }
             }
 
@@ -198,7 +204,10 @@ namespace Hugo.I.Scripts.Player
             {
                 if (_lastInteractableReloadHealing.UseEnergy())
                 {
-                    CurrentHealth += _increaseRateHealth * Time.deltaTime;;
+                    CurrentHealth += _increaseRateHealth * Time.deltaTime;
+                    
+                    // Event
+                    Events.Healing();
                 }
             }
             
@@ -220,13 +229,15 @@ namespace Hugo.I.Scripts.Player
             _previousPosition = transform.position;
             
             // Animator
-            // Debug.Log(SignedForwardSpeed + " / " + SignedRightSpeed);
             _animator.SetFloat("SpeedX", SignedForwardSpeed);
             _animator.SetFloat("SpeedY", SignedRightSpeed);
             _animator.SetBool("IsAiming", _isAiming);
             _animator.SetBool("IsShooting", _isShooting);
             _animator.SetBool("IsInteracting", _isInteracting);
             _animator.SetBool("IsDead", _isDead);
+            
+            // Events
+            Events.Move(_characterController.velocity.magnitude);
         }
 
         private void OnDestroy()
@@ -519,9 +530,9 @@ namespace Hugo.I.Scripts.Player
             _canvasHandler.OnSceneLoaded();
             _playerWorldSpaceDisplayInteractions.HideInteractionsButton();
             
-            _inventory[ResourcesEnum.Stone] = 0;
-            _inventory[ResourcesEnum.Metal] = 0;
-            _inventory[ResourcesEnum.ElectricalCircuit] = 0;
+            _inventory[ResourcesEnum.Stone] = 200;
+            _inventory[ResourcesEnum.Metal] = 200;
+            _inventory[ResourcesEnum.ElectricalCircuit] = 200;
         }
 
         private IEnumerator TmeBeforeCollecting(string interactableName)
