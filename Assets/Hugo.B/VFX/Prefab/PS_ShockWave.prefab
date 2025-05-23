@@ -25,8 +25,8 @@ Transform:
   m_GameObject: {fileID: 3040969359182261652}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.89, y: 2.72, z: -1.213}
-  m_LocalScale: {x: 2.0518, y: 2.0518, z: 2.0518}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3831268391308345295}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5307726678084779887}
   - component: {fileID: 974957338804668282}
   m_Layer: 0
-  m_Name: Particle System (2)
+  m_Name: PS_ShockWave3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4935,7 +4935,7 @@ GameObject:
   - component: {fileID: 6833242177036468937}
   - component: {fileID: 6218478798276486662}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: PS_ShockWave2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9836,7 +9836,7 @@ GameObject:
   - component: {fileID: 8068046089936613524}
   - component: {fileID: 5247154345720454657}
   m_Layer: 0
-  m_Name: Particle System (1)
+  m_Name: PS_ShockWave1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

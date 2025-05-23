@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4577140349350744422}
   - component: {fileID: 1894677609095242423}
   m_Layer: 0
-  m_Name: PS_Smoke
+  m_Name: PS_LevelUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
