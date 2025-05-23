@@ -26,6 +26,7 @@ namespace Hugo.I.Scripts.Interactable.Tower
         
         private void Upgrading()
         {
+            if (!_vfxUpgrading) return;
             _vfxUpgrading.Play();
         }
     }

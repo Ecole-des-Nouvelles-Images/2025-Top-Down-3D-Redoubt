@@ -447,6 +447,10 @@ namespace Hugo.I.Scripts.Player
                 
                 // Display
                 _playerWorldSpaceDisplayInteractions.ResetInteractionButtonFill();
+                
+                // Events
+                Events.Reloading(false);
+                Events.Healing(false);
             }
         }
 
@@ -536,9 +540,9 @@ namespace Hugo.I.Scripts.Player
             _canvasHandler.OnSceneLoaded();
             _playerWorldSpaceDisplayInteractions.HideInteractionsButton();
             
-            _inventory[ResourcesEnum.Stone] = 200;
-            _inventory[ResourcesEnum.Metal] = 200;
-            _inventory[ResourcesEnum.ElectricalCircuit] = 200;
+            _inventory[ResourcesEnum.Stone] = 0;
+            _inventory[ResourcesEnum.Metal] = 0;
+            _inventory[ResourcesEnum.ElectricalCircuit] = 0;
         }
 
         private IEnumerator TmeBeforeCollecting(string interactableName)
