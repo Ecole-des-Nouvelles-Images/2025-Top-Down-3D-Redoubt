@@ -559,7 +559,7 @@ MonoBehaviour:
   _factorAimingSpeed: 0.5
   _factorCarryingSpeed: 0.7
   _pushForce: 30
-  _pushDuration: 0.2
+  _pushDuration: 1
   _timeBeforeCollecting: 1
   _maxStone: 50
   _maxMetal: 30

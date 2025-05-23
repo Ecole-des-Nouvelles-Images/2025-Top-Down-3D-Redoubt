@@ -302,7 +302,7 @@ namespace Hugo.I.Scripts.Player
             }
             
             _playerTwoBonesIkHandler.DisableTwoBonesIk();
-
+            
             if (readValue > 0)
             {
                 if (_equippedWeapon.WeaponData._weaponTypesEnum == WeaponTypesEnum.Revolver)
@@ -353,6 +353,7 @@ namespace Hugo.I.Scripts.Player
                     if (nearestInteractable.CompareTag("Resource"))
                     {
                         Debug.Log("Interact with a Resource");
+                        if (_movement != Vector2.zero) return;
                         
                         _lastInteractableResource = nearestInteractable.GetComponent<ResourceHandler>();
                         if (_lastInteractableResource.CurrentCapacity > 0)
@@ -374,18 +375,23 @@ namespace Hugo.I.Scripts.Player
                     if (nearestInteractable.CompareTag("Reload"))
                     {
                         Debug.Log("Interact with a Reload");
+                        if (_movement != Vector2.zero) return;
+                        
                         _lastInteractableReloadHealing = nearestInteractable.GetComponent<ReloadHealingHandler>();
                         _wantToReload = true;
                     }
                     if (nearestInteractable.CompareTag("Heal"))
                     {
                         Debug.Log("Interact with a Heal");
+                        if (_movement != Vector2.zero) return;
+                        
                         _lastInteractableReloadHealing = nearestInteractable.GetComponent<ReloadHealingHandler>();
                         _wantToHeal = true;
                     }
                     if (nearestInteractable.CompareTag("PowerPlant"))
                     {
                         Debug.Log("Interact with a PowerPlant");
+                        if (_movement != Vector2.zero) return;
                         
                         _lastInteractablePowerPlant = nearestInteractable.GetComponent<PowerPlantHandler>();
                         
@@ -443,6 +449,9 @@ namespace Hugo.I.Scripts.Player
             if (readValue > 0)
             {
                 _playerInputHandler.InputAreEnable = false;
+                
+                _playerTwoBonesIkHandler.DisableTwoBonesIk();
+                _equippedWeapon.gameObject.SetActive(false);
                 
                 List<GameObject> enemiesGameObjects = new List<GameObject>();
                 enemiesGameObjects = _repelTriggerCollider.GetGameObjectsWithTag("Enemy");
@@ -527,6 +536,9 @@ namespace Hugo.I.Scripts.Player
                 {
                     _isInteracting = true;
                     _actualInteractableName = interactableName;
+                    
+                    _playerTwoBonesIkHandler.DisableTwoBonesIk();
+                    _equippedWeapon.gameObject.SetActive(false);
 
                     if (interactableName == "Resource")
                     {
@@ -566,6 +578,9 @@ namespace Hugo.I.Scripts.Player
         {
             _isInteracting = false;
             
+            _playerTwoBonesIkHandler.EnableTwoBonesIk(_equippedWeapon.WeaponData);
+            _equippedWeapon.gameObject.SetActive(true);
+            
             if (_actualInteractableName == "Resource")
             {
                 (ResourcesEnum resource, int value) tupleResource = _lastInteractableResource.GetResources(_actualPadQte.Score);
@@ -588,6 +603,9 @@ namespace Hugo.I.Scripts.Player
         {
             yield return new WaitForSeconds(duration);
             _playerInputHandler.InputAreEnable = enable;
+            
+            _playerTwoBonesIkHandler.EnableTwoBonesIk(_equippedWeapon.WeaponData);
+            _equippedWeapon.gameObject.SetActive(true);
         }
 
         public void TakeDamage(float damage)

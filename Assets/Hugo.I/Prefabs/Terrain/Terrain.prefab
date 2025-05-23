@@ -1545,7 +1545,7 @@ MonoBehaviour:
   _terrainParameters:
   - Seed: 
     Frequency: 0.015
-    Amplitude: 0.01
+    Amplitude: 0.005
     TerrainHeightmapResolutionPositionZ: {x: 0, y: 513}
     TerrainHeightmapResolutionPositionX: {x: 0, y: 513}
     BlendingSize: 0
