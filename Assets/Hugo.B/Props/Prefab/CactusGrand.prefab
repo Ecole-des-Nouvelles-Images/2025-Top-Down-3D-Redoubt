@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 27a3131ba7a740340a229670a5c3ae71, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.5422173
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 27a3131ba7a740340a229670a5c3ae71, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 27a3131ba7a740340a229670a5c3ae71, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -61.071457
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 27a3131ba7a740340a229670a5c3ae71, type: 3}
       propertyPath: m_LocalRotation.w
@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 62375212d12b32340abe0a28aa3ab172, type: 2}
     - target: {fileID: 919132149155446097, guid: 27a3131ba7a740340a229670a5c3ae71, type: 3}
       propertyPath: m_Name
-      value: GrandCactus
+      value: CactusGrand
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

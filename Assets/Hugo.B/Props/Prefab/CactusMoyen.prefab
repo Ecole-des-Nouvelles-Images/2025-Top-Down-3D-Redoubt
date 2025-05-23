@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: eb04787ab473ab34f937627538c514d3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.130599
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eb04787ab473ab34f937627538c514d3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eb04787ab473ab34f937627538c514d3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -60.8086
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eb04787ab473ab34f937627538c514d3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 01514598657e0334b9f1d56d998c0b3c, type: 2}
     - target: {fileID: 919132149155446097, guid: eb04787ab473ab34f937627538c514d3, type: 3}
       propertyPath: m_Name
-      value: MoyenCactus
+      value: CactusMoyen
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
