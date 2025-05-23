@@ -294,6 +294,9 @@ namespace Hugo.I.Scripts.Player
             {
                 (int advancement, bool isCorrect, bool isFinished) tuple = _actualPadQte.CheckQte(readValue);
                 _playerWorldSpaceDisplayInteractions.DisplayQteAdvancement(tuple.advancement, tuple.isCorrect);
+                
+                // Events
+                Events.Collecting();
 
                 if (tuple.isFinished)
                 {
@@ -478,6 +481,9 @@ namespace Hugo.I.Scripts.Player
                 
                 // Animator
                 _animator.SetTrigger("Push");
+                
+                // Events
+                Events.Pushing();
             }
         }
 
@@ -627,6 +633,9 @@ namespace Hugo.I.Scripts.Player
             
             // Animator
             _animator.SetTrigger("TakeDamage");
+            
+            // Event
+            Events.TakingDamage();
         }
 
         private void EnableTwoBonesIk()

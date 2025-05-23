@@ -29,6 +29,8 @@ namespace Hugo.I.Scripts.Interactable.Tower
         [SerializeField] private EnemySpawnerManager _enemySpawnerManager;
         [SerializeField] private UnityEngine.Terrain _terrain;
 
+        public TowerEvents Events { get; private set; } = new TowerEvents();
+
         private void Awake()
         {
             GameManager.Instance.ActualTowerGameObject = _towers[0].GetComponent<TowerHandler>();
@@ -81,6 +83,9 @@ namespace Hugo.I.Scripts.Interactable.Tower
             // Change enemies spawn
             _enemySpawnerManager.ChangeSpawnPoints(index + 1);
             _enemySpawnerManager.UpdateTowerHandler();
+            
+            // Events
+            Events.Upgrading();
         }
 
         public void TowerReceiveShield()
