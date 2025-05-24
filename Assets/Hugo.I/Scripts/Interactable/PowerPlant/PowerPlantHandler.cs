@@ -12,10 +12,16 @@ namespace Hugo.I.Scripts.Interactable.PowerPlant
         [SerializeField] private int _repairedAdvancement;
         [SerializeField] private int _numberOfRepairs;
         [SerializeField] private PowerPlantWorldSpaceDisplay _powerPlantWorldSpaceDisplay;
+        [SerializeField] private UnityEngine.Terrain _terrain;
 
         private void Awake()
         {
             _powerPlantWorldSpaceDisplay.UpdateDisplay(_repairedAdvancement, _numberOfRepairs);
+        }
+
+        private void Start()
+        {
+            Invoke(nameof(SetPosition), 0.1f);
         }
 
         public void Repair()
@@ -41,6 +47,12 @@ namespace Hugo.I.Scripts.Interactable.PowerPlant
         public void OnExitZone()
         {
             _powerPlantWorldSpaceDisplay.gameObject.SetActive(false);
+        }
+        
+        private void SetPosition()
+        {
+            float posY = _terrain.SampleHeight(transform.position) + _terrain.GetPosition().y;
+            transform.position = new Vector3(transform.position.x, posY, transform.position.z);
         }
     }
 }
