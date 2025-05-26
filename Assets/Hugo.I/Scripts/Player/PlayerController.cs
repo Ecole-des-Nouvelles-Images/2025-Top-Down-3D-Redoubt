@@ -471,16 +471,6 @@ namespace Hugo.I.Scripts.Player
                 _playerTwoBonesIkHandler.DisableTwoBonesIk();
                 _equippedWeapon.gameObject.SetActive(false);
                 
-                List<GameObject> enemiesGameObjects = new List<GameObject>();
-                enemiesGameObjects = _repelTriggerCollider.GetGameObjectsWithTag("Enemy");
-
-                Debug.Log("Enemy pushed : " + enemiesGameObjects.Count);
-                foreach (GameObject enemy in enemiesGameObjects)
-                {
-                    Vector3 direction = (enemy.transform.position - transform.position).normalized;
-                    enemy.GetComponent<EnemyAIHandler>().IsPushed(direction, _pushForce, _pushDuration);
-                } 
-                
                 StartCoroutine(SetEnableInputs(true, _pushDuration));
                 
                 // Animator
@@ -640,6 +630,19 @@ namespace Hugo.I.Scripts.Player
             
             // Event
             Events.TakingDamage();
+        }
+
+        public void ApplyPush()
+        {
+            List<GameObject> enemiesGameObjects = new List<GameObject>();
+            enemiesGameObjects = _repelTriggerCollider.GetGameObjectsWithTag("Enemy");
+
+            Debug.Log("Enemy pushed : " + enemiesGameObjects.Count);
+            foreach (GameObject enemy in enemiesGameObjects)
+            {
+                Vector3 direction = (enemy.transform.position - transform.position).normalized;
+                enemy.GetComponent<EnemyAIHandler>().IsPushed(direction, _pushForce, _pushDuration);
+            } 
         }
 
         private void EnableTwoBonesIk()

@@ -67,6 +67,9 @@ namespace Hugo.I.Scripts.Enemies
             }
         }
 
+        [Header("Events")]
+        public EnemyEvents Events { get; private set; } = new EnemyEvents();
+
         [Header("Internal Components")]
         public NavMeshAgent NavMeshAgent;
         public Rigidbody Rigidbody;
@@ -108,6 +111,9 @@ namespace Hugo.I.Scripts.Enemies
             
             StartCoroutine(ApplyPush(direction, force, duration));
             HasReachDestination = false;
+            
+            // Animation
+            Animator.SetTrigger("IsPush");
         }
 
         public void Die()
@@ -123,6 +129,7 @@ namespace Hugo.I.Scripts.Enemies
             NavMeshAgent.enabled = false;
 
             Rigidbody.isKinematic = false;
+            Rigidbody.freezeRotation = true;
             Rigidbody.AddForce(direction.normalized * force, ForceMode.Impulse);
             Debug.Log("Apply Push. Direction : " + direction);
 
@@ -131,6 +138,8 @@ namespace Hugo.I.Scripts.Enemies
             IsPush = false;
             
             Rigidbody.isKinematic = true;
+            Rigidbody.freezeRotation = false;
+            Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
             NavMeshAgent.enabled = true;
             NavMeshAgent.isStopped = false;

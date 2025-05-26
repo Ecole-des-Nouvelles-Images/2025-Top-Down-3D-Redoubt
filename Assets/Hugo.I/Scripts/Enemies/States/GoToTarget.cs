@@ -6,7 +6,7 @@ namespace Hugo.I.Scripts.Enemies.States
     {
         public override void Execute(EnemyData enemy)
         {
-            if (enemy.NavMeshAgent.enabled)
+            if (enemy.NavMeshAgent.enabled && !enemy.IsAttacking)
             {
                 Vector3 targetTransform = enemy.TargetGameObject.transform.position + new Vector3(0, 0, -1);
                 

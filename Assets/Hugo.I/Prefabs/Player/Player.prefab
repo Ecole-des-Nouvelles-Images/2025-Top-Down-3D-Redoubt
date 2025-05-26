@@ -595,7 +595,7 @@ MonoBehaviour:
   _upperBodyAimGameObject: {fileID: 3113453810435390765}
   _factorAimingSpeed: 0.5
   _factorCarryingSpeed: 0.7
-  _pushForce: 30
+  _pushForce: 10
   _pushDuration: 1
   _timeBeforeCollecting: 1
   _maxStone: 50
@@ -3042,6 +3042,9 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16a714ecdecb43047be6d9a5b5a664d5, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 8603565809797109292}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16a714ecdecb43047be6d9a5b5a664d5, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 7434973834769889679}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16a714ecdecb43047be6d9a5b5a664d5, type: 3}
       insertIndex: -1
@@ -3237,6 +3240,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 16a714ecdecb43047be6d9a5b5a664d5, type: 3}
   m_PrefabInstance: {fileID: 8749404063414557653}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8603565809797109292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8479514428593809028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ce9844be04c0d644bc401dccb610591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerController: {fileID: 5373651512587871272}
 --- !u!114 &7434973834769889679
 MonoBehaviour:
   m_ObjectHideFlags: 0

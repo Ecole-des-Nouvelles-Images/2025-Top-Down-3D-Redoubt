@@ -1,5 +1,3 @@
-using Hugo.I.Scripts.Utils;
-
 namespace Hugo.I.Scripts.Enemies.States
 {
     public class Attack : State
@@ -9,9 +7,11 @@ namespace Hugo.I.Scripts.Enemies.States
             if (!enemy.IsAttacking)
             {
                 enemy.NavMeshAgent.ResetPath();
-                enemy.TargetGameObject.GetComponent<IHaveHealth>().TakeDamage(enemy.Damage);
                 enemy.IsAttacking = true;
                 enemy.StartCoroutine(enemy.CoroutineIsAttacking());
+                
+                // Animation
+                enemy.Animator.SetTrigger("Attack");
             }
         }
     }

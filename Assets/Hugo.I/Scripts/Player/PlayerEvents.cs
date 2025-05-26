@@ -4,6 +4,7 @@ namespace Hugo.I.Scripts.Player
 {
     public class PlayerEvents
     {
+        // Player Events
         public event Action<float> OnMove;
         public event Action<bool> OnHealing;
         public event Action<bool> OnReloading;
@@ -11,11 +12,17 @@ namespace Hugo.I.Scripts.Player
         public event Action OnTakingDamage;
         public event Action OnPushing;
 
+        // Animation Events
+        public event Action OnHitPush;
+        public event Action OnFootStep;
+
         public void Move(float velocity) => OnMove?.Invoke(velocity);
         public void Healing(bool isHealing) => OnHealing?.Invoke(isHealing);
         public void Reloading(bool isReloading) => OnReloading?.Invoke(isReloading);
         public void Collecting() => OnCollecting?.Invoke();
         public void TakingDamage() => OnTakingDamage?.Invoke();
         public void Pushing() => OnPushing?.Invoke();
+        public void HitPush() => OnHitPush?.Invoke();
+        public void FootStep() => OnFootStep?.Invoke();
     }
 }

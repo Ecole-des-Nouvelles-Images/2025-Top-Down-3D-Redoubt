@@ -40,8 +40,6 @@ namespace Hugo.I.Scripts.Enemies
             
             // Aninmator
             Animator.SetFloat("Move", NavMeshAgent.velocity.magnitude);
-            Animator.SetBool("Attack", IsAttacking);
-            Animator.SetBool("IsPush", IsPush);
             Animator.SetBool("IsDead", IsDead);
         }
 
@@ -56,6 +54,12 @@ namespace Hugo.I.Scripts.Enemies
         {
             CurrentHealth -= damage;
             Animator.SetTrigger("TakeDamage");
+        }
+        
+        public void DoneDamage()
+        {
+            Debug.Log("Done Damage");
+            TargetGameObject.GetComponent<IHaveHealth>().TakeDamage(Damage);
         }
     }
 }
