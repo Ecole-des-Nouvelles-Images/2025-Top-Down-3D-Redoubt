@@ -58,7 +58,7 @@ namespace Hugo.I.Scripts.Player
                 {
                     _wantToHeal = false;
                 }
-                if (_currentHealth <= 0f)
+                if (_currentHealth == 0)
                 {
                     Die();
                 }
@@ -234,7 +234,7 @@ namespace Hugo.I.Scripts.Player
             _animator.SetBool("IsAiming", _isAiming);
             _animator.SetBool("IsShooting", _isShooting);
             _animator.SetBool("IsInteracting", _isInteracting);
-            _animator.SetBool("IsDead", _isDead);
+            // _animator.SetBool("IsDead", _isDead);
             
             // Events
             Events.Move(_characterController.velocity.magnitude);
@@ -654,9 +654,16 @@ namespace Hugo.I.Scripts.Player
         private void Die()
         {
             Debug.Log("Die");
-            _isDead = true;
+            _playerTwoBonesIkHandler.DisableTwoBonesIk();
+            _equippedWeapon.gameObject.SetActive(false);
+            
             GameManager.Instance.APlayerDie(gameObject);
             Destroy(gameObject, 2f);
+            
+            _isDead = true;
+            
+            // Animation
+            _animator.SetTrigger("IsDead");
         }
     }
 }

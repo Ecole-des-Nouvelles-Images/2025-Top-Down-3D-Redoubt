@@ -35,6 +35,7 @@ namespace Hugo.I.Scripts.Player
 
         public void DisableTwoBonesIk()
         {
+            Debug.Log("Disable Two Bones Ik");
             _rightHandHoldRiffle.weight = 0;
             _leftHandHoldRiffle.weight = 0;
             _rightHandHoldRevolver.weight = 0;

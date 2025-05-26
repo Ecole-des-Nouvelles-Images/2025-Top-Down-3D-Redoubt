@@ -543,6 +543,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &973216368
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3796243034767848391, guid: 39c262a815c36ba44b86f302d0d73b50, type: 3}
+      propertyPath: _terrain
+      value: 
+      objectReference: {fileID: 1366495530}
+    - target: {fileID: 7248745917758189226, guid: 39c262a815c36ba44b86f302d0d73b50, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 21.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7248745917758189226, guid: 39c262a815c36ba44b86f302d0d73b50, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7248745917758189226, guid: 39c262a815c36ba44b86f302d0d73b50, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7248745917758189226, guid: 39c262a815c36ba44b86f302d0d73b50, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9983719
+      objectReference: {fileID: 0}
+    - target: {fileID: 7248745917758189226, guid: 39c262a815c36ba44b86f302d0d73b50, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7248745917758189226, guid: 39c262a815c36ba44b86f302d0d73b50, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.05704127
+      objectReference: {fileID: 0}
+    - target: {fileID: 7248745917758189226, guid: 39c262a815c36ba44b86f302d0d73b50, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7248745917758189226, guid: 39c262a815c36ba44b86f302d0d73b50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7248745917758189226, guid: 39c262a815c36ba44b86f302d0d73b50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 6.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 7248745917758189226, guid: 39c262a815c36ba44b86f302d0d73b50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558598412239585179, guid: 39c262a815c36ba44b86f302d0d73b50, type: 3}
+      propertyPath: m_Name
+      value: PowerPlant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 39c262a815c36ba44b86f302d0d73b50, type: 3}
 --- !u!218 &1366495530 stripped
 Terrain:
   m_CorrespondingSourceObject: {fileID: 1725261476577554267, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
@@ -2265,6 +2326,7 @@ SceneRoots:
   - {fileID: 584695616}
   - {fileID: 7785460364467498751}
   - {fileID: 88716942}
+  - {fileID: 973216368}
   - {fileID: 1746961686}
   - {fileID: 212519010}
   - {fileID: 8597555520793803383}

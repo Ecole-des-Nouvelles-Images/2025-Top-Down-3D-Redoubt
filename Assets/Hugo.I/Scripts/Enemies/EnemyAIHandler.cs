@@ -58,7 +58,6 @@ namespace Hugo.I.Scripts.Enemies
         
         public void DoneDamage()
         {
-            Debug.Log("Done Damage");
             TargetGameObject.GetComponent<IHaveHealth>().TakeDamage(Damage);
         }
     }
