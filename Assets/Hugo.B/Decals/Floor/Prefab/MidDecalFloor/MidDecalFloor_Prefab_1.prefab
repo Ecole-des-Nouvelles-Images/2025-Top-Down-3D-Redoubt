@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7429470519327166517
+--- !u!1 &5100697294771313892
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,43 +8,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8892234054663370890}
-  - component: {fileID: 5097085439435568873}
+  - component: {fileID: 5632953139425095144}
+  - component: {fileID: 1375549763033056578}
   m_Layer: 0
-  m_Name: Decal3_Prefab
+  m_Name: MidDecalFloor_Prefab_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8892234054663370890
+--- !u!4 &5632953139425095144
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7429470519327166517}
+  m_GameObject: {fileID: 5100697294771313892}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.49796006, y: 0.5053967, z: -0.5019816, w: 0.49459526}
-  m_LocalPosition: {x: 17.91, y: 0.08, z: -8.54}
+  m_LocalRotation: {x: 0.27497512, y: -0.6508613, z: 0.65002865, w: 0.2796981}
+  m_LocalPosition: {x: -21.5, y: 3.7, z: 13.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90.388, y: 0, z: -90.850006}
---- !u!114 &5097085439435568873
+  m_LocalEulerAnglesHint: {x: 90.388, y: -256.90698, z: -123.091}
+--- !u!114 &1375549763033056578
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7429470519327166517}
+  m_GameObject: {fileID: 5100697294771313892}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: f479a76498cc55e44b26c3c7084b49cb, type: 2}
+  m_Material: {fileID: 2100000, guid: 7f964a9f3dc16ee45889d6dcde65f1f2, type: 2}
   m_DrawDistance: 1000
   m_FadeScale: 0.9
   m_StartAngleFade: 180
@@ -53,6 +53,6 @@ MonoBehaviour:
   m_UVBias: {x: 0, y: 0}
   m_DecalLayerMask: 2
   m_ScaleMode: 0
-  m_Offset: {x: 0, y: 0, z: 2}
-  m_Size: {x: 15, y: 15, z: 4}
-  m_FadeFactor: 0.4
+  m_Offset: {x: 0, y: 0, z: 4}
+  m_Size: {x: 3, y: 3, z: 8}
+  m_FadeFactor: 0.2
