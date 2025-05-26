@@ -12,6 +12,7 @@ using Hugo.I.Scripts.Weapon;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace Hugo.I.Scripts.Player
 {
@@ -47,6 +48,7 @@ namespace Hugo.I.Scripts.Player
         [SerializeField] private CanvasHandler _canvasHandler;
         [SerializeField] private PlayerWorldSpaceDisplay _playerWorldSpaceDisplay;
         [SerializeField] private PlayerWorldSpaceDisplayInteractions _playerWorldSpaceDisplayInteractions;
+        [SerializeField] private Image _circleImage;
 
         public float CurrentHealth
         {
@@ -649,6 +651,12 @@ namespace Hugo.I.Scripts.Player
         {
             _playerTwoBonesIkHandler.EnableTwoBonesIk(_equippedWeapon.WeaponData);
             _equippedWeapon.gameObject.SetActive(true);
+        }
+
+        public void SetUp(int id, Color color)
+        {
+            PlayerId = id;
+            _circleImage.color = color;
         }
 
         private void Die()

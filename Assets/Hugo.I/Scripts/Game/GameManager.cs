@@ -13,7 +13,7 @@ namespace Hugo.I.Scripts.Game
     {
         // Players
         public List<GameObject> Players = new List<GameObject>();
-        public List<PlayerMesh> PlayersMeshes = new List<PlayerMesh>();
+        public List<PlayerBaseData> PlayersBaseData = new List<PlayerBaseData>();
         public List<Vector3> SpawnPointsInGame = new List<Vector3>()
         {
             new Vector3(5, 10, 12), new Vector3(7, 10, 10),new Vector3(9, 10, 12),new Vector3(7, 10, 14)

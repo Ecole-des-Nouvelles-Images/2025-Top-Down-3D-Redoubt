@@ -27,7 +27,8 @@ namespace Hugo.I.Scripts.Lobby
         private void OnPlayerJoined(PlayerInput playerInput)
         {
             GameManager.Instance.Players.Add(playerInput.gameObject);
-            playerInput.gameObject.GetComponent<PlayerController>().PlayerId = playerInput.playerIndex;
+            int index = playerInput.playerIndex;
+            playerInput.gameObject.GetComponent<PlayerController>().SetUp(index, GameManager.Instance.PlayersBaseData[index].Color);
         }
     }
 }
