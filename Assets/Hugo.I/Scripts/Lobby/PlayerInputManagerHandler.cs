@@ -28,7 +28,7 @@ namespace Hugo.I.Scripts.Lobby
         {
             GameManager.Instance.Players.Add(playerInput.gameObject);
             int index = playerInput.playerIndex;
-            playerInput.gameObject.GetComponent<PlayerController>().SetUp(index, GameManager.Instance.PlayersBaseData[index].Color);
+            playerInput.gameObject.GetComponent<PlayerController>().SetUp(index, GameManager.Instance.PlayersBaseData[index]);
         }
     }
 }

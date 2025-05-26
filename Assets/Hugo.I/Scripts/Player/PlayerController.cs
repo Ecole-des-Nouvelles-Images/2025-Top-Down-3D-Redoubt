@@ -437,6 +437,8 @@ namespace Hugo.I.Scripts.Player
                     if (nearestInteractable.CompareTag("Lobby"))
                     {
                         Debug.Log("Interact with a Lobby");
+                        // if (GameManager.Instance.Players.Count < 4) return;
+                        
                         SceneManager.LoadScene(2);
                     }
                 }
@@ -518,12 +520,12 @@ namespace Hugo.I.Scripts.Player
         
         private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
-            if (arg0.buildIndex == 1)
+            if (arg0.name == "LobbyTest")
             {
                 transform.position = GameManager.Instance.SpawnPointsLobby[PlayerId];
                 
             }
-            else if (arg0.buildIndex == 2)
+            else if (arg0.name == "InGame_Test")
             {
                 transform.position = GameManager.Instance.SpawnPointsInGame[PlayerId];
             }
@@ -653,10 +655,10 @@ namespace Hugo.I.Scripts.Player
             _equippedWeapon.gameObject.SetActive(true);
         }
 
-        public void SetUp(int id, Color color)
+        public void SetUp(int id, PlayerBaseData playerBaseData)
         {
             PlayerId = id;
-            _circleImage.color = color;
+            _circleImage.color = playerBaseData.Color;
         }
 
         private void Die()
