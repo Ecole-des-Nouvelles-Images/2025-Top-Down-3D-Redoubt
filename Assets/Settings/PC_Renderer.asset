@@ -20,16 +20,16 @@ MonoBehaviour:
       RenderQueueType: 0
       LayerMask:
         serializedVersion: 2
-        m_Bits: 896
+        m_Bits: 1920
       PassNames: []
-    overrideMaterial: {fileID: 2100000, guid: edd3343c79e99dd4ab6c05fe8cd64d0c, type: 2}
+    overrideMaterial: {fileID: 2100000, guid: f993bae39a4dbf443a537fdcc7cc5c76, type: 2}
     overrideMaterialPassIndex: 0
     overrideShader: {fileID: -6465566751694194690, guid: 89071da3a50420f4dae748d4bf161b5e, type: 3}
     overrideShaderPassIndex: 0
     overrideMode: 1
     overrideDepthState: 1
     depthCompareFunction: 5
-    enableWrite: 1
+    enableWrite: 0
     stencilSettings:
       overrideStencilState: 0
       stencilReference: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
       overrideCamera: 0
       restoreCamera: 1
       offset: {x: 0, y: 0, z: 0, w: 0}
-      cameraFieldOfView: 60
+      cameraFieldOfView: 50.6
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
       RenderQueueType: 0
       LayerMask:
         serializedVersion: 2
-        m_Bits: 896
+        m_Bits: 1920
       PassNames: []
     overrideMaterial: {fileID: 0}
     overrideMaterialPassIndex: 0
