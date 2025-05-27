@@ -57,7 +57,7 @@ MonoBehaviour:
     Color: {r: 0.68235296, g: 0.30588236, b: 0.3137255, a: 1}
   - Mesh: {fileID: 0}
     Material: {fileID: 0}
-    Color: {r: 0.5058824, g: 0.30588236, b: 0.68235296, a: 0}
+    Color: {r: 0.5058824, g: 0.30588236, b: 0.68235296, a: 1}
   SpawnPointsInGame:
   - {x: 5, y: 10, z: 12}
   - {x: 7, y: 10, z: 10}

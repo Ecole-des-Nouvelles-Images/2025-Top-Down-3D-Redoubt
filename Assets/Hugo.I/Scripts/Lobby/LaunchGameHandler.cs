@@ -26,7 +26,8 @@ namespace Hugo.I.Scripts.Lobby
 
                 if (_players.Count >= 4)
                 {
-                    StartCoroutine(nameof(LaunchGame));
+                    Debug.Log("launch game");
+                    StartCoroutine(LaunchGame());
                 }
             }
         }
@@ -36,11 +37,11 @@ namespace Hugo.I.Scripts.Lobby
             if (other.CompareTag("Player"))
             {
                 _players.Remove(other);
-                StopCoroutine(nameof(LaunchGame));
+                StopCoroutine(LaunchGame());
             }
         }
 
-        private IEnumerable LaunchGame()
+        private IEnumerator LaunchGame()
         {
             yield return new WaitForSeconds(_timeToWait);
             SceneManager.LoadScene(2);

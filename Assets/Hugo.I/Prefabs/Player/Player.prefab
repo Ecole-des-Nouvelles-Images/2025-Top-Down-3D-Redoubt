@@ -2620,6 +2620,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PS_Heal
       objectReference: {fileID: 0}
+    - target: {fileID: 422474835201707797, guid: 0fdc793211a12a24ab81562baac42732, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3625642765068837955, guid: 0fdc793211a12a24ab81562baac42732, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2658,6 +2662,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3625642765068837955, guid: 0fdc793211a12a24ab81562baac42732, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912879664064570481, guid: 0fdc793211a12a24ab81562baac42732, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8135127173065617672, guid: 0fdc793211a12a24ab81562baac42732, type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2994,6 +3006,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PS_Dust
       objectReference: {fileID: 0}
+    - target: {fileID: 205142628942207501, guid: ae06aa077a69c044b871bf36ac9fc152, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3364743914740972714, guid: ae06aa077a69c044b871bf36ac9fc152, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6542479827875425396, guid: ae06aa077a69c044b871bf36ac9fc152, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3162,9 +3182,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7451525174758565130}
     m_Modifications:
+    - target: {fileID: 4477445167978798140, guid: fde4d69aab5f3ec4e8488e5e78353fe5, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6926609976895195850, guid: fde4d69aab5f3ec4e8488e5e78353fe5, type: 3}
       propertyPath: m_Name
       value: PS_Collect
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926609976895195850, guid: fde4d69aab5f3ec4e8488e5e78353fe5, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8887835414987668719, guid: fde4d69aab5f3ec4e8488e5e78353fe5, type: 3}
       propertyPath: m_LocalPosition.x
