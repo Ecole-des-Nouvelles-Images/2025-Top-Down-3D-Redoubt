@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6354053523026994570}
   - component: {fileID: 5633638378620267921}
   - component: {fileID: 7438873999211983525}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Text (TMP)_Rest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 6915132621509315761}
   - component: {fileID: 1101449645138951560}
   - component: {fileID: 3498197228066142140}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4088437676370996914}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Stone_Medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 6645966063393317625}
   - component: {fileID: 2292209665695652723}
   - component: {fileID: 6847822846645723243}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Visual
   m_TagString: Resource
   m_Icon: {fileID: 0}
@@ -405,7 +405,7 @@ GameObject:
   - component: {fileID: 5778334659227083818}
   - component: {fileID: 4596315526598417239}
   - component: {fileID: 2448651810154706651}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 3133079142327574493}
   - component: {fileID: 895305238319007280}
   - component: {fileID: 2016752566904927571}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TriggerCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -606,7 +606,7 @@ GameObject:
   - component: {fileID: 1908234323304346469}
   - component: {fileID: 35317608530585490}
   - component: {fileID: 5168554759334231778}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Resource_Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -725,6 +725,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a7e5b76daa340a44b9edc44555166486, type: 3}
       propertyPath: m_Name
       value: PierreDetruite
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a7e5b76daa340a44b9edc44555166486, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a7e5b76daa340a44b9edc44555166486, type: 3}
       propertyPath: m_IsActive

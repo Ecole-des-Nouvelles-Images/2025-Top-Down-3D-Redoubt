@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7655406767141576572}
   - component: {fileID: 8942183415712833359}
   - component: {fileID: 6372604242843655686}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TriggerCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   - component: {fileID: 8474974715269441576}
   - component: {fileID: 3413423234259233886}
   - component: {fileID: 5156242062729997546}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 8487123034807723861}
   - component: {fileID: 4630152093121249649}
   - component: {fileID: 4139479784818130906}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +290,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7541976606616327054}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Electronics_SolarPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 4138894225996988793}
   - component: {fileID: 698997056864527061}
   - component: {fileID: 1318863216371854498}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Visual
   m_TagString: Resource
   m_Icon: {fileID: 0}
@@ -470,7 +470,7 @@ GameObject:
   - component: {fileID: 7555263508583858831}
   - component: {fileID: 9172857805689998162}
   - component: {fileID: 3328066259826548049}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Resource_Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -545,7 +545,7 @@ GameObject:
   - component: {fileID: 3769399461064252699}
   - component: {fileID: 8610476959441130094}
   - component: {fileID: 7668829538867793862}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Text (TMP)_Rest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -725,6 +725,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f48652101083acc429b159b1dba0ad12, type: 3}
       propertyPath: m_Name
       value: PanneauSolaire_Detruit
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f48652101083acc429b159b1dba0ad12, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f48652101083acc429b159b1dba0ad12, type: 3}
       propertyPath: m_IsActive

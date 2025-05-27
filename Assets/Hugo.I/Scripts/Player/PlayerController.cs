@@ -507,6 +507,14 @@ namespace Hugo.I.Scripts.Player
             _equippedWeapon.Shoot(readValue);
         }
 
+        public void OnStart(float readValue)
+        {
+            if (readValue > 0)
+            {
+                Debug.Log("Start");
+            }
+        }
+
         public (float, float, WeaponHandler, Dictionary<ResourcesEnum, int>, int, int, int) GetCanvasHudData()
         {
             return (_maxHealth, CurrentHealth, _equippedWeapon, _inventory, _maxStone, _maxMetal, _maxCircuit);
@@ -534,9 +542,9 @@ namespace Hugo.I.Scripts.Player
             _canvasHandler.OnSceneLoaded();
             _playerWorldSpaceDisplayInteractions.HideInteractionsButton();
             
-            _inventory[ResourcesEnum.Stone] = 200;
-            _inventory[ResourcesEnum.Metal] = 200;
-            _inventory[ResourcesEnum.ElectricalCircuit] = 200;
+            _inventory[ResourcesEnum.Stone] = 0;
+            _inventory[ResourcesEnum.Metal] = 0;
+            _inventory[ResourcesEnum.ElectricalCircuit] = 0;
         }
 
         private IEnumerator TmeBeforeCollecting(string interactableName)

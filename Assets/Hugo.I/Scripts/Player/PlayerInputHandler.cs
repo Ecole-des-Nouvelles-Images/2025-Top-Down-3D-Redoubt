@@ -45,6 +45,8 @@ namespace Hugo.I.Scripts.Player
             _playerInput.actions["Repel"].canceled += OnPush;
             _playerInput.actions["Shoot"].performed += OnShoot;
             _playerInput.actions["Shoot"].canceled += OnShoot;
+            _playerInput.actions["Start"].performed += OnStart;
+            _playerInput.actions["Start"].canceled += OnStart;
         }
         
         private void OnDisable()
@@ -66,6 +68,8 @@ namespace Hugo.I.Scripts.Player
             _playerInput.actions["Repel"].canceled -= OnPush;
             _playerInput.actions["Shoot"].performed -= OnShoot;
             _playerInput.actions["Shoot"].canceled -= OnShoot;
+            _playerInput.actions["Start"].performed -= OnStart;
+            _playerInput.actions["Start"].canceled -= OnStart;
         }
 
         private void OnDeviceChange(InputDevice device, InputDeviceChange change)
@@ -136,6 +140,14 @@ namespace Hugo.I.Scripts.Player
             if (InputAreEnable)
             {
                 _playerController.OnShoot(context.ReadValue<float>());
+            }
+        }
+        
+        private void OnStart(InputAction.CallbackContext context)
+        {
+            if (InputAreEnable)
+            {
+                _playerController.OnStart(context.ReadValue<float>());
             }
         }
     }

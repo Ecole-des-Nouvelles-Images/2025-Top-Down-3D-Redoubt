@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2760992579250094012}
   - component: {fileID: 617324046010789069}
   - component: {fileID: 6275834347258603094}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Visual
   m_TagString: Resource
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 2431079054364349899}
   - component: {fileID: 1011331871580445631}
   - component: {fileID: 6702303534418125355}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Resource_Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 7571261868040735342}
   - component: {fileID: 3610328075622940616}
   - component: {fileID: 6576446724786114127}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 6514217390929892088}
   - component: {fileID: 7057338141218627205}
   - component: {fileID: 329627897027500843}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TriggerCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 3447851933608984830}
   - component: {fileID: 8319952187056801773}
   - component: {fileID: 7103289640519719407}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,7 +512,7 @@ GameObject:
   - component: {fileID: 6773886939013863577}
   - component: {fileID: 2316616341750258263}
   - component: {fileID: 2432816454785944988}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Text (TMP)_Rest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -646,7 +646,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3732837061058421951}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Electronics_Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -725,6 +725,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fadaa1f25996011499b070ccdff8a8ae, type: 3}
       propertyPath: m_Name
       value: BoitierElectrique_Detruit
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fadaa1f25996011499b070ccdff8a8ae, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fadaa1f25996011499b070ccdff8a8ae, type: 3}
       propertyPath: m_IsActive
