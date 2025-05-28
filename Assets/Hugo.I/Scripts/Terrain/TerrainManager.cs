@@ -31,7 +31,7 @@ namespace Hugo.I.Scripts.Terrain
             
             // Navmesh
             _navMeshSurface = GetComponent<NavMeshSurface>();
-            Invoke(nameof(BakeNavMesh), 0.1f);
+            // Invoke(nameof(BakeNavMesh), 0.1f);
             
             _terrainPropsSpawners = GetComponents<TerrainPropsSpawnerHandler>();
             _terrainLevelingHandler = GetComponent<TerrainLevelingHandler>();
