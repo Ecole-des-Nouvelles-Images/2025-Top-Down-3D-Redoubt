@@ -52,7 +52,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _FresnelEffectPower: 1
-    - _FresnelHardEdge: 0.5
+    - _FresnelHardEdge: 0.3
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ThresholdFloat: 0.7
