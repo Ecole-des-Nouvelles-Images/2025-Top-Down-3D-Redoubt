@@ -10,8 +10,12 @@ namespace Hugo.I.Scripts.Terrain
     public class TerrainManager : MonoBehaviour
     {
         [Header("Seed Parameters")]
+        [SerializeField] private bool _isRandomSeed = true;
         [SerializeField] private string _mainSeed;
         [SerializeField] private int _seedLength;
+        
+        [Header("Terrain Parameters")]
+        [SerializeField] private bool _terrainHaveNevMeshSurface = true;
         
         // Seed
         private Random _random;
@@ -30,14 +34,20 @@ namespace Hugo.I.Scripts.Terrain
             _random = new Random();
             
             // Navmesh
-            _navMeshSurface = GetComponent<NavMeshSurface>();
-            // Invoke(nameof(BakeNavMesh), 0.1f);
+            if (_terrainHaveNevMeshSurface)
+            {
+                _navMeshSurface = GetComponent<NavMeshSurface>();
+                Invoke(nameof(BakeNavMesh), 0.1f);
+            }
             
             _terrainPropsSpawners = GetComponents<TerrainPropsSpawnerHandler>();
             _terrainLevelingHandler = GetComponent<TerrainLevelingHandler>();
             
             // Generate MainSeed
-            _mainSeed = GenerateDeterministicSeed(_random, _seedLength);
+            if (_isRandomSeed)
+            {
+                _mainSeed = GenerateDeterministicSeed(_random, _seedLength);
+            }
             
             // Generate and apply seed leveling
             List<string> childrenSeedsleveling =
