@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
+using Hugo.I.Scripts.Camera;
 using Hugo.I.Scripts.Enemies;
 using Hugo.I.Scripts.Game;
 using Unity.Cinemachine;
@@ -24,6 +25,9 @@ namespace Hugo.I.Scripts.Interactable.Tower
         [SerializeField] private List<int> _cameraLens;
         [SerializeField] private float _duration;
         [SerializeField] private AnimationCurve _curve;
+        
+        [Header("Settings Fog")]
+        [SerializeField] private FogHandler _fogHandler;
         
         [Header("Enemies")]
         [SerializeField] private EnemySpawnerManager _enemySpawnerManager;
@@ -73,6 +77,9 @@ namespace Hugo.I.Scripts.Interactable.Tower
                 _cameraLens[index + 1],
                 _duration
             ).SetEase(_curve);
+            
+            // Fog
+            _fogHandler.InvokeFogBackOff(index + 1);
 
             // Active le Heal si elle passe T2
             if (ActiveTower == _towers[2])
