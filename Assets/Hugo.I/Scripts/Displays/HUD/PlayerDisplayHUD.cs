@@ -11,8 +11,9 @@ namespace Hugo.I.Scripts.Displays.HUD
 {
     public class PlayerDisplayHUD : MonoBehaviour
     {
+        public PlayerController PlayerController;
+        
         [Header("Refrences")]
-        [SerializeField] private int _playerId;
         [SerializeField] private Sprite _playerIcon;
         [SerializeField] private Image _playerHealthImage;
         [SerializeField] private Image _playerEnergyBackGroundImage;
@@ -29,25 +30,14 @@ namespace Hugo.I.Scripts.Displays.HUD
         [SerializeField] private Sprite _revolverFill;
         [SerializeField] private Sprite _riffleBackground;
         [SerializeField] private Sprite _riffleFill;
-        
-        
-        private PlayerController _playerController;
-        
-        private void Start()
-        {
-            if (GameManager.Instance.Players.Count - 1 >= _playerId)
-            {
-                _playerController = GameManager.Instance.Players[_playerId].GetComponent<PlayerController>();
-            }
-        }
 
         private void Update()
         {
-            if (!_playerController) return;
+            if (!PlayerController) return;
             
             (float maxHealth, float currentHealth, WeaponHandler equippedWeapon, 
                 Dictionary<ResourcesEnum, int> inventory, int maxStone, int maxMetal, int maxCircuit) playerData
-                    = _playerController.GetCanvasHudData();
+                    = PlayerController.GetCanvasHudData();
             
             // Health
             float playerHealthNormalized =

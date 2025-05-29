@@ -1239,7 +1239,7 @@ GameObject:
   - component: {fileID: 8115588396251317830}
   - component: {fileID: 8119550691728744126}
   m_Layer: 5
-  m_Name: Panel_P1
+  m_Name: Panel_Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1263,10 +1263,10 @@ RectTransform:
   - {fileID: 4659086550807929701}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 390, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1992130330217092615
 CanvasRenderer:
@@ -1318,7 +1318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aef70e85b5bdd4b448c3189fe4cf877e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerId: 0
+  PlayerController: {fileID: 0}
   _playerIcon: {fileID: 0}
   _playerHealthImage: {fileID: 5182816625297626951}
   _playerEnergyBackGroundImage: {fileID: 2610785612204813094}
