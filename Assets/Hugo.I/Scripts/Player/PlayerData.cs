@@ -37,10 +37,6 @@ namespace Hugo.I.Scripts.Player
                 {
                     WantToHeal = false;
                 }
-                // if (_currentHealth == 0)
-                // {
-                //     Die();
-                // }
             }
         }
         
@@ -91,55 +87,5 @@ namespace Hugo.I.Scripts.Player
         public PowerPlantHandler LastInteractablePowerPlant;
         public ReloadHealingHandler LastInteractableReloadHealing;
         public ShieldHandler LastInteractableShield;
-        
-        private IEnumerator TmeBeforeCollecting(string interactableName)
-        {
-            float time = 0f;
-            while (PressesButtonSouth)
-            {
-                time += 0.01f;
-                PlayerWorldSpaceDisplayInteractions.UpdateInteractionButtonFill(time, PlayerBaseStats.TimeBeforeCollecting);
-
-                if (time >= PlayerBaseStats.TimeBeforeCollecting)
-                {
-                    IsInteracting = true;
-                    ActualInteractableName = interactableName;
-                    
-                    // _playerTwoBonesIkHandler.DisableTwoBonesIk();
-                    EquippedWeapon.gameObject.SetActive(false);
-
-                    if (interactableName == "Resource")
-                    {
-                        (ResourcesEnum, int) resource = LastInteractableResource.ResourcesICanCollect();
-                        int size = 0;
-                        
-                        if (resource.Item1 == ResourcesEnum.Stone)
-                        {
-                            size = Mathf.Min(PlayerBaseStats.MaxStone - Inventory[resource.Item1], resource.Item2);
-                        }
-                        if (resource.Item1 == ResourcesEnum.Metal)
-                        {
-                            size = Mathf.Min(PlayerBaseStats.MaxMetal - Inventory[resource.Item1], resource.Item2);
-                        }
-                        if (resource.Item1 == ResourcesEnum.ElectricalCircuit)
-                        {
-                            size = Mathf.Min(PlayerBaseStats.MaxCircuit - Inventory[resource.Item1], resource.Item2);
-                        }
-                        
-                        ActualPadQte = new PadQte(size);
-                    }
-                    if (interactableName == "PowerPlant")
-                    {
-                        ActualPadQte = new PadQte(LastInteractablePowerPlant.QteSize);
-                    }
-                    
-                    // Display
-                    PlayerWorldSpaceDisplayInteractions.HideInteractionsButton();
-                    PlayerWorldSpaceDisplayInteractions.DisplayQteButton(ActualPadQte.Qte);
-                    yield break;
-                }
-                yield return new WaitForSeconds(0.01f);
-            }
-        }
     }
 }

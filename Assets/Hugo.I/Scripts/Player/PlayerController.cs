@@ -8,6 +8,7 @@ using Hugo.I.Scripts.Interactable.Tower;
 using Hugo.I.Scripts.Shield;
 using Hugo.I.Scripts.Utils;
 using Hugo.I.Scripts.Weapon;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -109,10 +110,7 @@ namespace Hugo.I.Scripts.Player
             
             _characterController.Move(movement * (_playerData.PlayerBaseStats.MoveSpeed * Time.deltaTime));
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
-            _playerData.UpperBodyAimGameObject.transform.position = transform.position + new Vector3(
-                upperBodyAimDirection.x * 1f,
-                upperBodyAimDirection.y + 1f, 
-                upperBodyAimDirection.z * 1f);
+            _playerData.UpperBodyAimGameObject.transform.position = transform.position + new Vector3(upperBodyAimDirection.x, upperBodyAimDirection.y + 1f, upperBodyAimDirection.z);
             
             // Reload - Heal
             if (_playerData.WantToReload && _playerData.EquippedWeapon.CurrentCapacity < _playerData.EquippedWeapon.WeaponData.Capacity)
@@ -151,7 +149,11 @@ namespace Hugo.I.Scripts.Player
 
             _signedForwardSpeed = Vector3.Dot(_velocity, forward);
             _signedRightSpeed = Vector3.Dot(_velocity, right);
-
+            if (_signedForwardSpeed <= -1f)
+            {
+                _signedRightSpeed = -Vector3.Dot(_velocity, right);
+            }
+            
             _previousPosition = transform.position;
             
             // Animator
@@ -560,6 +562,11 @@ namespace Hugo.I.Scripts.Player
             if (_playerData.IsDead) return;
             
             _playerData.CurrentHealth -= damage;
+
+            if (_playerData.CurrentHealth <= 0)
+            {
+                Die();
+            }
             
             // Animator
             _animator.SetTrigger("TakeDamage");
