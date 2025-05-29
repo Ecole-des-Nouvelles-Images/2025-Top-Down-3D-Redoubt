@@ -146,25 +146,35 @@ namespace Hugo.I.Scripts.Player
             right.y = 0f;
             forward.Normalize();
             right.Normalize();
-
-            _signedForwardSpeed = Vector3.Dot(_velocity, forward);
-            _signedRightSpeed = Vector3.Dot(_velocity, right);
-            if (_signedForwardSpeed <= -1f)
+            
+            float vertical = Vector3.Dot(_velocity.normalized, forward) * _velocity.magnitude;
+            float horizontal = Vector3.Dot(_velocity.normalized, right) * _velocity.magnitude;
+            if (vertical <= -1f)
             {
-                _signedRightSpeed = -Vector3.Dot(_velocity, right);
+                horizontal = -horizontal;
             }
             
-            _previousPosition = transform.position;
+            float speed = Mathf.Clamp01(_velocity.magnitude);
+            
+            float normalizedVertical = vertical / (speed > 0 ? speed : 1f);
+            float normalizedHorizontal = horizontal / (speed > 0 ? speed : 1f);
+            
+            if (!_playerData.IsAiming)
+            {
+                normalizedHorizontal = 0f;
+            }
             
             // Animator
-            _animator.SetFloat("SpeedX", _signedForwardSpeed);
-            _animator.SetFloat("SpeedY", _signedRightSpeed);
+            _animator.SetFloat("SpeedX", Mathf.Clamp(normalizedVertical, -1f, 1f));
+            _animator.SetFloat("SpeedY", Mathf.Clamp(normalizedHorizontal, -1f, 1f));
             _animator.SetBool("IsAiming", _playerData.IsAiming);
             _animator.SetBool("IsShooting", _playerData.IsShooting);
             _animator.SetBool("IsInteracting", _playerData.IsInteracting);
             
             // Events
             Events.Move(_characterController.velocity.magnitude);
+            
+            _previousPosition = transform.position;
         }
 
         private void OnDestroy()
