@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Hugo.I.Scripts.Game;
 using Hugo.I.Scripts.Player;
 using Hugo.I.Scripts.Utils;
 using Hugo.I.Scripts.Weapon;

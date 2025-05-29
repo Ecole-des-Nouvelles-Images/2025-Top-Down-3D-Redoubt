@@ -588,31 +588,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff3943d06e9e9c45b30b6041d0b9c13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerId: 0
-  _maxHealth: 10
-  _currentHealth: 0
-  _increaseRateHealth: 5
-  _moveSpeed: 8
-  _upperBodyAimGameObject: {fileID: 3113453810435390765}
-  _factorAimingSpeed: 0.5
-  _factorCarryingSpeed: 0.7
-  _pushForce: 10
-  _pushDuration: 1
-  _timeBeforeCollecting: 1
-  _maxStone: 50
-  _maxMetal: 30
-  _maxCircuit: 10
-  _gravityScale: -9.81
-  _interactableTriggerCollider: {fileID: 8441644279822781639}
-  _repelTriggerCollider: {fileID: 6409527901554189643}
-  _revolverWeapon: {fileID: 1299178300611406369}
-  _rifleWeapon: {fileID: 5876720911722562231}
-  _carrieShieldTransform: {fileID: 1862622819270410967}
+  _playerData:
+    PlayerId: 0
+    PlayerBaseStats: {fileID: 11400000, guid: 127432cd30267114ca7c2d428de9f671, type: 2}
+    IsShooting: 0
+    IsAiming: 0
+    IsInteracting: 0
+    PressesButtonSouth: 0
+    WantToReload: 0
+    WantToHeal: 0
+    IsCarrying: 0
+    IsDead: 0
+    UpperBodyAimGameObject: {fileID: 3113453810435390765}
+    InteractableTriggerCollider: {fileID: 8441644279822781639}
+    RepelTriggerCollider: {fileID: 6409527901554189643}
+    CarrieShieldTransform: {fileID: 1862622819270410967}
+    RevolverWeapon: {fileID: 1299178300611406369}
+    RifleWeapon: {fileID: 5876720911722562231}
+    CanvasHandler: {fileID: 565198294663152941}
+    PlayerWorldSpaceDisplay: {fileID: 3355656769517609946}
+    PlayerWorldSpaceDisplayInteractions: {fileID: 8247136303321276531}
+    CircleImage: {fileID: 3685692625894097975}
+    EquippedWeapon: {fileID: 0}
+    ActualInteractableName: 
+    LastInteractableResource: {fileID: 0}
+    LastInteractableTower: {fileID: 0}
+    LastInteractablePowerPlant: {fileID: 0}
+    LastInteractableReloadHealing: {fileID: 0}
+    LastInteractableShield: {fileID: 0}
   _animator: {fileID: 2884191667407005252}
-  _canvasHandler: {fileID: 565198294663152941}
-  _playerWorldSpaceDisplay: {fileID: 3355656769517609946}
-  _playerWorldSpaceDisplayInteractions: {fileID: 8247136303321276531}
-  _circleImage: {fileID: 3685692625894097975}
 --- !u!114 &2357100219337148948
 MonoBehaviour:
   m_ObjectHideFlags: 0

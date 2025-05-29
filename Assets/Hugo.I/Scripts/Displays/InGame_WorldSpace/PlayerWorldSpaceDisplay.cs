@@ -1,4 +1,3 @@
-using System;
 using Hugo.I.Scripts.Player;
 using UnityEngine;
 using UnityEngine.UI;

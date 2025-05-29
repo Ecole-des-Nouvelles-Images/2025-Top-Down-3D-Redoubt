@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Hugo.I.Scripts.Displays.InGame_WorldSpace;
 using Hugo.I.Scripts.Enemies;
 using Hugo.I.Scripts.Game;
 using Hugo.I.Scripts.Interactable.PowerPlant;
@@ -11,110 +10,35 @@ using Hugo.I.Scripts.Utils;
 using Hugo.I.Scripts.Weapon;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 namespace Hugo.I.Scripts.Player
 {
     public class PlayerController : MonoBehaviour, IHaveHealth
     {
-        public int PlayerId;
+        [Header("<size=13><color=#58D68D>Player Data</color></size>")]
+        [SerializeField] private PlayerData _playerData;
         
-        [Header("Player Settings")]
-        [SerializeField] private float _maxHealth;
-        [SerializeField] private float _currentHealth;
-        [SerializeField] private float _increaseRateHealth;
-        [SerializeField] private float _moveSpeed;
-        [SerializeField] private GameObject _upperBodyAimGameObject;
-        [SerializeField] private float _factorAimingSpeed;
-        [SerializeField] private float _factorCarryingSpeed;
-        [SerializeField] private float _pushForce;
-        [SerializeField] private float _pushDuration;
-        [SerializeField] private int _timeBeforeCollecting;
-        [SerializeField] private int _maxStone;
-        [SerializeField] private int _maxMetal;
-        [SerializeField] private int _maxCircuit;
-        [SerializeField] private float _gravityScale;
-        [SerializeField] private TriggerCollider _interactableTriggerCollider;
-        [SerializeField] private TriggerCollider _repelTriggerCollider;
-        [SerializeField] private WeaponHandler _revolverWeapon;
-        [SerializeField] private WeaponHandler _rifleWeapon;
-        [SerializeField] private Transform _carrieShieldTransform;
+        [Header("<size=13><color=#58D68D>References</color></size>")]
         [SerializeField] private Animator _animator;
         
-        [FormerlySerializedAs("_canvasLookSizeCameraHandler")]
-        [FormerlySerializedAs("_canvasLookCameraHandler")]
-        [Header("Displays")]
-        [SerializeField] private CanvasHandler _canvasHandler;
-        [SerializeField] private PlayerWorldSpaceDisplay _playerWorldSpaceDisplay;
-        [SerializeField] private PlayerWorldSpaceDisplayInteractions _playerWorldSpaceDisplayInteractions;
-        [SerializeField] private Image _circleImage;
-
-        public float CurrentHealth
-        {
-            get => _currentHealth;
-            set
-            {
-                _currentHealth = Mathf.Clamp(value, 0, _maxHealth);
-                if (Mathf.Approximately(_currentHealth, _maxHealth))
-                {
-                    _wantToHeal = false;
-                }
-                if (_currentHealth == 0)
-                {
-                    Die();
-                }
-            }
-        }
-        
-        // Inventory
-        private Dictionary<ResourcesEnum, int> _inventory = new Dictionary<ResourcesEnum, int>()
-        {
-            { ResourcesEnum.Stone, 0 },
-            { ResourcesEnum.Metal, 0 },
-            { ResourcesEnum.ElectricalCircuit, 0 }
-        };
+        // Player Events
+        public PlayerEvents Events { get; private set; } = new PlayerEvents();
         
         // Internals Components
         private CharacterController _characterController;
         private PlayerInputHandler _playerInputHandler;
         private PlayerTwoBonesIkHandler _playerTwoBonesIkHandler;
         
-        // States
-        private bool _isShooting;
-        private bool _isAiming;
-        private bool _isInteracting;
-        private bool _pressesButtonSouth;
-        private bool _wantToReload;
-        private bool _wantToHeal;
-        private bool _isCarrying;
-        private bool _isDead;
-        
         // Movements - Rotations
         private Vector2 _movement;
         private Vector2 _lastMovementBeforeZero;
         private Vector2 _aiming;
         
-        // Weapons
-        private WeaponHandler _equippedWeapon;
-        
-        // Interactions
-        private PadQte _actualPadQte;
-        private string _actualInteractableName;
-        private ResourceHandler _lastInteractableResource;
-        private TowerHandler _lastInteractableTower;
-        private PowerPlantHandler _lastInteractablePowerPlant;
-        private ReloadHealingHandler _lastInteractableReloadHealing;
-        private ShieldHandler _lastInteractableShield;
-        
         // Animator
         private Vector3 _previousPosition;
-        public Vector3 Velocity { get; private set; }
-        public float SignedForwardSpeed { get; private set; }
-        public float SignedRightSpeed { get; private set; }
-        
-        // Events
-        public PlayerEvents Events { get; private set; } = new PlayerEvents();
+        private Vector3 _velocity { get; set; }
+        private float _signedForwardSpeed { get; set; }
+        private float _signedRightSpeed { get; set; }
 
         private void Awake()
         {
@@ -125,10 +49,10 @@ namespace Hugo.I.Scripts.Player
             _playerInputHandler = GetComponent<PlayerInputHandler>();
             _playerTwoBonesIkHandler = GetComponent<PlayerTwoBonesIkHandler>();
             
-            CurrentHealth = _maxHealth;
+            _playerData.CurrentHealth = _playerData.PlayerBaseStats.MaxHealth;
 
-            _equippedWeapon = _revolverWeapon;
-            _equippedWeapon.gameObject.SetActive(true);
+            _playerData.EquippedWeapon = _playerData.RevolverWeapon;
+            _playerData.EquippedWeapon.gameObject.SetActive(true);
         }
 
         private void Start()
@@ -139,27 +63,27 @@ namespace Hugo.I.Scripts.Player
 
         private void Update()
         {
-            if (_isDead) return;
+            if (_playerData.IsDead) return;
             
             // Movement - Rotation
-            Vector3 movement = new Vector3(_movement.x, _gravityScale, _movement.y);
+            Vector3 movement = new Vector3(_movement.x, _playerData.PlayerBaseStats.GravityScale, _movement.y);
 
             if (_playerInputHandler.InputAreEnable == false)
             {
                 movement = Vector3.zero;
             }
             
-            if (_isCarrying)
+            if (_playerData.IsCarrying)
             {
-                movement *= _factorCarryingSpeed;
+                movement *= _playerData.PlayerBaseStats.FactorCarryingSpeed;
             }
                 
             var upperBodyAimDirection = new Vector3(_lastMovementBeforeZero.x, 0f, _lastMovementBeforeZero.y).normalized;
             var targetRotation = Quaternion.LookRotation(new Vector3(_lastMovementBeforeZero.x, 0, _lastMovementBeforeZero.y));
             
-            if (_isAiming)
+            if (_playerData.IsAiming)
             {
-                movement *= _factorAimingSpeed;
+                movement *= _playerData.PlayerBaseStats.FactorAimingSpeed;
 
                 upperBodyAimDirection = new Vector3(_aiming.x, 0f, _aiming.y).normalized;
 
@@ -183,30 +107,30 @@ namespace Hugo.I.Scripts.Player
                 }
             }
             
-            _characterController.Move(movement * (_moveSpeed * Time.deltaTime));
+            _characterController.Move(movement * (_playerData.PlayerBaseStats.MoveSpeed * Time.deltaTime));
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
-            _upperBodyAimGameObject.transform.position = transform.position + new Vector3(
+            _playerData.UpperBodyAimGameObject.transform.position = transform.position + new Vector3(
                 upperBodyAimDirection.x * 1f,
                 upperBodyAimDirection.y + 1f, 
                 upperBodyAimDirection.z * 1f);
             
             // Reload - Heal
-            if (_wantToReload && _equippedWeapon.CurrentCapacity < _equippedWeapon.WeaponData.Capacity)
+            if (_playerData.WantToReload && _playerData.EquippedWeapon.CurrentCapacity < _playerData.EquippedWeapon.WeaponData.Capacity)
             {
-                if (_lastInteractableReloadHealing.UseEnergy())
+                if (_playerData.LastInteractableReloadHealing.UseEnergy())
                 {
-                    _equippedWeapon.Reload();
+                    _playerData.EquippedWeapon.Reload();
                     
                     // Event
                     Events.Reloading(true);
                 }
             }
 
-            if (_wantToHeal)
+            if (_playerData.WantToHeal)
             {
-                if (_lastInteractableReloadHealing.UseEnergy())
+                if (_playerData.LastInteractableReloadHealing.UseEnergy())
                 {
-                    CurrentHealth += _increaseRateHealth * Time.deltaTime;
+                    _playerData.CurrentHealth += _playerData.PlayerBaseStats.IncreaseRateHealth * Time.deltaTime;
                     
                     // Event
                     Events.Healing(true);
@@ -215,7 +139,7 @@ namespace Hugo.I.Scripts.Player
             
             // Animator Speed
             Vector3 displacement = transform.position - _previousPosition;
-            Velocity = displacement / Time.deltaTime;
+            _velocity = displacement / Time.deltaTime;
 
             Vector3 forward = transform.forward;
             Vector3 right = transform.right;
@@ -225,18 +149,17 @@ namespace Hugo.I.Scripts.Player
             forward.Normalize();
             right.Normalize();
 
-            SignedForwardSpeed = Vector3.Dot(Velocity, forward);
-            SignedRightSpeed = Vector3.Dot(Velocity, right);
+            _signedForwardSpeed = Vector3.Dot(_velocity, forward);
+            _signedRightSpeed = Vector3.Dot(_velocity, right);
 
             _previousPosition = transform.position;
             
             // Animator
-            _animator.SetFloat("SpeedX", SignedForwardSpeed);
-            _animator.SetFloat("SpeedY", SignedRightSpeed);
-            _animator.SetBool("IsAiming", _isAiming);
-            _animator.SetBool("IsShooting", _isShooting);
-            _animator.SetBool("IsInteracting", _isInteracting);
-            // _animator.SetBool("IsDead", _isDead);
+            _animator.SetFloat("SpeedX", _signedForwardSpeed);
+            _animator.SetFloat("SpeedY", _signedRightSpeed);
+            _animator.SetBool("IsAiming", _playerData.IsAiming);
+            _animator.SetBool("IsShooting", _playerData.IsShooting);
+            _animator.SetBool("IsInteracting", _playerData.IsInteracting);
             
             // Events
             Events.Move(_characterController.velocity.magnitude);
@@ -249,10 +172,10 @@ namespace Hugo.I.Scripts.Player
 
         public void OnMove(Vector2 readValue)
         {
-            if (_isDead) return;
+            if (_playerData.IsDead) return;
             
             // Debug.Log("Left Joystick : " + readValue);
-            if (_isInteracting)
+            if (_playerData.IsInteracting)
             {
                 QuitQte();
             }
@@ -267,10 +190,10 @@ namespace Hugo.I.Scripts.Player
 
         public void OnAim(Vector2 readValue)
         {
-            if (_isDead || _isCarrying) return;
+            if (_playerData.IsDead || _playerData.IsCarrying) return;
             
             // Debug.Log("Right Joystick : " + readValue);
-            if (_isInteracting)
+            if (_playerData.IsInteracting)
             {
                 QuitQte();
             }
@@ -279,23 +202,23 @@ namespace Hugo.I.Scripts.Player
             
             if (readValue != Vector2.zero)
             {
-                _isAiming = true;
+                _playerData.IsAiming = true;
             }
             else
             {
-                _isAiming = false;
+                _playerData.IsAiming = false;
             }
         }
         
         public void OnQte(Vector2 readValue)
         {
-            if (_isDead || _isCarrying) return;
+            if (_playerData.IsDead || _playerData.IsCarrying) return;
             
             // Debug.Log("Pad : " + readValue);
-            if (_isInteracting && readValue != Vector2.zero)
+            if (_playerData.IsInteracting && readValue != Vector2.zero)
             {
-                (int advancement, bool isCorrect, bool isFinished) tuple = _actualPadQte.CheckQte(readValue);
-                _playerWorldSpaceDisplayInteractions.DisplayQteAdvancement(tuple.advancement, tuple.isCorrect);
+                (int advancement, bool isCorrect, bool isFinished) tuple = _playerData.ActualPadQte.CheckQte(readValue);
+                _playerData.PlayerWorldSpaceDisplayInteractions.DisplayQteAdvancement(tuple.advancement, tuple.isCorrect);
                 
                 // Events
                 Events.Collecting();
@@ -309,10 +232,10 @@ namespace Hugo.I.Scripts.Player
         
         public void OnSwitchWeapon(float readValue)
         {
-            if (_isDead || _isCarrying) return;
+            if (_playerData.IsDead || _playerData.IsCarrying) return;
             
             // Debug.Log("ButtonNorth : " + readValue);
-            if (_isInteracting)
+            if (_playerData.IsInteracting)
             {
                 QuitQte();
             }
@@ -321,15 +244,15 @@ namespace Hugo.I.Scripts.Player
             
             if (readValue > 0)
             {
-                if (_equippedWeapon.WeaponData._weaponTypesEnum == WeaponTypesEnum.Revolver)
+                if (_playerData.EquippedWeapon.WeaponData._weaponTypesEnum == WeaponTypesEnum.Revolver)
                 {
-                    _equippedWeapon.gameObject.SetActive(false);
-                    _equippedWeapon = _rifleWeapon;
+                    _playerData.EquippedWeapon.gameObject.SetActive(false);
+                    _playerData.EquippedWeapon = _playerData.RifleWeapon;
                 }
                 else
                 {
-                    _equippedWeapon.gameObject.SetActive(false);
-                    _equippedWeapon = _revolverWeapon;
+                    _playerData.EquippedWeapon.gameObject.SetActive(false);
+                    _playerData.EquippedWeapon = _playerData.RevolverWeapon;
                 }
                 
                 Invoke(nameof(EnableTwoBonesIk), 0.5f);
@@ -341,38 +264,38 @@ namespace Hugo.I.Scripts.Player
 
         public void OnInteract(float readValue)
         {
-            if (_isDead) return;
+            if (_playerData.IsDead) return;
             
             // Debug.Log("ButtonSouth : " + readValue);
             
             if (readValue > 0)
             {
-                _pressesButtonSouth = true;
+                _playerData.PressesButtonSouth = true;
 
-                if (_isCarrying)
+                if (_playerData.IsCarrying)
                 {
-                    List<GameObject> towersGameObjects = _interactableTriggerCollider.GetGameObjectsWithTag("Tower");
+                    List<GameObject> towersGameObjects = _playerData.InteractableTriggerCollider.GetGameObjectsWithTag("Tower");
 
                     if (towersGameObjects.Count > 0)
                     {
-                        _isCarrying = false;
+                        _playerData.IsCarrying = false;
                         towersGameObjects[0].GetComponent<TowerHandler>().ReceiveShield();
-                        _lastInteractableShield.Disappears();
+                        _playerData.LastInteractableShield.Disappears();
                         return;
                     }
                 }
 
-                GameObject nearestInteractable = _interactableTriggerCollider.GetNearestObject();
+                GameObject nearestInteractable = _playerData.InteractableTriggerCollider.GetNearestObject();
                 
-                if (nearestInteractable && !_isInteracting)
+                if (nearestInteractable && !_playerData.IsInteracting)
                 {
                     if (nearestInteractable.CompareTag("Resource"))
                     {
                         Debug.Log("Interact with a Resource");
                         if (_movement != Vector2.zero) return;
                         
-                        _lastInteractableResource = nearestInteractable.GetComponent<ResourceHandler>();
-                        if (_lastInteractableResource.CurrentCapacity > 0)
+                        _playerData.LastInteractableResource = nearestInteractable.GetComponent<ResourceHandler>();
+                        if (_playerData.LastInteractableResource.CurrentCapacity > 0)
                         {
                             StartCoroutine(TmeBeforeCollecting("Resource"));
                         }
@@ -385,33 +308,33 @@ namespace Hugo.I.Scripts.Player
                     {
                         Debug.Log("Interact with a Tower");
                         
-                        _lastInteractableTower = nearestInteractable.GetComponent<TowerHandler>();
-                        _inventory = _lastInteractableTower.ReceiveResources(_inventory);
+                        _playerData.LastInteractableTower = nearestInteractable.GetComponent<TowerHandler>();
+                        _playerData.Inventory = _playerData.LastInteractableTower.ReceiveResources(_playerData.Inventory);
                     }
                     if (nearestInteractable.CompareTag("Reload"))
                     {
                         Debug.Log("Interact with a Reload");
                         if (_movement != Vector2.zero) return;
                         
-                        _lastInteractableReloadHealing = nearestInteractable.GetComponent<ReloadHealingHandler>();
-                        _wantToReload = true;
+                        _playerData.LastInteractableReloadHealing = nearestInteractable.GetComponent<ReloadHealingHandler>();
+                        _playerData.WantToReload = true;
                     }
                     if (nearestInteractable.CompareTag("Heal"))
                     {
                         Debug.Log("Interact with a Heal");
                         if (_movement != Vector2.zero) return;
                         
-                        _lastInteractableReloadHealing = nearestInteractable.GetComponent<ReloadHealingHandler>();
-                        _wantToHeal = true;
+                        _playerData.LastInteractableReloadHealing = nearestInteractable.GetComponent<ReloadHealingHandler>();
+                        _playerData.WantToHeal = true;
                     }
                     if (nearestInteractable.CompareTag("PowerPlant"))
                     {
                         Debug.Log("Interact with a PowerPlant");
                         if (_movement != Vector2.zero) return;
                         
-                        _lastInteractablePowerPlant = nearestInteractable.GetComponent<PowerPlantHandler>();
+                        _playerData.LastInteractablePowerPlant = nearestInteractable.GetComponent<PowerPlantHandler>();
                         
-                        if (!_lastInteractablePowerPlant.IsRepaired)
+                        if (!_playerData.LastInteractablePowerPlant.IsRepaired)
                         {
                             StartCoroutine(TmeBeforeCollecting("PowerPlant"));
                         }
@@ -420,18 +343,18 @@ namespace Hugo.I.Scripts.Player
                     {
                         Debug.Log("Interact with a Shield");
 
-                        _lastInteractableShield = nearestInteractable.GetComponent<ShieldHandler>();
+                        _playerData.LastInteractableShield = nearestInteractable.GetComponent<ShieldHandler>();
 
-                        if (!_isCarrying)
+                        if (!_playerData.IsCarrying)
                         {
-                            _isCarrying = true;
-                            _lastInteractableShield.Carrie(_carrieShieldTransform);
-                            _playerWorldSpaceDisplayInteractions.HideInteractionsButton();
+                            _playerData.IsCarrying = true;
+                            _playerData.LastInteractableShield.Carrie(_playerData.CarrieShieldTransform);
+                            _playerData.PlayerWorldSpaceDisplayInteractions.HideInteractionsButton();
                         }
                         else
                         {
-                            _isCarrying = false;
-                            _lastInteractableShield.Drop();
+                            _playerData.IsCarrying = false;
+                            _playerData.LastInteractableShield.Drop();
                         }
                     }
                     if (nearestInteractable.CompareTag("Lobby"))
@@ -445,12 +368,12 @@ namespace Hugo.I.Scripts.Player
             }
             else
             {
-                _pressesButtonSouth = false;
-                _wantToReload = false;
-                _wantToHeal = false;
+                _playerData.PressesButtonSouth = false;
+                _playerData.WantToReload = false;
+                _playerData.WantToHeal = false;
                 
                 // Display
-                _playerWorldSpaceDisplayInteractions.ResetInteractionButtonFill();
+                _playerData.PlayerWorldSpaceDisplayInteractions.ResetInteractionButtonFill();
                 
                 // Events
                 Events.Reloading(false);
@@ -460,10 +383,10 @@ namespace Hugo.I.Scripts.Player
 
         public void OnPush(float readValue)
         {
-            if (_isDead || _isCarrying) return;
+            if (_playerData.IsDead || _playerData.IsCarrying) return;
             
             // Debug.Log("ButtonWest : " + readValue);
-            if (_isInteracting)
+            if (_playerData.IsInteracting)
             {
                 QuitQte();
             }
@@ -473,9 +396,9 @@ namespace Hugo.I.Scripts.Player
                 _playerInputHandler.InputAreEnable = false;
                 
                 _playerTwoBonesIkHandler.DisableTwoBonesIk();
-                _equippedWeapon.gameObject.SetActive(false);
+                _playerData.EquippedWeapon.gameObject.SetActive(false);
                 
-                StartCoroutine(SetEnableInputs(true, _pushDuration));
+                StartCoroutine(SetEnableInputs(true, _playerData.PlayerBaseStats.PushDuration));
                 
                 // Animator
                 _animator.SetTrigger("Push");
@@ -487,24 +410,24 @@ namespace Hugo.I.Scripts.Player
 
         public void OnShoot(float readValue)
         {
-            if (_isDead || _isCarrying) return;
+            if (_playerData.IsDead || _playerData.IsCarrying) return;
             
             // Debug.Log("R2 : " + readValue);
-            if (_isInteracting)
+            if (_playerData.IsInteracting)
             {
                 QuitQte();
             }
 
             if (Mathf.Approximately(readValue, 1))
             {
-                _isShooting = true;
+                _playerData.IsShooting = true;
             }
             else
             {
-                _isShooting = false;
+                _playerData.IsShooting = false;
             }
             
-            _equippedWeapon.Shoot(readValue);
+            _playerData.EquippedWeapon.Shoot(readValue);
         }
 
         public void OnStart(float readValue)
@@ -517,80 +440,81 @@ namespace Hugo.I.Scripts.Player
 
         public (float, float, WeaponHandler, Dictionary<ResourcesEnum, int>, int, int, int) GetCanvasHudData()
         {
-            return (_maxHealth, CurrentHealth, _equippedWeapon, _inventory, _maxStone, _maxMetal, _maxCircuit);
+            return (_playerData.PlayerBaseStats.MaxHealth, _playerData.CurrentHealth, _playerData.EquippedWeapon, _playerData.Inventory, 
+                _playerData.PlayerBaseStats.MaxStone, _playerData.PlayerBaseStats.MaxMetal, _playerData.PlayerBaseStats.MaxCircuit);
         }
 
         public (float, float, float, float) GetCanvasWorldSpaceData()
         {
-            return (_maxHealth, CurrentHealth, _equippedWeapon.WeaponData.OverheatingLimit,
-                _equippedWeapon.CurrentOverheating);
+            return (_playerData.PlayerBaseStats.MaxHealth, _playerData.CurrentHealth, _playerData.EquippedWeapon.WeaponData.OverheatingLimit,
+                _playerData.EquippedWeapon.CurrentOverheating);
         }
         
         private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
             if (arg0.name == "LobbyTest")
             {
-                transform.position = GameManager.Instance.SpawnPointsLobby[PlayerId];
+                transform.position = GameManager.Instance.SpawnPointsLobby[_playerData.PlayerId];
                 
             }
             else if (arg0.name == "InGame_Test")
             {
-                transform.position = GameManager.Instance.SpawnPointsInGame[PlayerId];
+                transform.position = GameManager.Instance.SpawnPointsInGame[_playerData.PlayerId];
             }
             
             _playerInputHandler.InputAreEnable = true;
-            _canvasHandler.OnSceneLoaded();
-            _playerWorldSpaceDisplayInteractions.HideInteractionsButton();
+            _playerData.CanvasHandler.OnSceneLoaded();
+            _playerData.PlayerWorldSpaceDisplayInteractions.HideInteractionsButton();
             
-            _inventory[ResourcesEnum.Stone] = 200;
-            _inventory[ResourcesEnum.Metal] = 200;
-            _inventory[ResourcesEnum.ElectricalCircuit] = 200;
+            _playerData.Inventory[ResourcesEnum.Stone] = 200;
+            _playerData.Inventory[ResourcesEnum.Metal] = 200;
+            _playerData.Inventory[ResourcesEnum.ElectricalCircuit] = 200;
         }
 
         private IEnumerator TmeBeforeCollecting(string interactableName)
         {
             float time = 0f;
-            while (_pressesButtonSouth)
+            while (_playerData.PressesButtonSouth)
             {
                 time += 0.01f;
-                _playerWorldSpaceDisplayInteractions.UpdateInteractionButtonFill(time, _timeBeforeCollecting);
+                _playerData.PlayerWorldSpaceDisplayInteractions.UpdateInteractionButtonFill(time, _playerData.PlayerBaseStats.TimeBeforeCollecting);
 
-                if (time >= _timeBeforeCollecting)
+                if (time >= _playerData.PlayerBaseStats.TimeBeforeCollecting)
                 {
-                    _isInteracting = true;
-                    _actualInteractableName = interactableName;
+                    _playerData.IsInteracting = true;
+                    _playerData.ActualInteractableName = interactableName;
                     
                     _playerTwoBonesIkHandler.DisableTwoBonesIk();
-                    _equippedWeapon.gameObject.SetActive(false);
+                    _playerData.EquippedWeapon.gameObject.SetActive(false);
 
                     if (interactableName == "Resource")
                     {
-                        (ResourcesEnum, int) resource = _lastInteractableResource.ResourcesICanCollect();
+                        (ResourcesEnum, int) resource = _playerData.LastInteractableResource.ResourcesICanCollect();
                         int size = 0;
                         
                         if (resource.Item1 == ResourcesEnum.Stone)
                         {
-                            size = Mathf.Min(_maxStone - _inventory[resource.Item1], resource.Item2);
+                            size = Mathf.Min(_playerData.PlayerBaseStats.MaxStone - _playerData.Inventory[resource.Item1], resource.Item2);
                         }
                         if (resource.Item1 == ResourcesEnum.Metal)
                         {
-                            size = Mathf.Min(_maxMetal - _inventory[resource.Item1], resource.Item2);
+                            size = Mathf.Min(_playerData.PlayerBaseStats.MaxMetal - _playerData.Inventory[resource.Item1], resource.Item2);
                         }
                         if (resource.Item1 == ResourcesEnum.ElectricalCircuit)
                         {
-                            size = Mathf.Min(_maxCircuit - _inventory[resource.Item1], resource.Item2);
+                            size = Mathf.Min(_playerData.PlayerBaseStats.MaxCircuit - _playerData.Inventory[resource.Item1], resource.Item2);
                         }
                         
-                        _actualPadQte = new PadQte(size);
+                        _playerData.ActualPadQte = new PadQte(size);
                     }
                     if (interactableName == "PowerPlant")
                     {
-                        _actualPadQte = new PadQte(_lastInteractablePowerPlant.QteSize);
+                        _playerData.ActualPadQte = new PadQte(_playerData.LastInteractablePowerPlant.QteSize);
                     }
                     
                     // Display
-                    _playerWorldSpaceDisplayInteractions.HideInteractionsButton();
-                    _playerWorldSpaceDisplayInteractions.DisplayQteButton(_actualPadQte.Qte);
+                    _playerData.PlayerWorldSpaceDisplayInteractions.HideInteractionsButton();
+                    _playerData.PlayerWorldSpaceDisplayInteractions.DisplayQteButton(_playerData.ActualPadQte.Qte);
                     yield break;
                 }
                 yield return new WaitForSeconds(0.01f);
@@ -599,27 +523,27 @@ namespace Hugo.I.Scripts.Player
 
         private void QuitQte()
         {
-            _isInteracting = false;
+            _playerData.IsInteracting = false;
             
-            _playerTwoBonesIkHandler.EnableTwoBonesIk(_equippedWeapon.WeaponData);
-            _equippedWeapon.gameObject.SetActive(true);
+            _playerTwoBonesIkHandler.EnableTwoBonesIk(_playerData.EquippedWeapon.WeaponData);
+            _playerData.EquippedWeapon.gameObject.SetActive(true);
             
-            if (_actualInteractableName == "Resource")
+            if (_playerData.ActualInteractableName == "Resource")
             {
-                (ResourcesEnum resource, int value) tupleResource = _lastInteractableResource.GetResources(_actualPadQte.Score);
-                _inventory[tupleResource.resource] += tupleResource.value;
+                (ResourcesEnum resource, int value) tupleResource = _playerData.LastInteractableResource.GetResources(_playerData.ActualPadQte.Score);
+                _playerData.Inventory[tupleResource.resource] += tupleResource.value;
             }
-            if (_actualInteractableName == "PowerPlant")
+            if (_playerData.ActualInteractableName == "PowerPlant")
             {
-                if (_actualPadQte.Score == _lastInteractablePowerPlant.QteSize)
+                if (_playerData.ActualPadQte.Score == _playerData.LastInteractablePowerPlant.QteSize)
                 {
-                    _lastInteractablePowerPlant.Repair();
+                    _playerData.LastInteractablePowerPlant.Repair();
                 }
             }
             
             // Display
-            _playerWorldSpaceDisplayInteractions.HideQteButton();
-            _playerWorldSpaceDisplayInteractions.DisplayInteractionsButton();
+            _playerData.PlayerWorldSpaceDisplayInteractions.HideQteButton();
+            _playerData.PlayerWorldSpaceDisplayInteractions.DisplayInteractionsButton();
         }
 
         private IEnumerator SetEnableInputs(bool enable, float duration)
@@ -627,15 +551,15 @@ namespace Hugo.I.Scripts.Player
             yield return new WaitForSeconds(duration);
             _playerInputHandler.InputAreEnable = enable;
             
-            _playerTwoBonesIkHandler.EnableTwoBonesIk(_equippedWeapon.WeaponData);
-            _equippedWeapon.gameObject.SetActive(true);
+            _playerTwoBonesIkHandler.EnableTwoBonesIk(_playerData.EquippedWeapon.WeaponData);
+            _playerData.EquippedWeapon.gameObject.SetActive(true);
         }
 
         public void TakeDamage(float damage)
         {
-            if (_isDead) return;
+            if (_playerData.IsDead) return;
             
-            CurrentHealth -= damage;
+            _playerData.CurrentHealth -= damage;
             
             // Animator
             _animator.SetTrigger("TakeDamage");
@@ -647,38 +571,38 @@ namespace Hugo.I.Scripts.Player
         public void ApplyPush()
         {
             List<GameObject> enemiesGameObjects = new List<GameObject>();
-            enemiesGameObjects = _repelTriggerCollider.GetGameObjectsWithTag("Enemy");
+            enemiesGameObjects = _playerData.RepelTriggerCollider.GetGameObjectsWithTag("Enemy");
 
             Debug.Log("Enemy pushed : " + enemiesGameObjects.Count);
             foreach (GameObject enemy in enemiesGameObjects)
             {
                 Vector3 direction = (enemy.transform.position - transform.position).normalized;
-                enemy.GetComponent<EnemyAIHandler>().IsPushed(direction, _pushForce, _pushDuration);
+                enemy.GetComponent<EnemyAIHandler>().IsPushed(direction, _playerData.PlayerBaseStats.PushForce, _playerData.PlayerBaseStats.PushDuration);
             } 
         }
 
         private void EnableTwoBonesIk()
         {
-            _playerTwoBonesIkHandler.EnableTwoBonesIk(_equippedWeapon.WeaponData);
-            _equippedWeapon.gameObject.SetActive(true);
+            _playerTwoBonesIkHandler.EnableTwoBonesIk(_playerData.EquippedWeapon.WeaponData);
+            _playerData.EquippedWeapon.gameObject.SetActive(true);
         }
 
         public void SetUp(int id, PlayerBaseData playerBaseData)
         {
-            PlayerId = id;
-            _circleImage.color = playerBaseData.Color;
+            _playerData.PlayerId = id;
+            _playerData.CircleImage.color = playerBaseData.Color;
         }
 
         private void Die()
         {
             Debug.Log("Die");
             _playerTwoBonesIkHandler.DisableTwoBonesIk();
-            _equippedWeapon.gameObject.SetActive(false);
+            _playerData.EquippedWeapon.gameObject.SetActive(false);
             
             GameManager.Instance.APlayerDie(gameObject);
             Destroy(gameObject, 2f);
             
-            _isDead = true;
+            _playerData.IsDead = true;
             
             // Animation
             _animator.SetTrigger("IsDead");
