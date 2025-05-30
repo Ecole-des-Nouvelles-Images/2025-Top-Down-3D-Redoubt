@@ -33,7 +33,7 @@ namespace Hugo.I.Scripts.Interactable.PowerPlant
             {
                 IsRepaired = true;
                 GameManager.Instance.IsPowerPlantRepairs = true;
-                GameManager.Instance.TriggerAction();
+                GameManager.Instance.PowerPlantRestore();
             }
             
             Debug.Log("Repair advancement : " + _repairedAdvancement + ". Is repaired : " + IsRepaired);

@@ -1319,7 +1319,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerController: {fileID: 0}
-  _playerIcon: {fileID: 0}
+  _playerIcon: {fileID: 8200660573500862914}
+  _playerNumber: {fileID: 2982771419246695650}
   _playerHealthImage: {fileID: 5182816625297626951}
   _playerEnergyBackGroundImage: {fileID: 2610785612204813094}
   _playerEnergyFillImage: {fileID: 5837924407726448560}
@@ -1329,6 +1330,16 @@ MonoBehaviour:
   _playerMaxMetalText: {fileID: 6043697545427674838}
   _playerCurrentCircuitText: {fileID: 1054841997826115283}
   _playerMaxCircuitText: {fileID: 7538972504526685183}
+  _playerIconSprites:
+  - {fileID: 21300000, guid: c9f87e18aa192a14b8d3465d863788f1, type: 3}
+  - {fileID: 21300000, guid: 393cdca0a4ffaf44980bc805a3d0aa5e, type: 3}
+  - {fileID: 21300000, guid: 53bed36221c50324ca66a8e245146e45, type: 3}
+  - {fileID: 21300000, guid: f62b2de8b4630dc4bbbef74e8b176333, type: 3}
+  _playerNumbersSprite:
+  - {fileID: 21300000, guid: c26fa2607bc945344b014cad8b92c206, type: 3}
+  - {fileID: 21300000, guid: d6bcef9e7f067274a844ade210f07e19, type: 3}
+  - {fileID: 21300000, guid: 41e17cd2d647b634da976568a70e8d31, type: 3}
+  - {fileID: 21300000, guid: 2f3b933413eff3848b91d6606fccb4c8, type: 3}
   _revolverBackground: {fileID: 21300000, guid: 004b49fbb9717b548a3f84f3c79fce48, type: 3}
   _revolverFill: {fileID: 21300000, guid: 097667f10df22d94982994a54e81f525, type: 3}
   _riffleBackground: {fileID: 21300000, guid: 86f4f1376c13e5c4192de9917e9f8b18, type: 3}

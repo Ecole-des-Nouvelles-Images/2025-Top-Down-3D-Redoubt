@@ -29,11 +29,11 @@ namespace Hugo.I.Scripts.Game
         public TowerHandler ActualTowerGameObject;
 
         // Events
-        public event Action OnTriggerActive;
-        public void TriggerAction()
-        {
-            OnTriggerActive?.Invoke();
-        }
+        public event Action OnPowerPlantRestore;
+        public void PowerPlantRestore() => OnPowerPlantRestore?.Invoke();
+        
+        public event Action OnStart;
+        public void Start() => OnStart?.Invoke();
         
         // Game over
         public void APlayerDie(GameObject player)
@@ -81,9 +81,14 @@ namespace Hugo.I.Scripts.Game
             SceneManager.LoadScene(index);
         }
 
-        private void ResetGame()
+        public void ResetGame()
         {
             IsPowerPlantRepairs = false;
+
+            foreach (var player in Players)
+            {
+                player.GetComponent<PlayerController>().ResetPlayer();
+            }
         }
     }
 }

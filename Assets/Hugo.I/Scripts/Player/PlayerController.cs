@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Hugo.I.Scripts.Enemies;
 using Hugo.I.Scripts.Game;
 using Hugo.I.Scripts.Interactable.PowerPlant;
@@ -8,7 +9,6 @@ using Hugo.I.Scripts.Interactable.Tower;
 using Hugo.I.Scripts.Shield;
 using Hugo.I.Scripts.Utils;
 using Hugo.I.Scripts.Weapon;
-using Unity.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -447,12 +447,13 @@ namespace Hugo.I.Scripts.Player
             if (readValue > 0)
             {
                 Debug.Log("Start");
+                GameManager.Instance.Start();
             }
         }
 
-        public (float, float, WeaponHandler, Dictionary<ResourcesEnum, int>, int, int, int) GetCanvasHudData()
+        public (int, float, float, WeaponHandler, Dictionary<ResourcesEnum, int>, int, int, int) GetCanvasHudData()
         {
-            return (_playerData.PlayerBaseStats.MaxHealth, _playerData.CurrentHealth, _playerData.EquippedWeapon, _playerData.Inventory, 
+            return (_playerData.PlayerId, _playerData.PlayerBaseStats.MaxHealth, _playerData.CurrentHealth, _playerData.EquippedWeapon, _playerData.Inventory, 
                 _playerData.PlayerBaseStats.MaxStone, _playerData.PlayerBaseStats.MaxMetal, _playerData.PlayerBaseStats.MaxCircuit);
         }
 
@@ -478,9 +479,9 @@ namespace Hugo.I.Scripts.Player
             _playerData.CanvasHandler.OnSceneLoaded();
             _playerData.PlayerWorldSpaceDisplayInteractions.HideInteractionsButton();
             
-            _playerData.Inventory[ResourcesEnum.Stone] = 200;
-            _playerData.Inventory[ResourcesEnum.Metal] = 200;
-            _playerData.Inventory[ResourcesEnum.ElectricalCircuit] = 200;
+            _playerData.Inventory[ResourcesEnum.Stone] = 0;
+            _playerData.Inventory[ResourcesEnum.Metal] = 0;
+            _playerData.Inventory[ResourcesEnum.ElectricalCircuit] = 0;
         }
 
         private IEnumerator TmeBeforeCollecting(string interactableName)
@@ -608,6 +609,43 @@ namespace Hugo.I.Scripts.Player
         {
             _playerData.PlayerId = id;
             _playerData.CircleImage.color = playerBaseData.Color;
+        }
+
+        public void SetInput(bool enable)
+        {
+            _playerInputHandler.InputAreEnable = enable;
+        }
+
+        public void ResetPlayer()
+        {
+            _playerData.CurrentHealth = _playerData.PlayerBaseStats.MaxHealth;
+            
+            _playerData.IsShooting = false;
+            _playerData.IsAiming = false;
+            _playerData.IsInteracting = false;
+            _playerData.PressesButtonSouth = false;
+            _playerData.WantToReload = false;
+            _playerData.WantToHeal = false;
+            _playerData.IsCarrying = false;
+            _playerData.IsDead = false;
+
+            foreach (var key in _playerData.Inventory.Keys.ToList())
+            {
+                _playerData.Inventory[key] = 0;
+            }
+            
+            _playerData.RevolverWeapon.ResetWeapon();
+            _playerData.RifleWeapon.ResetWeapon();
+            
+            _playerData.EquippedWeapon = _playerData.RevolverWeapon;
+            _playerData.EquippedWeapon.gameObject.SetActive(true);
+            
+            _playerTwoBonesIkHandler.EnableTwoBonesIk(_playerData.EquippedWeapon.WeaponData);
+            
+            _playerData.PlayerWorldSpaceDisplayInteractions.HideInteractionsButton();
+            _playerData.PlayerWorldSpaceDisplayInteractions.HideQteButton();
+            
+            OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
         }
 
         private void Die()

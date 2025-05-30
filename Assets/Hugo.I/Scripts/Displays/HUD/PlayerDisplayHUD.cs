@@ -13,7 +13,8 @@ namespace Hugo.I.Scripts.Displays.HUD
         public PlayerController PlayerController;
         
         [Header("Refrences")]
-        [SerializeField] private Sprite _playerIcon;
+        [SerializeField] private Image _playerIcon;
+        [SerializeField] private Image _playerNumber;
         [SerializeField] private Image _playerHealthImage;
         [SerializeField] private Image _playerEnergyBackGroundImage;
         [SerializeField] private Image _playerEnergyFillImage;
@@ -25,6 +26,8 @@ namespace Hugo.I.Scripts.Displays.HUD
         [SerializeField] private TextMeshProUGUI _playerMaxCircuitText;
         
         [Header("Sprites")]
+        [SerializeField] private List<Sprite> _playerIconSprites;
+        [SerializeField] private List<Sprite> _playerNumbersSprite;
         [SerializeField] private Sprite _revolverBackground;
         [SerializeField] private Sprite _revolverFill;
         [SerializeField] private Sprite _riffleBackground;
@@ -34,9 +37,13 @@ namespace Hugo.I.Scripts.Displays.HUD
         {
             if (!PlayerController) return;
             
-            (float maxHealth, float currentHealth, WeaponHandler equippedWeapon, 
+            (int playerId, float maxHealth, float currentHealth, WeaponHandler equippedWeapon, 
                 Dictionary<ResourcesEnum, int> inventory, int maxStone, int maxMetal, int maxCircuit) playerData
                     = PlayerController.GetCanvasHudData();
+            
+            // Icon and Number
+            _playerIcon.sprite = _playerIconSprites[playerData.playerId];
+            _playerNumber.sprite = _playerNumbersSprite[playerData.playerId];
             
             // Health
             float playerHealthNormalized =

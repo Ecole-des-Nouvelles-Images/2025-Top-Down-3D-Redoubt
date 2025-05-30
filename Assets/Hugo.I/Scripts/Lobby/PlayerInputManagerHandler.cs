@@ -7,6 +7,9 @@ namespace Hugo.I.Scripts.Lobby
 {
     public class PlayerInputManagerHandler : MonoBehaviour
     {
+        [Header("References")]
+        [SerializeField] private LaunchGameHandler _launchGameHandler;
+        
         private PlayerInputManager _playerInputManager;
 
         private void Awake()
@@ -29,6 +32,8 @@ namespace Hugo.I.Scripts.Lobby
             GameManager.Instance.Players.Add(playerInput.gameObject);
             int index = playerInput.playerIndex;
             playerInput.gameObject.GetComponent<PlayerController>().SetUp(index, GameManager.Instance.PlayersBaseData[index]);
+            
+            _launchGameHandler.StopMyCoroutine();
         }
     }
 }

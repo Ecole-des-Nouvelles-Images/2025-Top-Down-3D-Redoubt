@@ -153,5 +153,11 @@ namespace Hugo.I.Scripts.Weapon
                 yield return new WaitForSeconds(WeaponData.OverheatingDecreaseSpeed);
             }
         }
+
+        public void ResetWeapon()
+        {
+            _currentCapacity = WeaponData.Capacity;
+            CurrentOverheating = 0;
+        }
     }
 }

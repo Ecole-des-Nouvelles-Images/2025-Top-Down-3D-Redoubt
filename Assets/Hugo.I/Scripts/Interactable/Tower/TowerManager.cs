@@ -47,12 +47,12 @@ namespace Hugo.I.Scripts.Interactable.Tower
 
         private void OnEnable()
         {
-            GameManager.Instance.OnTriggerActive += ActiveReloadZone;
+            GameManager.Instance.OnPowerPlantRestore += ActiveReloadZone;
         }
         
         private void OnDisable()
         {
-            GameManager.Instance.OnTriggerActive -= ActiveReloadZone;
+            GameManager.Instance.OnPowerPlantRestore -= ActiveReloadZone;
         }
 
         public void UpgradeTower(GameObject currentTower)
