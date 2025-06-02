@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6442428816760055628}
   - component: {fileID: 8523952564528539700}
   - component: {fileID: 767388398929677041}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 6082306818968417175}
   - component: {fileID: 4527180943515490086}
   - component: {fileID: 8352207955008956590}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 3969608263040834554}
   - component: {fileID: 3962991900750581339}
   - component: {fileID: 857519134160752982}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Text (TMP)_Rest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -606,7 +606,7 @@ GameObject:
   - component: {fileID: 6443175263118195229}
   - component: {fileID: 4252462650705427554}
   - component: {fileID: 2018178906249554954}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Resource_Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
