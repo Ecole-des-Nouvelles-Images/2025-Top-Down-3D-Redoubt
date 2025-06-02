@@ -47,11 +47,12 @@ namespace Hugo.I.Scripts.Lobby
         private IEnumerator LaunchGame()
         {
             yield return new WaitForSeconds(_timeToWait);
+            SceneManager.LoadScene(2);
+            
             foreach (var player in GameManager.Instance.Players)
             {
                 player.GetComponent<PlayerController>().ResetPlayer();
             }
-            SceneManager.LoadScene(2);
         }
 
         public void StopMyCoroutine()

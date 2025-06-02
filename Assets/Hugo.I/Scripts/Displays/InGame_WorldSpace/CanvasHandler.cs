@@ -25,6 +25,8 @@ namespace Hugo.I.Scripts.Displays.InGame_WorldSpace
 
         private void Update()
         {
+            if (_mainCameraTransform == null) return;
+            
             // Look
             float xAngle = Quaternion.LookRotation(transform.position - _mainCameraTransform.position).eulerAngles.x;
             float yAngle = _mainCameraTransform.eulerAngles.y;

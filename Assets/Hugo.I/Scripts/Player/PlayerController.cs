@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Hugo.I.Scripts.Enemies;
 using Hugo.I.Scripts.Game;
 using Hugo.I.Scripts.Interactable.PowerPlant;
@@ -44,7 +43,7 @@ namespace Hugo.I.Scripts.Player
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            // SceneManager.sceneLoaded += OnSceneLoaded;
             
             _characterController = GetComponent<CharacterController>();
             _playerInputHandler = GetComponent<PlayerInputHandler>();
@@ -58,7 +57,7 @@ namespace Hugo.I.Scripts.Player
 
         private void Start()
         {
-            OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
+            OnSceneLoaded();
             _previousPosition = transform.position;
         }
 
@@ -118,9 +117,6 @@ namespace Hugo.I.Scripts.Player
                 if (_playerData.LastInteractableReloadHealing.UseEnergy())
                 {
                     _playerData.EquippedWeapon.Reload();
-                    
-                    // Event
-                    Events.Reloading(true);
                 }
             }
 
@@ -129,9 +125,6 @@ namespace Hugo.I.Scripts.Player
                 if (_playerData.LastInteractableReloadHealing.UseEnergy())
                 {
                     _playerData.CurrentHealth += _playerData.PlayerBaseStats.IncreaseRateHealth * Time.deltaTime;
-                    
-                    // Event
-                    Events.Healing(true);
                 }
             }
             
@@ -175,11 +168,6 @@ namespace Hugo.I.Scripts.Player
             Events.Move(_characterController.velocity.magnitude);
             
             _previousPosition = transform.position;
-        }
-
-        private void OnDestroy()
-        {
-            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
         public void OnMove(Vector2 readValue)
@@ -330,6 +318,9 @@ namespace Hugo.I.Scripts.Player
                         
                         _playerData.LastInteractableReloadHealing = nearestInteractable.GetComponent<ReloadHealingHandler>();
                         _playerData.WantToReload = true;
+                        
+                        // Event
+                        Events.Reloading(true);
                     }
                     if (nearestInteractable.CompareTag("Heal"))
                     {
@@ -338,6 +329,9 @@ namespace Hugo.I.Scripts.Player
                         
                         _playerData.LastInteractableReloadHealing = nearestInteractable.GetComponent<ReloadHealingHandler>();
                         _playerData.WantToHeal = true;
+                        
+                        // Event
+                        Events.Healing(true);
                     }
                     if (nearestInteractable.CompareTag("PowerPlant"))
                     {
@@ -461,27 +455,6 @@ namespace Hugo.I.Scripts.Player
         {
             return (_playerData.PlayerBaseStats.MaxHealth, _playerData.CurrentHealth, _playerData.EquippedWeapon.WeaponData.OverheatingLimit,
                 _playerData.EquippedWeapon.CurrentOverheating);
-        }
-        
-        private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
-        {
-            if (arg0.name == "LobbyTest")
-            {
-                transform.position = GameManager.Instance.SpawnPointsLobby[_playerData.PlayerId];
-                
-            }
-            else if (arg0.name == "InGame_Test")
-            {
-                transform.position = GameManager.Instance.SpawnPointsInGame[_playerData.PlayerId];
-            }
-            
-            _playerInputHandler.InputAreEnable = true;
-            _playerData.CanvasHandler.OnSceneLoaded();
-            _playerData.PlayerWorldSpaceDisplayInteractions.HideInteractionsButton();
-            
-            _playerData.Inventory[ResourcesEnum.Stone] = 0;
-            _playerData.Inventory[ResourcesEnum.Metal] = 0;
-            _playerData.Inventory[ResourcesEnum.ElectricalCircuit] = 0;
         }
 
         private IEnumerator TmeBeforeCollecting(string interactableName)
@@ -629,10 +602,9 @@ namespace Hugo.I.Scripts.Player
             _playerData.IsCarrying = false;
             _playerData.IsDead = false;
 
-            foreach (var key in _playerData.Inventory.Keys.ToList())
-            {
-                _playerData.Inventory[key] = 0;
-            }
+            _playerData.Inventory[ResourcesEnum.Stone] = 0;
+            _playerData.Inventory[ResourcesEnum.Metal] = 0;
+            _playerData.Inventory[ResourcesEnum.ElectricalCircuit] = 0;
             
             _playerData.RevolverWeapon.ResetWeapon();
             _playerData.RifleWeapon.ResetWeapon();
@@ -645,7 +617,26 @@ namespace Hugo.I.Scripts.Player
             _playerData.PlayerWorldSpaceDisplayInteractions.HideInteractionsButton();
             _playerData.PlayerWorldSpaceDisplayInteractions.HideQteButton();
             
-            OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
+            Invoke(nameof(OnSceneLoaded), 0.1f);
+        }
+        
+        private void OnSceneLoaded()
+        {
+            Debug.Log("OnSceneLoaded");
+            if (SceneManager.GetActiveScene().name == "LobbyTest")
+            {
+                Debug.Log("Scene Lobby");
+                transform.position = GameManager.Instance.SpawnPointsLobby[_playerData.PlayerId];
+                
+            }
+            else if (SceneManager.GetActiveScene().name == "InGame_Test")
+            {
+                Debug.Log("Scene InGame");
+                transform.position = GameManager.Instance.SpawnPointsInGame[_playerData.PlayerId];
+            }
+            
+            _playerData.CanvasHandler.OnSceneLoaded();
+            _playerInputHandler.InputAreEnable = true;
         }
 
         private void Die()
