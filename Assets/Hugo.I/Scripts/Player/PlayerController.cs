@@ -356,11 +356,19 @@ namespace Hugo.I.Scripts.Player
                             _playerData.IsCarrying = true;
                             _playerData.LastInteractableShield.Carrie(_playerData.CarrieShieldTransform);
                             _playerData.PlayerWorldSpaceDisplayInteractions.HideInteractionsButton();
+                            
+                            _playerData.EquippedWeapon.gameObject.SetActive(false);
+                            _playerTwoBonesIkHandler.DisableTwoBonesIk();
+                            _playerTwoBonesIkHandler.EnableTwoBonesIkShield();
                         }
                         else
                         {
                             _playerData.IsCarrying = false;
                             _playerData.LastInteractableShield.Drop();
+                            
+                            _playerData.EquippedWeapon.gameObject.SetActive(true);
+                            _playerTwoBonesIkHandler.DisableTwoBonesIk();
+                            _playerTwoBonesIkHandler.EnableTwoBonesIkWeapons(_playerData.EquippedWeapon.WeaponData);
                         }
                     }
                     if (nearestInteractable.CompareTag("Lobby"))
@@ -511,7 +519,7 @@ namespace Hugo.I.Scripts.Player
         {
             _playerData.IsInteracting = false;
             
-            _playerTwoBonesIkHandler.EnableTwoBonesIk(_playerData.EquippedWeapon.WeaponData);
+            _playerTwoBonesIkHandler.EnableTwoBonesIkWeapons(_playerData.EquippedWeapon.WeaponData);
             _playerData.EquippedWeapon.gameObject.SetActive(true);
             
             if (_playerData.ActualInteractableName == "Resource")
@@ -537,7 +545,7 @@ namespace Hugo.I.Scripts.Player
             yield return new WaitForSeconds(duration);
             _playerInputHandler.InputAreEnable = enable;
             
-            _playerTwoBonesIkHandler.EnableTwoBonesIk(_playerData.EquippedWeapon.WeaponData);
+            _playerTwoBonesIkHandler.EnableTwoBonesIkWeapons(_playerData.EquippedWeapon.WeaponData);
             _playerData.EquippedWeapon.gameObject.SetActive(true);
         }
 
@@ -574,7 +582,7 @@ namespace Hugo.I.Scripts.Player
 
         private void EnableTwoBonesIk()
         {
-            _playerTwoBonesIkHandler.EnableTwoBonesIk(_playerData.EquippedWeapon.WeaponData);
+            _playerTwoBonesIkHandler.EnableTwoBonesIkWeapons(_playerData.EquippedWeapon.WeaponData);
             _playerData.EquippedWeapon.gameObject.SetActive(true);
         }
 
@@ -602,9 +610,9 @@ namespace Hugo.I.Scripts.Player
             _playerData.IsCarrying = false;
             _playerData.IsDead = false;
 
-            _playerData.Inventory[ResourcesEnum.Stone] = 0;
-            _playerData.Inventory[ResourcesEnum.Metal] = 0;
-            _playerData.Inventory[ResourcesEnum.ElectricalCircuit] = 0;
+            _playerData.Inventory[ResourcesEnum.Stone] = 200;
+            _playerData.Inventory[ResourcesEnum.Metal] = 200;
+            _playerData.Inventory[ResourcesEnum.ElectricalCircuit] = 200;
             
             _playerData.RevolverWeapon.ResetWeapon();
             _playerData.RifleWeapon.ResetWeapon();
@@ -612,7 +620,7 @@ namespace Hugo.I.Scripts.Player
             _playerData.EquippedWeapon = _playerData.RevolverWeapon;
             _playerData.EquippedWeapon.gameObject.SetActive(true);
             
-            _playerTwoBonesIkHandler.EnableTwoBonesIk(_playerData.EquippedWeapon.WeaponData);
+            _playerTwoBonesIkHandler.EnableTwoBonesIkWeapons(_playerData.EquippedWeapon.WeaponData);
             
             _playerData.PlayerWorldSpaceDisplayInteractions.HideInteractionsButton();
             _playerData.PlayerWorldSpaceDisplayInteractions.HideQteButton();

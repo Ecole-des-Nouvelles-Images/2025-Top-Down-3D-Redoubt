@@ -525,6 +525,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _fogHandler: {fileID: 0}
   _enemySpawnerManager: {fileID: 0}
   _terrain: {fileID: 0}
 --- !u!114 &2255367630181133298

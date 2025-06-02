@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Intersections
+  m_Name: M_Intersections_LaunchZone
   m_Shader: {fileID: -6465566751694194690, guid: d06537558d8c63443b30946597c0379a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0

@@ -8,12 +8,16 @@ namespace Hugo.I.Scripts.Player
     public class PlayerTwoBonesIkHandler : MonoBehaviour
     {
         [Header("References")]
+        [Header("Weapons")]
         [SerializeField] private Rig _rightHandHoldRevolver;
         [SerializeField] private Rig _leftHandHoldRevolver;
         [SerializeField] private Rig _rightHandHoldRiffle;
         [SerializeField] private Rig _leftHandHoldRiffle;
+        
+        [Header("Shield")]
+        [SerializeField] private Rig _rightHandHoldShield;
 
-        public void EnableTwoBonesIk(WeaponData weapon)
+        public void EnableTwoBonesIkWeapons(WeaponData weapon)
         {
             if (weapon._weaponTypesEnum == WeaponTypesEnum.Revolver)
             {
@@ -33,6 +37,11 @@ namespace Hugo.I.Scripts.Player
             }
         }
 
+        public void EnableTwoBonesIkShield()
+        {
+            _rightHandHoldShield.weight = 1;
+        }
+
         public void DisableTwoBonesIk()
         {
             Debug.Log("Disable Two Bones Ik");
@@ -40,6 +49,7 @@ namespace Hugo.I.Scripts.Player
             _leftHandHoldRiffle.weight = 0;
             _rightHandHoldRevolver.weight = 0;
             _leftHandHoldRevolver.weight = 0;
+            _rightHandHoldShield.weight = 0;
         }
     }
 }
