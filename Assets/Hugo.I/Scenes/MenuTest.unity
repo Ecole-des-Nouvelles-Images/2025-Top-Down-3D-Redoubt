@@ -4181,22 +4181,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1118549278366441414, guid: 8c15b55af4d092345a648580226e8957, type: 3}
-      propertyPath: PlayersBaseData.Array.data[0].Material
-      value: 
-      objectReference: {fileID: 2100000, guid: f993bae39a4dbf443a537fdcc7cc5c76, type: 2}
-    - target: {fileID: 1118549278366441414, guid: 8c15b55af4d092345a648580226e8957, type: 3}
-      propertyPath: PlayersBaseData.Array.data[1].Material
-      value: 
-      objectReference: {fileID: 2100000, guid: f993bae39a4dbf443a537fdcc7cc5c76, type: 2}
-    - target: {fileID: 1118549278366441414, guid: 8c15b55af4d092345a648580226e8957, type: 3}
-      propertyPath: PlayersBaseData.Array.data[2].Material
-      value: 
-      objectReference: {fileID: 2100000, guid: f993bae39a4dbf443a537fdcc7cc5c76, type: 2}
-    - target: {fileID: 1118549278366441414, guid: 8c15b55af4d092345a648580226e8957, type: 3}
-      propertyPath: PlayersBaseData.Array.data[3].Material
-      value: 
-      objectReference: {fileID: 2100000, guid: f993bae39a4dbf443a537fdcc7cc5c76, type: 2}
     - target: {fileID: 4025738959361213273, guid: 8c15b55af4d092345a648580226e8957, type: 3}
       propertyPath: m_Name
       value: GameManager

@@ -46,17 +46,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Players: []
   PlayersBaseData:
-  - Mesh: {fileID: 0}
-    Material: {fileID: 0}
+  - Material: {fileID: 2100000, guid: 9d854972a9802fe4db3eb0e72427dad8, type: 2}
     Color: {r: 0.30588236, g: 0.5137255, b: 0.68235296, a: 1}
-  - Mesh: {fileID: 0}
-    Material: {fileID: 0}
+  - Material: {fileID: 2100000, guid: 3941e7ebe15e00e47ba202ed042553df, type: 2}
     Color: {r: 0.68235296, g: 0.59607846, b: 0.30588236, a: 1}
-  - Mesh: {fileID: 0}
-    Material: {fileID: 0}
+  - Material: {fileID: 2100000, guid: 21478f2081f592c4ca1b5c89c6312730, type: 2}
     Color: {r: 0.68235296, g: 0.30588236, b: 0.3137255, a: 1}
-  - Mesh: {fileID: 0}
-    Material: {fileID: 0}
+  - Material: {fileID: 2100000, guid: c4c3d955115042f439c2c62d844936a8, type: 2}
     Color: {r: 0.5058824, g: 0.30588236, b: 0.68235296, a: 1}
   SpawnPointsInGame:
   - {x: 5, y: 10, z: 12}
