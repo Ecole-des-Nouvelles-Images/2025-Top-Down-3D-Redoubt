@@ -590,6 +590,7 @@ namespace Hugo.I.Scripts.Player
         {
             _playerData.PlayerId = id;
             _playerData.CircleImage.color = playerBaseData.Color;
+            _playerData._skinnedMeshRenderer.material = playerBaseData.Material;
         }
 
         public void SetInput(bool enable)

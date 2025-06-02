@@ -56,9 +56,12 @@ namespace Hugo.I.Scripts.Player
             { ResourcesEnum.Metal, 0 },
             { ResourcesEnum.ElectricalCircuit, 0 }
         };
-        
+
         [Header("<size=14><color=#E74C3C>   REFERENCES</color></size>")]
         [Space(3)]
+        [Header("<size=13><color=#58D68D>Player Visual References</color></size>")]
+        public SkinnedMeshRenderer _skinnedMeshRenderer;
+        
         [Header("<size=13><color=#58D68D>Player References</color></size>")]
         public GameObject UpperBodyAimGameObject;
         public TriggerCollider InteractableTriggerCollider;
