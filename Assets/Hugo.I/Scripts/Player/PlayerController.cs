@@ -164,9 +164,6 @@ namespace Hugo.I.Scripts.Player
             _animator.SetBool("IsShooting", _playerData.IsShooting);
             _animator.SetBool("IsInteracting", _playerData.IsInteracting);
             
-            // Events
-            Events.Move(_characterController.velocity.magnitude);
-            
             _previousPosition = transform.position;
         }
 
@@ -416,9 +413,6 @@ namespace Hugo.I.Scripts.Player
                 
                 // Animator
                 _animator.SetTrigger("Push");
-                
-                // Events
-                Events.Pushing();
             }
         }
 
@@ -611,13 +605,14 @@ namespace Hugo.I.Scripts.Player
             _playerData.IsCarrying = false;
             _playerData.IsDead = false;
 
-            _playerData.Inventory[ResourcesEnum.Stone] = 200;
-            _playerData.Inventory[ResourcesEnum.Metal] = 200;
-            _playerData.Inventory[ResourcesEnum.ElectricalCircuit] = 200;
+            _playerData.Inventory[ResourcesEnum.Stone] = 0;
+            _playerData.Inventory[ResourcesEnum.Metal] = 0;
+            _playerData.Inventory[ResourcesEnum.ElectricalCircuit] = 0;
             
             _playerData.RevolverWeapon.ResetWeapon();
             _playerData.RifleWeapon.ResetWeapon();
             
+            _playerData.EquippedWeapon.gameObject.SetActive(false);
             _playerData.EquippedWeapon = _playerData.RevolverWeapon;
             _playerData.EquippedWeapon.gameObject.SetActive(true);
             

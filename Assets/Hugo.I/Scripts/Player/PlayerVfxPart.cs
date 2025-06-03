@@ -8,7 +8,7 @@ namespace Hugo.I.Scripts.Player
         [SerializeField] private PlayerController _playerController;
         
         [Header("Vfx Effects")]
-        [SerializeField] private ParticleSystem _vfxMove;
+        [SerializeField] private ParticleSystem _vfxWalk;
         [SerializeField] private ParticleSystem _vfxHealing;
         [SerializeField] private ParticleSystem _vfxReloading;
         [SerializeField] private ParticleSystem _vfxCollecting;
@@ -19,40 +19,30 @@ namespace Hugo.I.Scripts.Player
         {
             if (!_playerController) return;
 
-            _playerController.Events.OnMove += Move;
             _playerController.Events.OnHealing += Healing;
             _playerController.Events.OnReloading += Reloading;
             _playerController.Events.OnCollecting += Collecting;
             _playerController.Events.OnTakingDamage += TakingDamage;
-            _playerController.Events.OnPushing += Pushing;
+            _playerController.Events.OnHitPush += HitPush;
+            _playerController.Events.OnFootStep += FootStep;
         }
 
         private void OnDisable()
         {
             if (!_playerController) return;
             
-            _playerController.Events.OnMove -= Move;
             _playerController.Events.OnHealing -= Healing;
             _playerController.Events.OnReloading -= Reloading;
             _playerController.Events.OnCollecting -= Collecting;
             _playerController.Events.OnTakingDamage -= TakingDamage;
-            _playerController.Events.OnPushing -= Pushing;
+            _playerController.Events.OnHitPush -= HitPush;
+            _playerController.Events.OnFootStep -= FootStep;
         }
         
-        private void Move(float velocity)
+        private void FootStep()
         {
-            if (!_vfxMove) return;
-            
-            bool isMoving = velocity > 0.1f;
-
-            if (isMoving && !_vfxMove.isPlaying)
-            {
-                _vfxMove.Play();
-            }
-            else if (!isMoving && _vfxMove.isPlaying)
-            {
-                _vfxMove.Stop();
-            }
+            if (!_vfxWalk) return;
+            _vfxWalk.Play();
         }
         
         private void Healing(bool isHealing)
@@ -63,7 +53,7 @@ namespace Hugo.I.Scripts.Player
             {
                 _vfxHealing.Play();
             }
-            else if (!isHealing && _vfxMove.isPlaying)
+            else if (!isHealing && _vfxWalk.isPlaying)
             {
                 _vfxHealing.Stop();
             }
@@ -95,7 +85,7 @@ namespace Hugo.I.Scripts.Player
             _vfxTakingDamage.Play();
         }
         
-        private void Pushing()
+        private void HitPush()
         {
             if (!_vfxPushing) return;
             _vfxPushing.Play();

@@ -713,7 +713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerController: {fileID: 5373651512587871272}
-  _vfxMove: {fileID: 2357802937385070723}
+  _vfxWalk: {fileID: 2357802937385070723}
   _vfxHealing: {fileID: 2645058023929386998}
   _vfxReloading: {fileID: 5876154510436437538}
   _vfxCollecting: {fileID: 3907765432275414525}
@@ -3415,11 +3415,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6405094827107552196, guid: b20ae37010efb464883ef3888685dc4c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6405094827107552196, guid: b20ae37010efb464883ef3888685dc4c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6405094827107552196, guid: b20ae37010efb464883ef3888685dc4c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3586,6 +3586,10 @@ PrefabInstance:
     - target: {fileID: 2813601268113929052, guid: 43c44950c33043740b960343d1711ef9, type: 3}
       propertyPath: m_Name
       value: PS_Dust
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410943619988429984, guid: 43c44950c33043740b960343d1711ef9, type: 3}
+      propertyPath: looping
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

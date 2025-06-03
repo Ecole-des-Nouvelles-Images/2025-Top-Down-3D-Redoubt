@@ -183,8 +183,8 @@ MonoBehaviour:
   - {fileID: 6207130491782676643}
   - {fileID: 530293518490801589}
   - {fileID: 8526491768104122324}
-  _totalCredit: 0
-  _spawnRate: 5
+  _totalCredit: 2
+  _spawnRate: 10
   _increaseTotalCreditRate: 40
   IsSpawning: 1
   CurrentCredit: 0
