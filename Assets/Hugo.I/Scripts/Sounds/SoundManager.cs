@@ -18,7 +18,8 @@ namespace Hugo.I.Scripts.Sounds
         
         [Header("<size=13><color=#58D68D>Enemy</color></size>")]
         [SerializeField] public List<AudioClip> EnemyFootStepSounds;
-        
+        [SerializeField] public List<AudioClip> EnemyAttackImpactSounds;
+
         [Header("<size=13><color=#58D68D>Tower</color></size>")]
         [SerializeField] public List<AudioClip> LevelUpSounds;
         [SerializeField] public List<AudioClip> HealingSounds;
@@ -26,9 +27,6 @@ namespace Hugo.I.Scripts.Sounds
         
         [Header("<size=13><color=#58D68D>Resource</color></size>")]
         [SerializeField] public List<AudioClip> BreakingSounds;
-        
-        [Header("<size=13><color=#58D68D>Bullet</color></size>")]
-        [SerializeField] public List<AudioClip> ImpactSounds;
         
         public void PlaySound(GameObject obj, List<AudioClip> clips)
         {

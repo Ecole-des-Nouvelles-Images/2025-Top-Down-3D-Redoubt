@@ -3,6 +3,7 @@ using DG.Tweening;
 using Hugo.I.Scripts.Camera;
 using Hugo.I.Scripts.Enemies;
 using Hugo.I.Scripts.Game;
+using Hugo.I.Scripts.Sounds;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -93,6 +94,9 @@ namespace Hugo.I.Scripts.Interactable.Tower
             
             // Events
             Events.Upgrading();
+            
+            // Sound
+            SoundManager.Instance.PlaySound(gameObject, SoundManager.Instance.LevelUpSounds);
         }
 
         public void TowerReceiveShield()

@@ -1,3 +1,4 @@
+using Hugo.I.Scripts.Sounds;
 using UnityEngine;
 
 namespace Hugo.I.Scripts.Player
@@ -10,6 +11,9 @@ namespace Hugo.I.Scripts.Player
         public void FootStep()
         {
             _playerController.Events.FootStep();
+            
+            // Sound
+            SoundManager.Instance.PlaySound(gameObject, SoundManager.Instance.PlayerFootStepSounds);
         }
 
         public void HitPush()

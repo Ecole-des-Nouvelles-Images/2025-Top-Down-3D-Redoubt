@@ -398,6 +398,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a3df778ea59eb5149b71aeac3b8344ba, type: 3}
   - {fileID: 8300000, guid: b27deeaf255daab4da1d0e8aa390d024, type: 3}
   - {fileID: 8300000, guid: 5587890ca5c10b74289aabc7036f87a6, type: 3}
+  BatImpactSounds:
+  - {fileID: 8300000, guid: b778885163e8dad4195798b23dc54f08, type: 3}
+  - {fileID: 8300000, guid: 0606303627a18114abf5c11c5c1b1bf5, type: 3}
+  - {fileID: 8300000, guid: b777e5ce1cc5f55459131eacf8674f25, type: 3}
   LevelUpSounds:
   - {fileID: 8300000, guid: 359e7ec5e50d1ed4b835c40a672b0ca9, type: 3}
   - {fileID: 8300000, guid: 895b5c5ce21b36c47a347e3d9a60ec64, type: 3}
@@ -407,10 +411,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: eedb1c1f4d374774eb89c5cfc0388570, type: 3}
   BreakingSounds:
   - {fileID: 8300000, guid: ff6e57c59ae0c1040a62c06ab28138ce, type: 3}
-  ImpactSounds:
-  - {fileID: 8300000, guid: b778885163e8dad4195798b23dc54f08, type: 3}
-  - {fileID: 8300000, guid: 0606303627a18114abf5c11c5c1b1bf5, type: 3}
-  - {fileID: 8300000, guid: b777e5ce1cc5f55459131eacf8674f25, type: 3}
 --- !u!4 &708266840
 Transform:
   m_ObjectHideFlags: 0

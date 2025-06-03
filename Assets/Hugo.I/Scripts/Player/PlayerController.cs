@@ -6,6 +6,7 @@ using Hugo.I.Scripts.Interactable.PowerPlant;
 using Hugo.I.Scripts.Interactable.Resources;
 using Hugo.I.Scripts.Interactable.Tower;
 using Hugo.I.Scripts.Shield;
+using Hugo.I.Scripts.Sounds;
 using Hugo.I.Scripts.Utils;
 using Hugo.I.Scripts.Weapon;
 using UnityEngine;
@@ -219,6 +220,9 @@ namespace Hugo.I.Scripts.Player
                 
                 // Events
                 Events.Collecting();
+                
+                // Sound
+                SoundManager.Instance.PlaySound(gameObject, SoundManager.Instance.PlayerCollectSounds);
 
                 if (tuple.isFinished)
                 {

@@ -1,4 +1,5 @@
 using Hugo.I.Scripts.Displays.InGame_WorldSpace;
+using Hugo.I.Scripts.Sounds;
 using Hugo.I.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -68,6 +69,9 @@ namespace Hugo.I.Scripts.Interactable.Resources
         {
             _resourceEmptyObject.SetActive(true);
             gameObject.SetActive(false);
+            
+            // Sound
+            SoundManager.Instance.PlaySound(gameObject, SoundManager.Instance.BreakingSounds);
         }
     }
 }
