@@ -355,6 +355,77 @@ Transform:
   - {fileID: 1778085509}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &708266838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 708266840}
+  - component: {fileID: 708266839}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &708266839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708266838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8713d828262e924eb7059ec0588b790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AmbianceSounds:
+  - {fileID: 8300000, guid: 8ee167f5b55ea2245a3c2f1a2aec041a, type: 3}
+  PlayerFootStepSounds:
+  - {fileID: 8300000, guid: 51e00a4636b7b404b9e5e30ee0c9b7bc, type: 3}
+  - {fileID: 8300000, guid: a3df778ea59eb5149b71aeac3b8344ba, type: 3}
+  - {fileID: 8300000, guid: b27deeaf255daab4da1d0e8aa390d024, type: 3}
+  - {fileID: 8300000, guid: 5587890ca5c10b74289aabc7036f87a6, type: 3}
+  PlayerCollectSounds:
+  - {fileID: 8300000, guid: 7da4348af6d6b0f42bf91b5696142886, type: 3}
+  EnemyFootStepSounds:
+  - {fileID: 8300000, guid: 51e00a4636b7b404b9e5e30ee0c9b7bc, type: 3}
+  - {fileID: 8300000, guid: a3df778ea59eb5149b71aeac3b8344ba, type: 3}
+  - {fileID: 8300000, guid: b27deeaf255daab4da1d0e8aa390d024, type: 3}
+  - {fileID: 8300000, guid: 5587890ca5c10b74289aabc7036f87a6, type: 3}
+  LevelUpSounds:
+  - {fileID: 8300000, guid: 359e7ec5e50d1ed4b835c40a672b0ca9, type: 3}
+  - {fileID: 8300000, guid: 895b5c5ce21b36c47a347e3d9a60ec64, type: 3}
+  HealingSounds:
+  - {fileID: 8300000, guid: 4e23d7daa8250314ea00d49deac9416a, type: 3}
+  ReloadingSounds:
+  - {fileID: 8300000, guid: eedb1c1f4d374774eb89c5cfc0388570, type: 3}
+  BreakingSounds:
+  - {fileID: 8300000, guid: ff6e57c59ae0c1040a62c06ab28138ce, type: 3}
+  ImpactSounds:
+  - {fileID: 8300000, guid: b778885163e8dad4195798b23dc54f08, type: 3}
+  - {fileID: 8300000, guid: 0606303627a18114abf5c11c5c1b1bf5, type: 3}
+  - {fileID: 8300000, guid: b777e5ce1cc5f55459131eacf8674f25, type: 3}
+--- !u!4 &708266840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708266838}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1060863862
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,4 +1092,5 @@ SceneRoots:
   - {fileID: 1060863863}
   - {fileID: 1193692613}
   - {fileID: 591785239}
+  - {fileID: 708266840}
   - {fileID: 1486802341}
