@@ -54,6 +54,9 @@ namespace Hugo.I.Scripts.Enemies
         {
             CurrentHealth -= damage;
             Animator.SetTrigger("TakeDamage");
+            
+            // Events
+            Events.TakeDamage();
         }
         
         public void DoneDamage()
