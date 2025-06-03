@@ -47,7 +47,7 @@ namespace Hugo.I.Scripts.Lobby
         private IEnumerator LaunchGame()
         {
             yield return new WaitForSeconds(_timeToWait);
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(3);
             
             foreach (var player in GameManager.Instance.Players)
             {

@@ -368,13 +368,6 @@ namespace Hugo.I.Scripts.Player
                             _playerTwoBonesIkHandler.EnableTwoBonesIkWeapons(_playerData.EquippedWeapon.WeaponData);
                         }
                     }
-                    if (nearestInteractable.CompareTag("Lobby"))
-                    {
-                        Debug.Log("Interact with a Lobby");
-                        // if (GameManager.Instance.Players.Count < 4) return;
-                        
-                        SceneManager.LoadScene(2);
-                    }
                 }
             }
             else

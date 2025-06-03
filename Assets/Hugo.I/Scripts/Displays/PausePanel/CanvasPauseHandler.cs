@@ -46,7 +46,7 @@ namespace Hugo.I.Scripts.Displays.PausePanel
         public void BackLobby()
         {
             Time.timeScale = 1;
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
             
             GameManager.Instance.ResetGame();
             
@@ -59,7 +59,7 @@ namespace Hugo.I.Scripts.Displays.PausePanel
         public void BackMenu()
         {
             Time.timeScale = 1;
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
             
             GameManager.Instance.ResetGame();
             

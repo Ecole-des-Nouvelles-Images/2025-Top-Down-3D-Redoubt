@@ -1801,7 +1801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b253c85153f47ce4387888079ab05345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playTweening: 1
+  _playTweening: 0
   _animationTime: 0.3
   _animationCurve:
     serializedVersion: 2
@@ -9365,7 +9365,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

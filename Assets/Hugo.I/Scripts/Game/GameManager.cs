@@ -59,7 +59,7 @@ namespace Hugo.I.Scripts.Game
             }
             
             ResetGame();
-            ChangeScene(1, 2000);
+            ChangeScene(2, 2000);
         }
 
         public void WinGame()
@@ -72,7 +72,7 @@ namespace Hugo.I.Scripts.Game
             }
             
             ResetGame();
-            ChangeScene(1, 5000);
+            ChangeScene(2, 5000);
         }
 
         private async void ChangeScene(int index, int delay)
