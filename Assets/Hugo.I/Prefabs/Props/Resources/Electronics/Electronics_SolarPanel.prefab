@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7655406767141576572}
   - component: {fileID: 8942183415712833359}
   - component: {fileID: 6372604242843655686}
-  m_Layer: 11
+  m_Layer: 9
   m_Name: TriggerCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +290,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7541976606616327054}
-  m_Layer: 11
+  m_Layer: 9
   m_Name: Electronics_SolarPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 4138894225996988793}
   - component: {fileID: 698997056864527061}
   - component: {fileID: 1318863216371854498}
-  m_Layer: 11
+  m_Layer: 9
   m_Name: Visual
   m_TagString: Resource
   m_Icon: {fileID: 0}

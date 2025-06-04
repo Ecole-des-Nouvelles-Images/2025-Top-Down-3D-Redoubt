@@ -1539,6 +1539,8 @@ MonoBehaviour:
   - {fileID: 4122953726220488901, guid: 56cf210a7943981409a5d84faba4adf0, type: 3}
   - {fileID: 5513816675435497181, guid: 4d248f4de43fba14f8f25d7533f663e2, type: 3}
   - {fileID: 6907857244504172373, guid: 2681817792f73d74da8b77cc6b02d488, type: 3}
+  _rotationMinMax: {x: -180, y: 180}
+  _scaleMinMax: {x: 4, y: 7}
 --- !u!114 &1030612367258621413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1565,6 +1567,8 @@ MonoBehaviour:
   - {fileID: 4818333439627247230, guid: 2e07f7e770b6ef54889a160e84bae107, type: 3}
   - {fileID: 6424450586715445284, guid: 9369f27f326276a41bac1e4fcd116c48, type: 3}
   - {fileID: 8995329493612523053, guid: fc716af2df2ef55429dda9acf6f55c19, type: 3}
+  _rotationMinMax: {x: -180, y: 180}
+  _scaleMinMax: {x: 6, y: 10}
 --- !u!114 &1093692682686571008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1591,6 +1595,8 @@ MonoBehaviour:
   - {fileID: 618095288071122069, guid: 3c4775121b0e5ec41bf13424ca629763, type: 3}
   - {fileID: 8507461611131126894, guid: 8762cf00fad3d644f97c52b7fa9ec7c5, type: 3}
   - {fileID: 5691190116845267862, guid: f29141a6f7a01ac4e9d441cca8e647ea, type: 3}
+  _rotationMinMax: {x: -180, y: 180}
+  _scaleMinMax: {x: 8, y: 12}
 --- !u!114 &373399763621391819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1607,10 +1613,10 @@ MonoBehaviour:
   _isRandomSpawn: 1
   _terrainOffsetSpeed: 7.8
   _seed: 
-  _frequency: 0.5
+  _frequency: 0.2
   _minHeight: 0
   _maxHeight: 20
-  _density: 1
+  _density: 1.1
   _variationFactor: 0.001
   _parent: {fileID: 8252277153530631287}
   _objectPrefabs:
@@ -1619,6 +1625,8 @@ MonoBehaviour:
   - {fileID: 4397270778900286474, guid: 646f8160f26b0854aa85241bb6c573d7, type: 3}
   - {fileID: 2077583852711062324, guid: d59433557608eb24c939c16a9c62e7aa, type: 3}
   - {fileID: 7172609324160436900, guid: be1142cc507a65046ae2a1d16307bc53, type: 3}
+  _rotationMinMax: {x: -80, y: 0}
+  _scaleMinMax: {x: 8, y: 12}
 --- !u!114 &8921923553948918663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1644,6 +1652,8 @@ MonoBehaviour:
   _objectPrefabs:
   - {fileID: 1772015918568661847, guid: 501b0ebf4bbd83f4f8ff18cd73791d27, type: 3}
   - {fileID: 8222204014586048448, guid: c954d2c8ada5f6d41999a65db8a76ae5, type: 3}
+  _rotationMinMax: {x: -180, y: 180}
+  _scaleMinMax: {x: 8, y: 12}
 --- !u!114 &7340660758624680953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1670,6 +1680,8 @@ MonoBehaviour:
   - {fileID: 1383063906881852323, guid: b24d64c88b5ee7c41bd4857651d02476, type: 3}
   - {fileID: 5080721838271614034, guid: b87e3f6c8af0c1c4e870c284ed7318b4, type: 3}
   - {fileID: 9080484657001608547, guid: a7b5f60b7b22e7a4094101a0f5e4efba, type: 3}
+  _rotationMinMax: {x: -180, y: 180}
+  _scaleMinMax: {x: 8, y: 12}
 --- !u!114 &6235864416133336886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1686,10 +1698,10 @@ MonoBehaviour:
   _isRandomSpawn: 1
   _terrainOffsetSpeed: 7.8
   _seed: 
-  _frequency: 0.15
+  _frequency: 0.2
   _minHeight: 0
   _maxHeight: 20
-  _density: 1
+  _density: 1.05
   _variationFactor: 0.001
   _parent: {fileID: 8252277153530631287}
   _objectPrefabs:
@@ -1697,6 +1709,8 @@ MonoBehaviour:
   - {fileID: 1417017953563088434, guid: 3a34e9a8092b86a438c7bbe973d9c75b, type: 3}
   - {fileID: 2050718134970373720, guid: 406af970923e3374fb82b7612f27cf80, type: 3}
   - {fileID: 6283267392493693840, guid: 8e1e3f1dd2d9aa84cb7feea5492201ec, type: 3}
+  _rotationMinMax: {x: -180, y: 180}
+  _scaleMinMax: {x: 8, y: 12}
 --- !u!114 &5976910664374390709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1713,7 +1727,7 @@ MonoBehaviour:
   _isRandomSpawn: 1
   _terrainOffsetSpeed: 7.8
   _seed: 
-  _frequency: 0.25
+  _frequency: 0.1
   _minHeight: 0
   _maxHeight: 20
   _density: 0
@@ -1722,6 +1736,8 @@ MonoBehaviour:
   _objectPrefabs:
   - {fileID: 7601992867653166341, guid: f1cbf346fc4654244b6b90cac2fa6e1e, type: 3}
   - {fileID: 4215548701835499859, guid: 021acd85eb177e74f85d59402896921f, type: 3}
+  _rotationMinMax: {x: -180, y: 180}
+  _scaleMinMax: {x: 8, y: 12}
 --- !u!1 &4748788779033304236
 GameObject:
   m_ObjectHideFlags: 0

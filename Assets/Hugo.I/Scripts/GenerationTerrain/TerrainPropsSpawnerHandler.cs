@@ -23,8 +23,8 @@ namespace Hugo.I.Scripts.GenerationTerrain
         [Header("<size=13><color=#F5B041>📦 Object Prefabs Settings</color></size>")]
         [SerializeField] private Transform _parent;
         [SerializeField] private List<GameObject> _objectPrefabs = new List<GameObject>();
-        [SerializeField] private Vector2 _rotationMinMax;
-        [SerializeField] private Vector2 _scaleMinMax;
+        [SerializeField] private Vector2Int _rotationMinMax;
+        [SerializeField] private Vector2Int _scaleMinMax;
     
         private UnityEngine.Terrain _terrain;
         private TerrainData _terrainData;
@@ -76,7 +76,6 @@ namespace Hugo.I.Scripts.GenerationTerrain
 
         private void SpawnProps()
         {
-            Debug.Log("Spawning Props : " + _objectPrefabs[0].name);
             if (_firstSpawn)
             {
                 _firstSpawn = false;
@@ -123,7 +122,10 @@ namespace Hugo.I.Scripts.GenerationTerrain
                                                         || position.x > _terrainData.size.x + _terrain.transform.position.x || position.x < _terrain.transform.position.x
                                                         || position.z > _terrainData.size.z + _terrain.transform.position.z || position.z < _terrain.transform.position.z) continue;
                     
-                            GameObject newTree = Instantiate(_objectPrefabs[_random.Next(0, _objectPrefabs.Count)], position, Quaternion.Euler(0, _random.Next(-90, 0), 0), _parent);
+                            GameObject newTree = Instantiate(_objectPrefabs[_random.Next(0, _objectPrefabs.Count)], position, Quaternion.Euler(0, _random.Next(_rotationMinMax.x, _rotationMinMax.y), 0), _parent);
+                            int newScaleInt = _random.Next(_scaleMinMax.x, _scaleMinMax.y);
+                            float finalScale = (float)newScaleInt / 10;
+                            newTree.transform.localScale = new Vector3(finalScale, finalScale, finalScale);
                             _spawnObjects.Add(newTree);
                             // Debug.Log("Nombre d'arbres instantié : " + _spawnObjects.Count);
                         }
