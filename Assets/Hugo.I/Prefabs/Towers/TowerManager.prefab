@@ -293,7 +293,7 @@ Transform:
   m_GameObject: {fileID: 2089432195923607832}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 4.6, y: 2, z: -2.6}
+  m_LocalPosition: {x: 3.6, y: 2, z: -2.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -499,7 +499,17 @@ MonoBehaviour:
   - {fileID: 7693601916163565377}
   _towersPivot: {fileID: 2026797344970433860}
   _reloadZone: {fileID: 2089432195923607832}
+  _reloadZonePositions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 3.6, y: 2, z: -2.75}
+  - {x: 4.6, y: 2, z: -2.6}
+  - {x: 4.6, y: 2, z: -2.6}
   _healingZone: {fileID: 4374683425191655992}
+  _healingZonePositions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: -4.6, y: 2, z: -2.6}
+  - {x: -4.6, y: 2, z: -2.6}
   _shieldZonePrefab: {fileID: 790350623387009348, guid: 5843f020600f16c46bad09c1a974c83b, type: 3}
   _shieldZoneSpawnPoint: {fileID: 3225949317106859272}
   _cinemachineCamera: {fileID: 0}

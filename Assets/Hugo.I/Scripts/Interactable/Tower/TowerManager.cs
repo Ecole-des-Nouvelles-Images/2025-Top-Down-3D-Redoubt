@@ -17,7 +17,9 @@ namespace Hugo.I.Scripts.Interactable.Tower
         [SerializeField] private List<GameObject> _towers;
         [SerializeField] private Transform _towersPivot;
         [SerializeField] private GameObject _reloadZone;
+        [SerializeField] private List<Vector3> _reloadZonePositions;
         [SerializeField] private GameObject _healingZone;
+        [SerializeField] private List<Vector3> _healingZonePositions;
         [SerializeField] private GameObject _shieldZonePrefab;
         [SerializeField] private Transform _shieldZoneSpawnPoint;
         
@@ -87,6 +89,10 @@ namespace Hugo.I.Scripts.Interactable.Tower
             {
                 _healingZone.SetActive(true);
             }
+            
+            // Set healingZone / reloadingZone position
+            _reloadZone.transform.localPosition = _reloadZonePositions[index + 1];
+            _healingZone.transform.localPosition = _healingZonePositions[index + 1];
             
             // Change enemies spawn
             _enemySpawnerManager.ChangeSpawnPoints(index + 1);
