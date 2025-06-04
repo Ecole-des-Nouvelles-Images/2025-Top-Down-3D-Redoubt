@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 10
   IncreaseRateHealth: 1
-  MoveSpeed: 8
+  MoveSpeed: 7
   FactorAimingSpeed: 0.5
   FactorCarryingSpeed: 0.7
   PushForce: 10
