@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Intersections_ShieldZone
+  m_Name: M_Intersections_HealingZone
   m_Shader: {fileID: -6465566751694194690, guid: d06537558d8c63443b30946597c0379a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -52,12 +52,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _DepthCompareDistance: 2
-    - _IntersectPower: 1
+    - _IntersectPower: 5
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Threshold: 0
     m_Colors:
-    - _BaseColor: {r: 0, g: 1, b: 0.9467072, a: 1}
-    - _IntersectColor: {r: 0.37753645, g: 0.7924528, b: 0.78576064, a: 1}
+    - _BaseColor: {r: 0, g: 1, b: 0.07363939, a: 1}
+    - _IntersectColor: {r: 0.37904054, g: 0.7921569, b: 0.37647057, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
