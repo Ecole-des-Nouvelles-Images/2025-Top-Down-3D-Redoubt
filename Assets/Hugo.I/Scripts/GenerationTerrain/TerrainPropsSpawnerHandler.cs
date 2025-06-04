@@ -23,6 +23,8 @@ namespace Hugo.I.Scripts.GenerationTerrain
         [Header("<size=13><color=#F5B041>📦 Object Prefabs Settings</color></size>")]
         [SerializeField] private Transform _parent;
         [SerializeField] private List<GameObject> _objectPrefabs = new List<GameObject>();
+        [SerializeField] private Vector2 _rotationMinMax;
+        [SerializeField] private Vector2 _scaleMinMax;
     
         private UnityEngine.Terrain _terrain;
         private TerrainData _terrainData;
@@ -74,6 +76,7 @@ namespace Hugo.I.Scripts.GenerationTerrain
 
         private void SpawnProps()
         {
+            Debug.Log("Spawning Props : " + _objectPrefabs[0].name);
             if (_firstSpawn)
             {
                 _firstSpawn = false;
@@ -120,7 +123,7 @@ namespace Hugo.I.Scripts.GenerationTerrain
                                                         || position.x > _terrainData.size.x + _terrain.transform.position.x || position.x < _terrain.transform.position.x
                                                         || position.z > _terrainData.size.z + _terrain.transform.position.z || position.z < _terrain.transform.position.z) continue;
                     
-                            GameObject newTree = Instantiate(_objectPrefabs[_random.Next(0, _objectPrefabs.Count)], position, Quaternion.Euler(0, _random.Next(-180, 180), 0), _parent);
+                            GameObject newTree = Instantiate(_objectPrefabs[_random.Next(0, _objectPrefabs.Count)], position, Quaternion.Euler(0, _random.Next(-90, 0), 0), _parent);
                             _spawnObjects.Add(newTree);
                             // Debug.Log("Nombre d'arbres instantié : " + _spawnObjects.Count);
                         }

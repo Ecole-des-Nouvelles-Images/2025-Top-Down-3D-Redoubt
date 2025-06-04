@@ -26,8 +26,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5935162654234452607}
   m_Father: {fileID: 0}
@@ -84,6 +84,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Herbe2
       objectReference: {fileID: 0}
+    - target: {fileID: 3707197520876644981, guid: 4175d84000bca6f488e2079fb160a9cc, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3707197520876644981, guid: 4175d84000bca6f488e2079fb160a9cc, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 65fcfa4caa444d542b3d71c5fe681f30, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
