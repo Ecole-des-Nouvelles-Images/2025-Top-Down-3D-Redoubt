@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerBaseSats
   m_EditorClassIdentifier: 
   MaxHealth: 10
-  IncreaseRateHealth: 4
+  IncreaseRateHealth: 1
   MoveSpeed: 8
   FactorAimingSpeed: 0.5
   FactorCarryingSpeed: 0.7

@@ -814,6 +814,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 8263425212277362436, guid: 16a714ecdecb43047be6d9a5b5a664d5, type: 3}
+    - target: {fileID: 1725261476577554267, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
+      propertyPath: m_ShadowCastingMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1817765341136909553, guid: f5a6c265212496f4fb5d56c51e2754df, type: 3}
       propertyPath: m_LocalPosition.x
       value: 29.3

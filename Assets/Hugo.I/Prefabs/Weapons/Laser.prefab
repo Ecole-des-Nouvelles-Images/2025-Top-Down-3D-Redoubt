@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _axis: {x: 0, y: 0, z: 1}
-  _length: 5
+  _length: 23
 --- !u!120 &6301508135929098798
 LineRenderer:
   serializedVersion: 2
@@ -71,7 +71,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dd1eaf6348359b74584d1e67ba443932, type: 2}
+  - {fileID: 2100000, guid: d80459a33d13340408384394c247396b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -103,7 +103,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.02873765
+        value: 0.051076796
         inSlope: 0
         outSlope: 0
         tangentMode: 0

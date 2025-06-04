@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 20
-  Damage: 2
+  Damage: 1.5
   AttackSpeed: 1
   AttackRange: 2
   RangeDontSwitchTarget: 7.5

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 0}
   TowerLevelsEnum: 0
-  MaxHealth: 50
+  MaxHealth: 40
   HealthRestoreRate: 0
   MaxEnergy: 0
   EnergyRestoreRate: 0

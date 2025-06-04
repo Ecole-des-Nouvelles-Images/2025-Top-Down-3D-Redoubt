@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 0}
   TowerLevelsEnum: 2
-  MaxHealth: 150
-  HealthRestoreRate: 10
+  MaxHealth: 120
+  HealthRestoreRate: 6.5
   MaxEnergy: 100
-  EnergyRestoreRate: 4
-  EnergyDecreaseRate: 6
+  EnergyRestoreRate: 1.2
+  EnergyDecreaseRate: 1.5
   StoneToLevelUp: 32
   MetalToLevelUp: 16
   ElectricalCircuitToLevelUp: 6

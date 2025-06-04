@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Rifle
   m_EditorClassIdentifier: 
   _weaponTypesEnum: 1
-  Damage: 5
-  Capacity: 50
-  CapacityRestoreRate: 0
-  FireRate: 0.1
-  Range: 0.4
-  BulletSpeed: 100
-  OverheatingLimit: 50
+  Damage: 2
+  Capacity: 90
+  CapacityRestoreRate: 5
+  FireRate: 0.15
+  Range: 0.175
+  BulletSpeed: 150
+  OverheatingLimit: 30
   OverheatingIncreaseRate: 1
-  OverheatingDecreaseRate: 2
-  OverheatingDecreaseSpeed: 1
+  OverheatingDecreaseRate: 0.75
+  OverheatingDecreaseSpeed: 0.1
