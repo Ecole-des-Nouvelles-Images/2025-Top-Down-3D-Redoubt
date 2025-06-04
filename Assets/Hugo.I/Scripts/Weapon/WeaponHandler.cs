@@ -1,4 +1,5 @@
 using System.Collections;
+using Hugo.I.Scripts.Sounds;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -120,6 +121,9 @@ namespace Hugo.I.Scripts.Weapon
                 //Visuel
                 GameObject newBullet = Instantiate(_bulletGameObject, _spawnBulletTransform.position, transform.rotation);
                 newBullet.GetComponent<BulletHandler>().SetUp(WeaponData.Damage, WeaponData.Range, WeaponData.BulletSpeed, _directionBulletTransform);
+                
+                // Sound
+                SoundManager.Instance.PlaySound(gameObject, SoundManager.Instance.WeaponShootSounds);
                 
                 yield return new WaitForSeconds(WeaponData.FireRate);
             }

@@ -25,6 +25,9 @@ namespace Hugo.I.Scripts.Sounds
         [SerializeField] public List<AudioClip> HealingSounds;
         [SerializeField] public List<AudioClip> ReloadingSounds;
         
+        [Header("<size=13><color=#58D68D>Weapon</color></size>")]
+        [SerializeField] public List<AudioClip> WeaponShootSounds;
+        
         [Header("<size=13><color=#58D68D>Resource</color></size>")]
         [SerializeField] public List<AudioClip> BreakingSounds;
         
