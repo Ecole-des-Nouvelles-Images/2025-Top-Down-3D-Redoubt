@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ResourceEnumType: 2
   Icon: {fileID: 0}
-  MaxCollectableAtOnce: 4
+  MaxCollectableAtOnce: 2

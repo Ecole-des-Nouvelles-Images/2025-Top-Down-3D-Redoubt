@@ -15,9 +15,10 @@ MonoBehaviour:
   Icon: {fileID: 0}
   TowerLevelsEnum: 0
   MaxHealth: 50
+  HealthRestoreRate: 0
   MaxEnergy: 0
   EnergyRestoreRate: 0
   EnergyDecreaseRate: 0
-  StoneToLevelUp: 10
+  StoneToLevelUp: 15
   MetalToLevelUp: 0
   ElectricalCircuitToLevelUp: 2

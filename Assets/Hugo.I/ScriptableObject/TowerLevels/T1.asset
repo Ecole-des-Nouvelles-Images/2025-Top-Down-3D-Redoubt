@@ -20,5 +20,5 @@ MonoBehaviour:
   EnergyRestoreRate: 2
   EnergyDecreaseRate: 4
   StoneToLevelUp: 0
-  MetalToLevelUp: 15
-  ElectricalCircuitToLevelUp: 5
+  MetalToLevelUp: 12
+  ElectricalCircuitToLevelUp: 4

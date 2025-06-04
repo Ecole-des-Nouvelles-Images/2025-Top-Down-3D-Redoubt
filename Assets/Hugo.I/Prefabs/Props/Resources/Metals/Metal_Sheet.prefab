@@ -182,7 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _resourceData: {fileID: 11400000, guid: b5d9865959a210f438e4ae28a2d3b202, type: 2}
   _resourceWorldSpaceDisplay: {fileID: 4527180943515490086}
-  _maxCapacity: 10
+  _maxCapacity: 4
   _resourceEmptyObject: {fileID: 7966364019144890383}
 --- !u!64 &6112836355443606328
 MeshCollider:
