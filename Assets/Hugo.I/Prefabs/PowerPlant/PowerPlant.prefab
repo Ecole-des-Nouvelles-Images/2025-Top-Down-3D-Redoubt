@@ -650,7 +650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsRepaired: 0
-  QteSize: 2
+  QteSize: 6
   _repairedAdvancement: 0
   _numberOfRepairs: 3
   _powerPlantWorldSpaceDisplay: {fileID: 1509821351126189424}

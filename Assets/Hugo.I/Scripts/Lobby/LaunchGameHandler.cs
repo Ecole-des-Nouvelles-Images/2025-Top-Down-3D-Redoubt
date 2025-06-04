@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Hugo.I.Scripts.Game;
 using Hugo.I.Scripts.Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Hugo.I.Scripts.Lobby
 {
@@ -12,6 +14,11 @@ namespace Hugo.I.Scripts.Lobby
         [Header("Settings")]
         [SerializeField] private float _timeToWait;
         [SerializeField] private List<Collider> _players = new List<Collider>();
+        
+        [Header("References")]
+        [SerializeField] private Image _fadeInImage;
+        [SerializeField] private float _fadeDuration;
+        [SerializeField] private AnimationCurve _fadeCurve;
         
         private Collider _collider;
         private Coroutine _launchGameCoroutine;
@@ -31,6 +38,7 @@ namespace Hugo.I.Scripts.Lobby
                 {
                     Debug.Log("launch game");
                     _launchGameCoroutine = StartCoroutine(LaunchGame());
+                    _fadeInImage.DOFade(1f, _fadeDuration).SetEase(_fadeCurve);
                 }
             }
         }
@@ -62,6 +70,7 @@ namespace Hugo.I.Scripts.Lobby
                 Debug.Log("stop launch game");
                 StopCoroutine(_launchGameCoroutine);
                 _launchGameCoroutine = null;
+                _fadeInImage.DOFade(0f, _fadeDuration).SetEase(_fadeCurve);
             }
         }
     }
