@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!135 &14527618
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -426,6 +426,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: panneauSolaire
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 21bdc9fe8230325478f9fa926a00ee98, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -486,6 +490,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fadaa1f25996011499b070ccdff8a8ae, type: 3}
       propertyPath: m_Name
       value: BoitierElectrique_Detruit
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fadaa1f25996011499b070ccdff8a8ae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -804,7 +812,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c119cbf9cc551734eaf0d31438a6f2e5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -960,7 +968,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &522749732
 Transform:
   m_ObjectHideFlags: 0
@@ -1231,6 +1239,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PierreDetruite
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a7e5b76daa340a44b9edc44555166486, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1288,6 +1300,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slow Run (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5c09f93b9d847a94799166647fbc9404, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6138492729013249653, guid: 5c09f93b9d847a94799166647fbc9404, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -1315,7 +1331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &838923653
 Transform:
   m_ObjectHideFlags: 0
@@ -1325,7 +1341,7 @@ Transform:
   m_GameObject: {fileID: 838923652}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.6145215, y: -5.4172754, z: 17.938026}
+  m_LocalPosition: {x: -5.93, y: -5.4172754, z: 17.938026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1551,7 +1567,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 369627c8c1c99084bb30d22a67b4e50e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.294802
+      value: -8.35
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 369627c8c1c99084bb30d22a67b4e50e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1559,7 +1575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 369627c8c1c99084bb30d22a67b4e50e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.069134
+      value: -26.83
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 369627c8c1c99084bb30d22a67b4e50e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1596,6 +1612,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 369627c8c1c99084bb30d22a67b4e50e, type: 3}
       propertyPath: m_Name
       value: ToleDetruite
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 369627c8c1c99084bb30d22a67b4e50e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2511,6 +2531,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Voiture
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 09d2ee0e783a9874fbe45f43975de2e9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2526,7 +2550,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: dfddbb3beb041c54c9e3953cee615487, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.225479
+      value: -9.62
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dfddbb3beb041c54c9e3953cee615487, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2534,7 +2558,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dfddbb3beb041c54c9e3953cee615487, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.338026
+      value: -16.79
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dfddbb3beb041c54c9e3953cee615487, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2575,6 +2599,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: dfddbb3beb041c54c9e3953cee615487, type: 3}
       propertyPath: m_Name
       value: VoitureDetruite
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dfddbb3beb041c54c9e3953cee615487, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2636,6 +2664,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f59a118627738c343b052662d9824886, type: 3}
       propertyPath: m_Name
       value: Tole
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f59a118627738c343b052662d9824886, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2892,6 +2924,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PanneauSolaire_Detruit
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f48652101083acc429b159b1dba0ad12, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3019,7 +3055,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: bf01cb0286697164a988347c5edd765e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5955908146823331592, guid: bf01cb0286697164a988347c5edd765e, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -3099,6 +3135,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4d567523958fb394898ab0ab273ad6fe, type: 3}
       propertyPath: m_Name
       value: BoitierElectrique
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4d567523958fb394898ab0ab273ad6fe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
