@@ -1567,6 +1567,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6435489396180246686, guid: 44f0135da06745646997098eb77e9d21, type: 3}
+      propertyPath: _spawnRate
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6435489396180246686, guid: 44f0135da06745646997098eb77e9d21, type: 3}
+      propertyPath: _increaseTotalCreditRate
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 7002418313904666984, guid: 44f0135da06745646997098eb77e9d21, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
