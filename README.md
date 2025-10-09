@@ -1,12 +1,13 @@
-
-# Redoubt
+<div align="center">
+  <h1>Redoubt</h1>
+</div>
 
 [A brief and engaging tagline or description of the game]
 
 [![Unity Version](https://img.shields.io/badge/Unity-2022.3.47-blue?style=flat&logo=unity)](https://unity.com/)
-[![GitHub Release](https://img.shields.io/github/v/release/Ecole-des-Nouvelles-Images/Unity-Template)](https://github.com/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B/releases)
-[![License](https://img.shields.io/github/license/Ecole-des-Nouvelles-Images/Unity-Template)](https://github.com/Ecole-des-Nouvelles-Images/Unity-Template/blob/main/LICENSE)
-[![Repo Size](https://img.shields.io/github/repo-size/Ecole-des-Nouvelles-Images/Unity-Template?color=lightgrey)](https://github.com/Ecole-des-Nouvelles-Images/Unity-Template)
+[![GitHub Release](https://badgen.net/github/release/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B)](https://github.com/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B/releases)
+[![License](https://img.shields.io/github/license/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B)](https://github.com/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B/blob/main/LICENSE)
+[![Repo Size](https://img.shields.io/github/repo-size/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B?color=lightgrey)](https://github.com/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B)
 
 ![Main Banner](https://github.com/Ecole-des-Nouvelles-Images/Unity-Template/blob/main/MetaData/main-banner.png)
 
