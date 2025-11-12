@@ -3,7 +3,7 @@
     <img width="64" height="64" alt="flag_inglaterra" src="https://github.com/user-attachments/assets/79223af9-d6d8-48a1-aa17-7355c3c6b444" />
   </a>
   &nbsp;&nbsp;&nbsp;
-  <a href="https://github.com/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Redoubt/blob/main/README.md">
+  <a href="https://github.com/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Redoubt/blob/main/README.es.md">
     <img width="64" height="64" alt="flag_espagne" src="https://github.com/user-attachments/assets/22639270-f31b-4416-9445-73230a53ec00" />
   </a>
   &nbsp;&nbsp;&nbsp;
