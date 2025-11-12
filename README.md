@@ -46,7 +46,7 @@ This game was brought to life by :
 
 **Hugo BARON** - *Game Art*  
 **Calvin OVIDE** - *Game Art*  
-**Hugo ISAMBART** - *Game Developer*  
+**[Hugo ISAMBART](https://github.com/Neiflheim)** - *Game Developer*  
 
 ---
 <div align="center">
