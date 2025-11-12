@@ -9,7 +9,7 @@
 [![License](https://img.shields.io/github/license/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B)](https://github.com/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B/blob/main/LICENSE)
 [![Repo Size](https://img.shields.io/github/repo-size/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B?color=lightgrey)](https://github.com/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B)
 
-**Redoubt** is a top-down 3D twin-stick shooter. You'll have to fight looters in a post-apocalyptic desert while gathering resources to upgrade and defend your tower.
+**Redoubt** is a **top-down 3D twin-stick shooter**. You'll have to **fight** looters in a post-apocalyptic desert while **gathering resources** to **upgrade** and **defend** your tower.
 
 ## Table of Contents
 1. [Introduction](#introduction)
