@@ -41,20 +41,29 @@ In a **semi-futuristic post-apocalyptic** world, a team of researchers has come 
   <h1>Team</h1>
 </div>
 
-This game was brought to life by : Hugo BARON - Calvin OVIDE - Hugo ISAMBART
+This game was brought to life by :
+Hugo BARON - Game Art
+Calvin OVIDE - Game Art
+Hugo ISAMBART - Game Developer
 
 ---
 <div align="center">
   <h1>Gameplay</h1>
 </div>
 
-**Ball Blop Battle** is a **1vs1** game in which each player controls a blop and must **win** the volleyball match revisited !
+**Redoubt** is a **cooperative game** in which each player controls a researcher and must **work together** to **protect** a tower.
 
-## Blops
-There are **4 different blops**, each with its own unique **special spike** and differentiated mainly by its **color** :
+Players must fight **enemies** using **energy weapons** and **kicks**. These weapons have an **overheating system** and must be **recharged** at the tower. Kicks simply **push** enemies back without causing damage.
+
+Players must go to the **resources** scattered across the map and complete a **QTE to collect** them. They must then return to the tower to **deposit** the resources. Once the quota is reached, the tower increases by one **level**, causing the camera dezoom out to see further and access **new resources** needed for improvement.
+
+When a player has no lives left, they **die**. However, they can **heal themselves** using the tower's energy.
+
+## Power plant
+After completing a tower level, the **power plant** becomes visible and must be **activated** by performing QTEs. It activates the **tower's energy**, which can be used to **recharge** your weapon and **heal yourself**.
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/d6156c0e-b9c4-464a-82c8-40555a30213f" alt="Exemple d'image" style="max-width: 100%; height: auto;">
+  <img src="https://github.com/user-attachments/assets/50ccf927-4996-4e25-82ed-81c48b4a4ee5" alt="Exemple d'image" style="max-width: 100%; height: auto;">
 </div>
 
 ## Game mechanics
