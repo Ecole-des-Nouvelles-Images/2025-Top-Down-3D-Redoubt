@@ -1,5 +1,6 @@
 <div align="center">
   <h1>Redoubt</h1>
+  <img src="https://github.com/user-attachments/assets/730c6af6-86f0-4eb9-a46e-ab04169d71c0" alt="Exemple d'image" style="max-width: 100%; height: auto;">
 </div>
 
 ![IllustrationLoadingScreen](https://github.com/user-attachments/assets/89a924ce-bdff-40fc-8783-13b69e195f39)
