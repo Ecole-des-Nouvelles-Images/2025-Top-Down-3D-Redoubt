@@ -1,4 +1,14 @@
 <div align="center">
+  <a href="https://github.com/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Redoubt/blob/main/README.md">
+    <img width="64" height="64" alt="flag_angleterre" src="https://github.com/user-attachments/assets/79223af9-d6d8-48a1-aa17-7355c3c6b444" />
+  </a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="https://github.com/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Redoubt/blob/main/README.fr.md">
+    <img width="64" height="64" alt="flag_france" src="https://github.com/user-attachments/assets/b98ca283-5441-4f57-a475-8cbf1f843485" />
+  </a>
+</div>
+
+<div align="center">
   <h1>Redoubt</h1>
   <img src="https://github.com/user-attachments/assets/730c6af6-86f0-4eb9-a46e-ab04169d71c0" alt="Exemple d'image" style="max-width: 100%; height: auto;">
 </div>
