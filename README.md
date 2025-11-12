@@ -41,8 +41,7 @@ In a **semi-futuristic post-apocalyptic** world, a team of researchers has come 
   <h1>Team</h1>
 </div>
 
-This game was brought to life by : Marion DUBREIL - Calvin OVIDE - Hugo ISAMBART
-![baniere_readme3](https://github.com/user-attachments/assets/163b3ef1-d7d9-4fd6-9f82-01021287457a)
+This game was brought to life by : Hugo BARON - Calvin OVIDE - Hugo ISAMBART
 
 ---
 <div align="center">
@@ -59,9 +58,9 @@ There are **4 different blops**, each with its own unique **special spike** and 
 </div>
 
 ## Game mechanics
-Each player can **move**, **jump**, **dash**, **attack**, **catch** and **receive** the ball. Players may **only move** if they are not in possession of the ball.
+Each player can **move**, **shoot**, **recover resources**, **improve the tower**, **reload your weapon** and **heal yourself**.
 
-https://github.com/user-attachments/assets/21fd09d4-ce86-439a-9fcd-63709f87ada4
+https://github.com/user-attachments/assets/71c188a3-096a-48bb-be82-d235080e8f29
 
 ---
 <div align="center">
