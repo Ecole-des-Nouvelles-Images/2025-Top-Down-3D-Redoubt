@@ -19,99 +19,97 @@
 [![License](https://img.shields.io/github/license/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B)](https://github.com/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B/blob/main/LICENSE)
 [![Repo Size](https://img.shields.io/github/repo-size/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B?color=lightgrey)](https://github.com/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B)
 
-**Redoubt** is a **top-down 3D twin-stick shooter**. You'll have to **fight** looters in a post-apocalyptic desert while **gathering resources** to **upgrade** and **defend** your tower.
+**Redoubt** est un **jeu de tir twin-stick en 3D** avec une vue **top-down**. Vous devrez **combattre** des pillards dans un désert post-apocalyptique tout en **rassemblant des ressources** pour **améliorer** et **défendre** votre tour.
 
-## Table of Contents
+## Table des matières
 1. [Introduction](#introduction)
-2. [Universe](#universe)
-3. [Team](#team)
+2. [Univers](#univers)
+3. [Équipe](#équipe)
 4. [Gameplay](#gameplay)
-6. [Release](#release)
-7. [Development](#development)
-8. [Special Thanks](#special-thanks)
-9. [Recommendations](#recommendations)
+6. [Téléchargement](#téléchargement)
+7. [Développement](#développement)
+8. [Remerciements](#remerciements)
+9. [Recommandations](#recommandations)
 
 ---
 <div align="center">
   <h1>Introduction</h1>
 </div>
 
-**Redoubt** is a action and twin-stick shooter 3D with a top-down view developed during **five weeks**.  
-This project was created as part of **a school project**.  
-The development process included **a preproduction (1 week), production (3 weeks) and a postproduction (1 week)**.
+**Redoubt** est un **jeu de tir twin-stick en 3D** avec une vue **top-down** développé en **cinq semaines**.  
+Ce projet a été créé dans le cadre d'un **projet scolaire**.  
+Le processus de développement comprenait **une préproduction (1 semaine), une production (3 semaines) et une postproduction (1 semaine)**.
 
 ---
 <div align="center">
-  <h1>Universe</h1>
+  <h1>Univers</h1>
 </div>
 
-In a **semi-futuristic post-apocalyptic** world, a team of researchers has come together with the goal of **rebuilding towers** to **secure** and **rehabilitate** these areas.
+Dans un monde **post-apocalyptique semi-futuriste**, une équipe de chercheurs s'est réunie dans le but de **reconstruire des tours** afin de **sécuriser** et de **réhabiliter** ces zones.
 
 ---
 <div align="center">
-  <h1>Team</h1>
+  <h1>Équipe</h1>
 </div>
 
-This game was brought to life by :
+Ce jeu a été créé par :
 
-**[Hugo BARON](https://github.com/Hugoba7)** - *Game Art*  
-**[Calvin OVIDE](https://github.com/CalvinOvide)** - *Game Art*  
-**[Hugo ISAMBART](https://github.com/Neiflheim)** - *Game Developer*  
+**[Hugo BARON](https://github.com/Hugoba7)** - *Artiste*  
+**[Calvin OVIDE](https://github.com/CalvinOvide)** - *Artiste*  
+**[Hugo ISAMBART](https://github.com/Neiflheim)** - *Développeur*  
 
 ---
 <div align="center">
   <h1>Gameplay</h1>
 </div>
 
-**Redoubt** is a **cooperative game** in which each player controls a researcher and must **work together** to **protect** a tower.
+**Redoubt** est un **jeu coopératif** dans lequel chaque joueur contrôle un chercheur et doit **travailler en équipe** pour **protéger** une tour.
 
-Players must fight **enemies** using **energy weapons** and **kicks**. These weapons have an **overheating system** and must be **recharged** at the tower. Kicks simply **push** enemies back without causing damage.
+Les joueurs doivent combattre les **ennemis** à l'aide d'**armes énergétiques** et de **coups de pied**. Ces armes sont dotées d'un **système de surchauffe** et doivent être **rechargées** à la tour. Les coups de pied **repoussent** simplement les ennemis sans leur causer de dégâts.
 
-Players must go to the **resources** scattered across the map and complete a **QTE to collect** them. They must then return to the tower to **deposit** the resources. Once the quota is reached, the tower increases by one **level**, causing the camera dezoom out to see further and access **new resources** needed for improvement.
+Les joueurs doivent se rendre aux **ressources** dispersées sur la carte et effectuer un **QTE pour les collecter**. Ils doivent ensuite retourner à la tour pour **déposer** les ressources. Une fois le quota atteint, la tour gagne un **niveau**, ce qui provoque un dézoom de la caméra pour voir plus loin et accéder à de **nouvelles ressources** nécessaires à l'amélioration.
 
-When a player has no lives left, they **die**. However, they can **heal themselves** using the tower's energy.
+Lorsqu'un joueur n'a plus de vies, il **meurt**. Cependant, il peut **se soigner** en utilisant l'énergie de la tour.
 
-## Power plant
-After completing a tower level, the **power plant** becomes visible and must be **activated** by performing QTEs. It activates the **tower's energy**, which can be used to **recharge** your weapon and **heal yourself**.
+## Centrale électrique
+Une fois le premier niveau de la tour terminé, la **centrale électrique** devient visible et doit être **activée** en effectuant des QTE. Elle active l'**énergie de la tour**, qui peut être utilisée pour **recharger** votre arme et vous **soigner**.
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/50ccf927-4996-4e25-82ed-81c48b4a4ee5" alt="Exemple d'image" style="max-width: 100%; height: auto;">
 </div>
 
-## Game mechanics
-Each player can **move**, **shoot**, **recover resources**, **improve the tower**, **reload your weapon** and **heal yourself**.
+## Mécanique du jeu
+Chaque joueur peut **se déplacer**, **tirer**, **récupérer des ressources**, **améliorer la tour**, **recharger son arme** et **se soigner**.
 
 https://github.com/user-attachments/assets/71c188a3-096a-48bb-be82-d235080e8f29
 
 ---
 <div align="center">
-  <h1>Release</h1>
+  <h1>Téléchargement</h1>
 </div>
 
-The game is available on windows and here is the link to **[dowload](https://github.com/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B/releases)** it.
-
-This game supports **windows**.
+Le jeu est disponible sur Windows et téléchargeable **[ici](https://github.com/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B/releases)** it.
 
 ---
 <div align="center">
-  <h1>Development</h1>
+  <h1>Développement</h1>
 </div>
 
-This project is currently **in development**. Future updates might include **new features and bug fixes**.  
+Ce projet est actuellement **en cours de développement**. Les futures mises à jour pourraient inclure **nouvelles fonctionnalités et corrections de bugs**.
 
-If you encounter any bugs or have suggestions, please open an **[issue ticket](https://github.com/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B/issues/new)**.
+Si vous rencontrez des bugs ou avez des suggestions, veuillez ouvrir un **[ticket d'incident](https://github.com/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B/issues/new)**.
 
 ---
 <div align="center">
-  <h1>Special Thanks</h1>
+  <h1>Remerciements</h1>
 </div>
 
-We would like to thank :
+Nous tenons à remercier :
 - **[L'École des Nouvelles Images](https://www.nouvellesimages.xyz/)**
 
 ---
 <div align="center">
-  <h1>Recommendations</h1>
+  <h1>Recommandations</h1>
 </div>
 
-For the best experience, we recommend playing with **controllers**.
+Pour une expérience optimale, nous vous recommandons d'utiliser des **manettes**.
