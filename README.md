@@ -43,9 +43,10 @@ In a **semi-futuristic post-apocalyptic** world, a team of researchers has come 
 </div>
 
 This game was brought to life by :
-Hugo BARON - Game Art
-Calvin OVIDE - Game Art
-Hugo ISAMBART - Game Developer
+
+**Hugo BARON** - *Game Art*  
+**Calvin OVIDE** - *Game Art*  
+**Hugo ISAMBART** - *Game Developer*  
 
 ---
 <div align="center">
