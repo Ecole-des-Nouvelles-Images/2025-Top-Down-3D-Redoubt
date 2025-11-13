@@ -19,9 +19,9 @@
 
 ![IllustrationLoadingScreen](https://github.com/user-attachments/assets/89a924ce-bdff-40fc-8783-13b69e195f39)
 [![Unity Version](https://img.shields.io/badge/Unity-2022.3.47-blue?style=flat&logo=unity)](https://unity.com/)
-[![GitHub Release](https://badgen.net/github/release/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B)](https://github.com/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B/releases)
-[![License](https://img.shields.io/github/license/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B)](https://github.com/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B/blob/main/LICENSE)
-[![Repo Size](https://img.shields.io/github/repo-size/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B?color=lightgrey)](https://github.com/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Hugo-B)
+[![GitHub Release](https://badgen.net/github/release/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Redoubt)](https://github.com/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Redoubt/releases)
+[![License](https://img.shields.io/github/license/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Redoubt)](https://github.com/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Redoubt/blob/main/LICENSE)
+[![Repo Size](https://img.shields.io/github/repo-size/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Redoubt?color=lightgrey)](https://github.com/Ecole-des-Nouvelles-Images/2025-Top-Down-3D-Redoubt)
 
 **Redoubt** est un **jeu de tir twin-stick en 3D** avec une vue **top-down**. Vous devrez **combattre** des pillards dans un désert post-apocalyptique tout en **rassemblant des ressources** pour **améliorer** et **défendre** votre tour.
 
