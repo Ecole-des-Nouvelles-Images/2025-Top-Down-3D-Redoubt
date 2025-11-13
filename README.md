@@ -60,7 +60,7 @@ This game was brought to life by :
 
 **[Hugo BARON](https://github.com/Hugoba7)** - *Game Art*  
 **[Calvin OVIDE](https://github.com/CalvinOvide)** - *Game Art*  
-**[Hugo ISAMBART](https://github.com/Neiflheim)** - *Game Developer*  
+**[Hugo ISAMBART](https://github.com/HIsambart)** - *Game Developer*  
 
 ---
 <div align="center">
