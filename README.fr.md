@@ -60,7 +60,7 @@ Ce jeu a été créé par :
 
 **[Hugo BARON](https://github.com/Hugoba7)** - *Artiste*  
 **[Calvin OVIDE](https://github.com/CalvinOvide)** - *Artiste*  
-**[Hugo ISAMBART](https://github.com/Neiflheim)** - *Développeur*  
+**[Hugo ISAMBART](https://github.com/HIsambart)** - *Développeur*  
 
 ---
 <div align="center">
